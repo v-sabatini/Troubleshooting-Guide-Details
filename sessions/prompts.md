@@ -24,11 +24,11 @@ Next session   →  paste RESUME prompt (it reads the latest log)  →  you're i
 > helps my team troubleshoot flyer-processing issues and errors.
 >
 > Before doing anything else:
-> 1. Read `README.md`, `docs/00-index.md`, and `sources/source-map.md`.
-> 2. Read the **most recent** file in `sessions/logs/` — that's where we left off,
->    including the "Next steps" section.
-> 3. Give me a 5-line summary of: what already exists, what the last session's
->    next steps were, and what you recommend we do today.
+> 1. Read `sessions/CURRENT-STATUS.md` — the single always-current snapshot of
+>    where we are, key facts, and prioritized next steps.
+> 2. Skim `docs/00-index.md` for the current article list.
+> 3. Give me a 5-line summary of: what already exists, the top open next steps,
+>    and what you recommend we do today.
 >
 > Then wait for me to confirm today's focus before making changes. My sources are
 > Confluence + Jira (`flippit.atlassian.net`), Google Drive, and Slack. Stay on
