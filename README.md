@@ -70,6 +70,7 @@ So we never lose context between sessions:
 | Flyer dates | ✅ From OTS tickets |
 | Hosted / previews | ✅ From OTS tickets |
 | Publishing / go-live / front-end | ✅ From OTS tickets |
+| Post-escalation (FD / CLSD / MSC) | ✅ Boards + turnaround |
 | Storefront / publishing | ✅ First version |
 | Common live-flyer issues | ✅ First version |
 | Data piping | ⬜ Deferred |

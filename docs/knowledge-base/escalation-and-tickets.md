@@ -52,7 +52,7 @@ half the battle:
 | If the root cause is… | Escalate to project | Notes |
 |---|---|---|
 | **Broken indexer** / wrong scraping URL or dates (flyer not indexing) | **FD** (indexing/feed team, board 312) | By far the most common escalation for "flyer missing" |
-| **Store location / harmonization data** (duplicates, lat/long, coverage) | **PIA** (store/place data) | e.g. false-duplicate harmonization failures |
+| **Store location / harmonization data** (duplicates, lat/long, coverage) | **CLSD** (fix); **MSC** for trip/measurement | "PIA" links resolve to MSC; the fix is worked in CLSD |
 | **Hosted site / iframe / preview / front-end rendering** | **HS** (Hosted team, board 67) | After confirming the flyer is actually live |
 | **General content / stuck pipeline / cloning / FQC won't generate** | **CLSD** | The catch-all content escalation |
 | **Third-party app** display (not Flipp-hosted) | Account team (via **DOC**) | Out of Flipp's direct scope |
@@ -93,7 +93,7 @@ and need the Content Collection / CI / dev team to investigate.
 |---|---|---|
 | Codesheet won't process | `#helpme-ops` / `@enable-cxe` | CI/dev team via `wishabi/fadmin` (config, word bank, filename matching) |
 | Flyer missing / broken indexer | OTS help desk | **FD** (indexing/feed team) |
-| Store / harmonization data | OTS help desk | **PIA** (store/place data) |
+| Store / harmonization data | OTS help desk | **CLSD** (fix) / **MSC** (measurement) |
 | Hosted / preview / front-end rendering | OTS help desk | **HS** (Hosted team) |
 | Live-flyer issue (tiles, images, pricing, categorization) | `#helpme-ops` / `@enable-cxe` | CLSD → Content Collection / CI team |
 | Stuck pipeline / cloning / FQC won't generate | OTS help desk | **CLSD** |

@@ -37,9 +37,16 @@
 | **OneGuide** | Per-retailer processing instructions referenced by PS. |
 | **OTS** | **Ops Troubleshooting** — the front-line Jira help-desk board (project `OTS`, board 315) where day-to-day flyer issues are raised and triaged. |
 | **Indexer** | The automated scraper that pulls an indexed retailer's flyer from their website. A "broken indexer" (wrong URL/dates) is the top cause of missing flyers. |
-| **FD** | Jira project (board 312) for the indexing/feed team — where broken-indexer tickets are escalated. |
-| **PIA** | Jira project for the store/place-data team — where store location & harmonization data issues are escalated. |
+| **FD** | Jira project **"Flipp Content Daily Priorities"** (board 312), home of **Broken Indexer** tickets — the escalation target for missing/not-gathered flyers. |
+| **CLSD** | Jira project **"Content Layer Service Desk"** — the content-platform engineering service desk. Handles investigations, pipeline/cloning errors, categorization, tagging, and store-harmonization *fixes*. The main escalation from OTS. |
+| **MSC** | Jira project **"Marketing Science"** — the analytics/measurement function (historically keyed **"PIA"**). Handles Foursquare AAAS feasibility, store-trip reporting, and data submissions. |
+| **PIA** | Legacy Jira key prefix that now **resolves to `MSC-` (Marketing Science)**. Not a separate project. Store-harmonization *measurement* is tracked here; the *fix* is done in CLSD. |
+| **HTS** | A store/harmonization ticket queue referenced by older harmonization escalations (e.g. HTS-25, HTS-35). |
 | **HS / Hosted team** | Jira project (board 67) for the Hosted team — retailer-embedded flyer experience (iframe/preview/front-end rendering). |
+| **WES** | The newer flyer-processing engine/flyer-type (vs. "legacy"); "WES Error" appears in cloning/pipeline failures escalated to CLSD. |
+| **Nexus** | Internal content API/service (e.g. `UpsertOffers`, `upsert_section`) referenced in CLSD platform tickets. |
+| **Foursquare AAAS / 4SQ** | Foursquare "Attribution-as-a-Service" — store-visit measurement for ad campaigns, run through MSC. |
+| **PARF / exposure files** | Data files sent to Foursquare for measurement/reporting (MSC). |
 | **DOC** | A routing/escalation path to the retailer's account team (e.g. third-party app issues not hosted by Flipp). |
 | **CLSD** | (see above) general content escalation ticket type; OTS escalates stuck pipelines/cloning/FQC issues here. |
 | **FSA** | **Forward Sortation Area** — the first three characters of a Canadian postal code; used for flyer distribution/coverage. "FSA Missing" = a postal area has no flyer. |

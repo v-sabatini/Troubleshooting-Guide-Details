@@ -49,7 +49,7 @@ Flipp. At a high level:
 Day-to-day flyer problems are raised on the **Ops Troubleshooting (OTS)** Jira
 board (project `OTS`, board 315) as **Help Desk – Question** tickets. OTS is the
 **front-line triage layer** — ops/CX resolves what it can and escalates the rest
-to specialist teams (indexing → **FD**, store data → **PIA**, hosted/front-end →
+to specialist teams (indexing → **FD**, store data → **CLSD**, hosted/front-end →
 **HS**, general content → **CLSD**). The knowledge-base articles are organized
 around the issue categories that show up most on this board:
 

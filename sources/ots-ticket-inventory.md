@@ -32,7 +32,7 @@ Mining the resolution comments shows the common escalation destinations:
 |---|---|---|
 | **FD** (indexing/feed team, board 312) | Broken indexer, wrong scraping URL/dates | ~29 refs; "indexer" mentioned ~83× |
 | **CLSD** (content escalation) | General content/pipeline issues needing backend help | ~35 refs |
-| **PIA** (store/place data) | Harmonization, store location/duplicate data | several |
+| **CLSD** (store harmonization *fix*) / **MSC** (measurement) | Harmonization, store location/duplicate data. "PIA" links resolve to MSC | several |
 | **HS / Hosted team** (board 67) | Hosted site, iframe, preview, front-end rendering | several |
 | Account team (via **DOC**) | Third-party app display (not Flipp-hosted) | a few |
 

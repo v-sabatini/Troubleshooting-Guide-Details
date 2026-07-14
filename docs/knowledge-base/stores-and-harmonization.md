@@ -4,7 +4,7 @@
 > stores, "store not appearing," and add-store errors. ~29 real OTS tickets.
 >
 > **Audience:** Flyer-ops / CX staff. Store *location data* issues escalate to
-> the **PIA** team; most audits are resolvable by fixing lat/long or confirming
+> **CLSD** (with measurement tracked in **MSC**/"PIA"); most audits are resolvable by fixing lat/long or confirming
 > with the retailer.
 
 ---
@@ -30,8 +30,12 @@ with False Duplicate Store".
 2. If stores look like duplicates, **confirm with the retailer** whether they're
    genuinely distinct — the retailer may confirm duplicates are correct and
    provide closures/address updates to apply in FADMIN. *(OTS-2024, Wellwise SDM.)*
-3. If it's a genuine store-data problem you can't fix, **escalate to PIA** (the
-   store/place-data team). *(OTS-2002 → PIA-8847; OTS-2035 → PIA-9159.)*
+3. If it's a genuine store-data problem you can't fix, **escalate to CLSD**
+   (where harmonization fixes are actually worked — e.g. "Foursquare blocking new
+   venue ID," store-updater `venueId` errors). The measurement/store-trip side is
+   tracked in **MSC** (Marketing Science, the analytics "PIA" function).
+   *(OTS-2002 → MSC-8847 [link shows as `PIA-8847`], which referenced HTS-25 and
+   CLSD-3483 for the fix.)* See `post-escalation-what-happens-next.md`.
 
 ---
 
@@ -43,7 +47,7 @@ of a retailer's store data.
 **Fix / process:**
 - Work through the flagged stores: fix lat/longs, apply retailer-confirmed
   closures/address changes in FADMIN, and note the resolution on the ticket.
-- Escalate anything requiring canonical dataset changes to **PIA**.
+- Escalate anything requiring canonical dataset changes to **CLSD**.
 
 ---
 
@@ -53,7 +57,7 @@ of a retailer's store data.
 - **Grand-opening / new store not appearing on hosted** *(OTS-2056, Lidl US)* —
   verify the store is added, harmonized, and assigned to the live flyer run.
 - **"Merchant store code already taken" when adding a store** even though a search
-  shows it unused *(OTS-2053)* — a data conflict; escalate to PIA with the store
+  shows it unused *(OTS-2053)* — a data conflict; escalate to CLSD with the store
   code and merchant.
 - **Store not appearing on a third-party app** (e.g. Loblaws on PC Optimum)
   *(OTS-1967)* — if it's a third-party app and **not Flipp-hosted**, it's out of
@@ -75,10 +79,14 @@ if item availability/flags are wrong system-wide rather than per-item.
 
 | Situation | Escalate to |
 |---|---|
-| Store location / harmonization data can't be fixed locally | **PIA** (store/place data) |
-| Store code conflicts / canonical data | **PIA** |
+| Store harmonization failure / can't be fixed locally | **CLSD** (fix); measurement tracked in **MSC**/"PIA" |
+| Store code conflicts / canonical data | **CLSD** |
 | Item availability flags wrong (In-Store Only, etc.) | **Hosted team (HS)** |
 | Third-party app display (not Flipp-hosted) | Account team (via DOC) |
+
+> **Routing note:** Older tickets show harmonization escalated to "PIA" links —
+> these resolve to **MSC** (Marketing Science / measurement). The actual **fix**
+> happens in **CLSD**. See `post-escalation-what-happens-next.md`.
 
 Include the merchant, store code(s), lat/long, and flyer run link.
 

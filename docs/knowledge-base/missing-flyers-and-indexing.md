@@ -80,7 +80,7 @@ wrong flyer run to those postal codes.
 - Check which **pricing zone / store group** those postal codes are mapped to and
   correct the assignment so the right flyer serves the right region.
 - If store location data is at fault, this overlaps with harmonization — see
-  `stores-and-harmonization.md` (escalate store-data issues to **PIA**).
+  `stores-and-harmonization.md` (escalate store-data issues to **CLSD**).
 
 ---
 
@@ -100,7 +100,7 @@ escalate if you can't assign the track ID yourself.
 | Situation | Escalate to |
 |---|---|
 | Broken indexer / wrong scraping URL or dates | **FD** project (indexing/feed team, board 312) |
-| Store/postal coverage or location data wrong | **PIA** (store/place data) — see stores article |
+| Store/postal coverage or location data wrong | **CLSD** (harmonization fix) — see stores article |
 | General content escalation / can't self-resolve | **CLSD** |
 | Third-party app (e.g. PC Optimum), not Flipp-hosted | Account team (via DOC) |
 

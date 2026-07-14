@@ -26,11 +26,16 @@ NotebookLM (or read by Claude) as an individual source.
 | 9 | [Common Live-Flyer & Processing Issues](knowledge-base/common-live-flyer-issues.md) | Quick reference (from `#helpme-ops`): tile-gen, image import, categorization, masthead. |
 | 10 | [Storefront & Publishing Errors](knowledge-base/storefront-publishing-errors.md) | Storefronts failing to load, missing thumbnails, or republish decisions. |
 | 11 | [Escalation & Ticketing](knowledge-base/escalation-and-tickets.md) | You've tried self-serve and need to know where to ask, which team, or how to file a ticket. |
-| 12 | [Glossary](knowledge-base/glossary.md) | You hit an unfamiliar term or acronym (PZ, FADMIN, OTS, FD, PIA, FSA, AutoBox, etc.). |
+| 12 | [After You Escalate: FD, CLSD & MSC](knowledge-base/post-escalation-what-happens-next.md) | You've escalated and want to know which team has it and how long it'll take. |
+| 13 | [Glossary](knowledge-base/glossary.md) | You hit an unfamiliar term or acronym (PZ, FADMIN, OTS, FD, CLSD, MSC, FSA, AutoBox, WES, etc.). |
 
 > **New in session 2:** Articles 3–8 are grounded in **381 real Ops
 > Troubleshooting (OTS) tickets** (Jan 2024–Jul 2026). See
 > [`sources/ots-ticket-inventory.md`](../sources/ots-ticket-inventory.md).
+>
+> **New in session 3:** Article 12 documents the downstream escalation boards
+> (**FD** indexing, **CLSD** content-platform, **MSC** measurement) with real
+> turnaround expectations.
 
 ## Supporting material
 
@@ -55,6 +60,7 @@ NotebookLM (or read by Claude) as an individual source.
 | Flyer dates | ✅ From OTS tickets |
 | Hosted / previews | ✅ From OTS tickets |
 | Publishing / go-live / front-end | ✅ From OTS tickets |
+| Post-escalation (FD / CLSD / MSC) | ✅ Boards + turnaround (session 3) |
 | Storefront / publishing | ✅ First version |
 | Common live-flyer issues | ✅ First version (from `#helpme-ops`) |
 | Data piping | ⬜ Deferred (not in first scope) |

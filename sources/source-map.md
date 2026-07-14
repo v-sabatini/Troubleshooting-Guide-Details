@@ -50,12 +50,32 @@ breakdown, escalation routing, and representative ticket lists are in
 | `hosted-and-previews.md` | 1961,1962,1966,1968,1971,1973,1980,1988,1992,1995,2012 |
 | `publishing-and-go-live.md` | 1938,1964,1971,1974,1978,1982,1992,1998,2006,2027,2030,2047,2048,2060,2064 |
 
-**Escalation destinations discovered:** FD (indexer), PIA (store data), HS/Hosted,
-CLSD (general), DOC→account team.
+**Escalation destinations discovered:** FD (indexer), CLSD (store-harmonization
+fixes + general content/pipeline), MSC (harmonization *measurement*; "PIA" links
+resolve here), HS/Hosted, DOC→account team. *(Session-3 correction: harmonization
+fixes go to CLSD, not a "PIA" project.)*
 
 > Note: TOSS (the old "Tactical Operations Support Service" project) is **retired**
 > — only 1 ticket since Jan 2024. Its 2018–2019 codesheet tickets still back
 > `codesheet-errors.md`. OTS is the current Ops Troubleshooting board.
+
+## Jira — downstream escalation boards (session 3)
+
+Sampled to document what happens **after** OTS escalates (see
+`post-escalation-what-happens-next.md`). Turnaround figures are sample-based.
+
+| Project | Name | Role | Sampled |
+|---|---|---|---|
+| **FD** | Flipp Content Daily Priorities | **Broken Indexer** tickets (missing-flyer fixes) | 100 (Jan 2024), issuetype = Broken Indexer |
+| **CLSD** | Content Layer Service Desk | Content-platform engineering: investigations, pipeline/cloning (WES), categorization, tagging, harmonization *fixes* | 100 recent (May–Jul 2026) |
+| **MSC** | Marketing Science ("PIA") | Foursquare AAAS measurement, store-trip reporting; harmonization *measurement* | 50 (harmoniz/foursquare, 2024) |
+
+**Key correction:** `PIA-####` links resolve to **`MSC-####`** (Marketing
+Science). Harmonization *fixes* are worked in **CLSD** (and historically **HTS**),
+not a "PIA" project — earlier session-2 drafts were corrected accordingly.
+
+Verified via `getJiraIssue PIA-8847` → returns `MSC-8847`. FD issue type "Broken
+Indexer" = "merchants on Tesseract that didn't gather the latest flyer correctly."
 
 ## Slack
 
