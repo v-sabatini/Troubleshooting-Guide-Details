@@ -41,6 +41,28 @@
 
 ---
 
+## The Ops Troubleshooting (OTS) board — the front line
+
+Most day-to-day flyer issues are raised as **Help Desk – Question** tickets on the
+**Ops Troubleshooting (OTS)** Jira board (project `OTS`, board 315). OTS is the
+**triage layer**: the ops/CX team resolves what they can directly and **escalates
+the rest to the specialist team's project**. Knowing where each issue type goes is
+half the battle:
+
+| If the root cause is… | Escalate to project | Notes |
+|---|---|---|
+| **Broken indexer** / wrong scraping URL or dates (flyer not indexing) | **FD** (indexing/feed team, board 312) | By far the most common escalation for "flyer missing" |
+| **Store location / harmonization data** (duplicates, lat/long, coverage) | **PIA** (store/place data) | e.g. false-duplicate harmonization failures |
+| **Hosted site / iframe / preview / front-end rendering** | **HS** (Hosted team, board 67) | After confirming the flyer is actually live |
+| **General content / stuck pipeline / cloning / FQC won't generate** | **CLSD** | The catch-all content escalation |
+| **Third-party app** display (not Flipp-hosted) | Account team (via **DOC**) | Out of Flipp's direct scope |
+
+Before escalating, always attempt the **self-serve fix** for the issue type
+(re-run AutoBox, fix dates in FADMIN, clone a stuck run, re-save, toggle simp pop,
+update lat/long) — see the topic articles in `docs/knowledge-base/`.
+
+---
+
 ## Filing a CLSD / Ops Troubleshooting ticket
 
 **CLSD** is the escalation ticket type for issues that block or affect a flyer
@@ -70,7 +92,11 @@ and need the Content Collection / CI / dev team to investigate.
 | Problem area | First responder | Likely fixer if code/config change needed |
 |---|---|---|
 | Codesheet won't process | `#helpme-ops` / `@enable-cxe` | CI/dev team via `wishabi/fadmin` (config, word bank, filename matching) |
-| Live-flyer issue (tiles, images, pricing, categorization, harmonization) | `#helpme-ops` / `@enable-cxe` | CLSD → Content Collection / CI team |
+| Flyer missing / broken indexer | OTS help desk | **FD** (indexing/feed team) |
+| Store / harmonization data | OTS help desk | **PIA** (store/place data) |
+| Hosted / preview / front-end rendering | OTS help desk | **HS** (Hosted team) |
+| Live-flyer issue (tiles, images, pricing, categorization) | `#helpme-ops` / `@enable-cxe` | CLSD → Content Collection / CI team |
+| Stuck pipeline / cloning / FQC won't generate | OTS help desk | **CLSD** |
 | Storefront load errors | `#sf-auditor-alerts` / on-call | Content / platform on-call (republish on FADMIN) |
 | Processing Support run/task | `#flex-processingsupport` / `@psflex` | PS Scrum Master |
 | PS onboarding / retailer changes | `#helpme-flex` / `@flex` | Vendor Solutions / Flex MGMT |

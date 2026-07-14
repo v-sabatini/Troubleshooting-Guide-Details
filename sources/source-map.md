@@ -33,6 +33,30 @@ from the `flippit.atlassian.net` instance (cloud ID `5d9c002c-…-2565ccb0e5f8`)
 | TOSS-7033 | Save A Lot `split for nil` | Codesheet row (line 131) missing start/end dates |
 | TOSS-7042 / 7043 | Rent A Center not processing | Filename delimiter mismatch (`_` vs `-`); trailing page numbers |
 
+## Jira — OTS (Ops Troubleshooting) board 315 — **primary source (session 2)**
+
+Ingested **381 tickets** created **2024-01-02 → 2026-07-08** (all statuses incl.
+closed), via JQL `project = OTS AND created >= "2024-01-01"`. This is the
+front-line help desk and the primary grounding for articles 3–8. Full categorized
+breakdown, escalation routing, and representative ticket lists are in
+[`ots-ticket-inventory.md`](ots-ticket-inventory.md).
+
+| Article | Backed by OTS tickets (examples) |
+|---|---|
+| `missing-flyers-and-indexing.md` | 1927,1928,1929,1930,1931,1939,1944,1954,1959,1960,1963,1969,1975,1985,1986,1997 |
+| `clipping-and-autobox.md` | 1934,1935,1936,1941,1943,1979,1981,1984,2005,2020,2037 |
+| `stores-and-harmonization.md` | 1967,1982,1991,2002,2009,2024,2025,2035,2053,2056 |
+| `flyer-dates.md` | 1932,1972,1993,2029,2068,2069,2074 |
+| `hosted-and-previews.md` | 1961,1962,1966,1968,1971,1973,1980,1988,1992,1995,2012 |
+| `publishing-and-go-live.md` | 1938,1964,1971,1974,1978,1982,1992,1998,2006,2027,2030,2047,2048,2060,2064 |
+
+**Escalation destinations discovered:** FD (indexer), PIA (store data), HS/Hosted,
+CLSD (general), DOC→account team.
+
+> Note: TOSS (the old "Tactical Operations Support Service" project) is **retired**
+> — only 1 ticket since Jan 2024. Its 2018–2019 codesheet tickets still back
+> `codesheet-errors.md`. OTS is the current Ops Troubleshooting board.
+
 ## Slack
 
 | Channel | Used for |

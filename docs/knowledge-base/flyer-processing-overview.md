@@ -44,6 +44,24 @@ Flipp. At a high level:
 
 ---
 
+## Where issues get reported: the OTS board
+
+Day-to-day flyer problems are raised on the **Ops Troubleshooting (OTS)** Jira
+board (project `OTS`, board 315) as **Help Desk – Question** tickets. OTS is the
+**front-line triage layer** — ops/CX resolves what it can and escalates the rest
+to specialist teams (indexing → **FD**, store data → **PIA**, hosted/front-end →
+**HS**, general content → **CLSD**). The knowledge-base articles are organized
+around the issue categories that show up most on this board:
+
+- Flyer/pages/coverage missing → `missing-flyers-and-indexing.md`
+- Items not clippable / boxes off → `clipping-and-autobox.md`
+- Store & harmonization → `stores-and-harmonization.md`
+- Wrong/expired dates → `flyer-dates.md`
+- Hosted sites & preview links → `hosted-and-previews.md`
+- Stuck go-live / front-end display → `publishing-and-go-live.md`
+
+See `sources/ots-ticket-inventory.md` for the full breakdown and frequencies.
+
 ## Key concepts
 
 - **Codesheet:** the spreadsheet that tells FADMIN how to build the flyer run

@@ -64,6 +64,12 @@ So we never lose context between sessions:
 |---|---|
 | Codesheet errors | ✅ First version |
 | Core flyer processing / ops | ✅ First version |
+| Missing flyers / indexing / coverage | ✅ From 381 OTS tickets |
+| Clipping / AutoBox | ✅ From OTS tickets |
+| Stores / harmonization | ✅ From OTS tickets |
+| Flyer dates | ✅ From OTS tickets |
+| Hosted / previews | ✅ From OTS tickets |
+| Publishing / go-live / front-end | ✅ From OTS tickets |
 | Storefront / publishing | ✅ First version |
 | Common live-flyer issues | ✅ First version |
 | Data piping | ⬜ Deferred |

@@ -35,5 +35,27 @@
 | **Beacon** | A telemetry event (queried in Lenses), e.g. `Beacon.FlippApp.StorefrontZeroCaseError`. |
 | **Generic codesheet** | A fallback codesheet used to create zones, assign stores, and upload pages manually when a retailer's normal codesheet won't process. |
 | **OneGuide** | Per-retailer processing instructions referenced by PS. |
+| **OTS** | **Ops Troubleshooting** — the front-line Jira help-desk board (project `OTS`, board 315) where day-to-day flyer issues are raised and triaged. |
+| **Indexer** | The automated scraper that pulls an indexed retailer's flyer from their website. A "broken indexer" (wrong URL/dates) is the top cause of missing flyers. |
+| **FD** | Jira project (board 312) for the indexing/feed team — where broken-indexer tickets are escalated. |
+| **PIA** | Jira project for the store/place-data team — where store location & harmonization data issues are escalated. |
+| **HS / Hosted team** | Jira project (board 67) for the Hosted team — retailer-embedded flyer experience (iframe/preview/front-end rendering). |
+| **DOC** | A routing/escalation path to the retailer's account team (e.g. third-party app issues not hosted by Flipp). |
+| **CLSD** | (see above) general content escalation ticket type; OTS escalates stuck pipelines/cloning/FQC issues here. |
+| **FSA** | **Forward Sortation Area** — the first three characters of a Canadian postal code; used for flyer distribution/coverage. "FSA Missing" = a postal area has no flyer. |
+| **Distro** | Distribution — the set of postal codes/ZIPs/stores a flyer run is served to. |
+| **Geo-targeting** | Mapping postal codes to the correct regional flyer. Errors show as one region seeing another region's flyer. |
+| **AutoBox / auto box draw** | The task that automatically draws clip boxes around flyer items. Completing it kicks off **auto tag**. Poor draws cause unclippable/off-center items; the fix is re-running it or boxing manually. |
+| **Auto tag** | The task that tags item data; triggered after AutoBox. |
+| **Cutout generation** | Generating item cutout images; can fail/block and need a re-run. |
+| **Page stitching** | Assembling flyer pages for display; re-running it + republishing fixes cropped/mis-rendered pages. |
+| **Tile / thumbnail generation** | Automated step producing flyer tiles/thumbnails; failures block clipping or display. |
+| **Preview link** | A link to view a flyer (often pre/around go-live). Not intended for sharing not-yet-live flyers. |
+| **Hosted** | The retailer-embedded flyer experience (e.g. shown in an iframe on the retailer's own site). |
+| **Simp pop (simple pop)** | A flyer-type toggle; when on, item detail text (pre-price/price/sale story) is suppressed. Turning it off restores item details. |
+| **Preview ready / Ops complete** | Flyer-run states. A run stuck in "preview ready" instead of "Ops complete" won't go live; cloning/re-processing is the common fix. |
+| **Clone / cloning** | Copying a flyer run; used to resolve a run stuck between states, and a distinct source of "clone erroring" issues. |
+| **Tesseract** | Internal tool for indexing sessions (`tesseract.flippback.com`), used to verify indexing/added flyers. |
+| **Track ID** | Identifier a page needs to be included in tile-generation sessions; pages missing it get excluded. |
 
 *Last reviewed: 2026-07-14. Add terms as new articles are written.*
