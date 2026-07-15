@@ -2,7 +2,7 @@
 
 > **This is the single, always-current snapshot.** Read this first to resume —
 > you don't need to read the individual session logs unless you want detail.
-> **Last updated: 2026-07-15 (session 4).**
+> **Last updated: 2026-07-15 (session 5).**
 
 ---
 
@@ -61,6 +61,7 @@ analysis), `README.md`, `NOTEBOOKLM.md` (migration guide), `sessions/prompts.md`
 | Storefront / publishing | ✅ |
 | Escalation + post-escalation (FD/CLSD/MSC) | ✅ (with turnaround estimates) |
 | **Processing Support (ClickUp)** | 🚫 **Known gap — not accessible.** Connected ClickUp exposes only 3 spaces (CXE Enablement, CXE Training Sandbox, Brand Media Campaigns); no PS space/docs. Vanessa to check with the owning team on what data exists & whether to connect it. |
+| **Retailer-specific guides (OneGuide)** | 🔄 **In progress — phased.** 6 / 493 done (`docs/retailers/`). All 493 indexed in `sources/oneguide-retailer-index.md`. Contacts/credentials omitted. |
 | Data piping | ⬜ Deferred (out of first scope) |
 
 ---
@@ -94,16 +95,18 @@ analysis), `README.md`, `NOTEBOOKLM.md` (migration guide), `sessions/prompts.md`
 
 ## Next steps (priority order)
 
-1. **Subject-matter review** by Vanessa — spot-check the articles for accuracy,
+1. **Continue the retailer OneGuide rollout** (phased, all 493). 6 done; continue
+   alphabetically from **Ace Hardware Canada** — see `docs/retailers/README.md`
+   for the exact continuation steps. Omit contacts/credentials.
+2. **Subject-matter review** by Vanessa — spot-check the articles for accuracy,
    especially escalation destinations and the post-escalation turnaround framing.
-2. **NotebookLM test-run** — upload `docs/knowledge-base/` and try real questions
-   (`NOTEBOOKLM.md`); improve any weak answers at the source article.
-3. **Optional deep dives:** theme-level CLSD articles (categorization gaps,
-   cloning/WES errors); retailer-specific quirks; confirm whether **HTS** is still
-   an active harmonization queue.
-4. **Refresh cadence:** re-run the OTS pull periodically (e.g. monthly) with the
+3. **NotebookLM test-run** — upload `docs/knowledge-base/` + `docs/retailers/` and
+   try real questions (`NOTEBOOKLM.md`); improve weak answers at the source.
+4. **Optional deep dives:** theme-level CLSD articles (categorization gaps,
+   cloning/WES errors); confirm whether **HTS** is still an active harmonization queue.
+5. **Refresh cadence:** re-run the OTS pull periodically (e.g. monthly) with the
    Gap-Check prompt to catch new recurring issues.
-5. **Processing Support (ClickUp) — BLOCKED / known gap.** Not in the connected
+6. **Processing Support (ClickUp) — BLOCKED / known gap.** Not in the connected
    ClickUp workspace. Revisit only if the owning team confirms useful data and the
    right workspace is connected (or a direct link is shared).
 
@@ -120,3 +123,6 @@ analysis), `README.md`, `NOTEBOOKLM.md` (migration guide), `sessions/prompts.md`
 - **Session 4** (`logs/2026-07-15-session-04.md`) — investigated the ClickUp
   Processing Support ingest; found it's not in the connected ClickUp workspace, so
   marked it a known gap (owning team to advise).
+- **Session 5** (`logs/2026-07-15-session-05.md`) — found the retailer **OneGuide**
+  (493 per-retailer Google Docs); indexed all 493 + built template + converted the
+  first 6 retailer guides (phased rollout, contacts/credentials omitted).

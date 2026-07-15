@@ -37,6 +37,14 @@ NotebookLM (or read by Claude) as an individual source.
 > (**FD** indexing, **CLSD** content-platform, **MSC** measurement) with real
 > turnaround expectations.
 
+## Retailer-specific processing guides
+
+Per-retailer processing instructions converted from the **OneGuide** docs. See
+[`docs/retailers/`](retailers/README.md) for the set (phased rollout, 6/493 so
+far) and [`sources/oneguide-retailer-index.md`](../sources/oneguide-retailer-index.md)
+for the full 493-retailer directory. Use these when a question is about a
+**specific retailer** ("how do I process ALDI / Ace Hardware?").
+
 ## Supporting material
 
 - [KB Article Template](templates/kb-article-template.md) — use this to add new
