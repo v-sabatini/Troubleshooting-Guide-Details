@@ -99,10 +99,11 @@ analysis), `README.md`, `NOTEBOOKLM.md` (migration guide), `sessions/prompts.md`
    (retailer guides + escalation/turnaround framing). Retailer guides are
    AI-converted from the OneGuides and should get a sanity pass on the
    highest-volume accounts.
-2. **NotebookLM test-run** — upload `docs/knowledge-base/` + `docs/retailers/` and
-   try real questions (`NOTEBOOKLM.md`); improve weak answers at the source.
-   NOTE: 489 retailer sources may exceed NotebookLM source limits — consider
-   bundling retailer guides (e.g. by letter) for upload.
+2. **NotebookLM test-run** — ✅ upload bundles ready in `docs/notebooklm/`
+   (**28 sources**: 1 knowledge-base bundle + 27 A–Z retailer bundles, all 489
+   retailers). Upload those (see `docs/notebooklm/README.md`), try real questions,
+   and improve weak answers by editing the source in `docs/knowledge-base/` or
+   `docs/retailers/` then regenerating the bundles.
 3. **Retailer refresh cadence** — OneGuides are living docs; plan periodic
    re-conversion. Re-add the 2 unavailable docs (Sportsman's Warehouse, Wellwise
    SDM) if restored.
