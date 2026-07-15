@@ -1,10 +1,10 @@
-# Flyer Processing Troubleshooting — Knowledge Base Index
+# Flyer Processing Troubleshooting — CXE Help Center Index
 
-This is the master map of the knowledge base that powers the Flyer Processing
+This is the master map of the CXE Help Center that powers the Flyer Processing
 Troubleshooting chatbot. Each article is self-contained so it can be uploaded to
 NotebookLM (or read by Claude) as an individual source.
 
-## How to use this knowledge base
+## How to use this CXE Help Center
 
 - **A processor with an error** → find the matching article below, paste the
   exact error text, follow the self-serve steps, and escalate if needed.
@@ -48,7 +48,7 @@ ALDI / Ace Hardware?"). Contacts/credentials are omitted from every guide.
 
 ## Supporting material
 
-- [KB Article Template](templates/kb-article-template.md) — use this to add new
+- [Help Center Article Template](templates/kb-article-template.md) — use this to add new
   articles consistently.
 - [Source Map](../sources/source-map.md) — provenance for every article.
 - [OTS Ticket Inventory](../sources/ots-ticket-inventory.md) — categorized

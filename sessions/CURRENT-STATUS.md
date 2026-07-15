@@ -1,4 +1,4 @@
-# CURRENT STATUS — Flyer Processing Troubleshooting KB
+# CURRENT STATUS — Flyer Processing Troubleshooting — CXE Help Center
 
 > **This is the single, always-current snapshot.** Read this first to resume —
 > you don't need to read the individual session logs unless you want detail.
@@ -8,7 +8,7 @@
 
 ## What this project is
 
-A curated **knowledge base** (clean Markdown in this GitHub repo) that will power
+A curated **CXE Help Center** (clean Markdown in this GitHub repo) that will power
 a **chatbot to help the flyer-processing team troubleshoot issues and errors** —
 prototyped in Claude now, to be **migrated into NotebookLM** later.
 
@@ -24,9 +24,9 @@ prototyped in Claude now, to be **migrated into NotebookLM** later.
 
 ---
 
-## What exists now (13 KB articles + scaffolding)
+## What exists now (13 CXE Help Center articles + scaffolding)
 
-**Knowledge base — `docs/knowledge-base/`:**
+**CXE Help Center (general troubleshooting) — `docs/knowledge-base/`:**
 1. `flyer-processing-overview.md` — how flyers get processed; where things break.
 2. `codesheet-errors.md` — NilClass, file-not-picked-up, config/word-bank (from old TOSS tickets + guide).
 3. `missing-flyers-and-indexing.md` — broken indexer→FD, FSA/coverage, geo-targeting.
@@ -119,7 +119,7 @@ analysis), `README.md`, `NOTEBOOKLM.md` (migration guide), `sessions/prompts.md`
 
 ## Session history
 
-- **Session 1** (`logs/2026-07-14-session-01.md`) — set up repo + first KB from
+- **Session 1** (`logs/2026-07-14-session-01.md`) — set up repo + first Help Center content from
   Confluence/Slack + prompt system.
 - **Session 2** (`logs/2026-07-14-session-02.md`) — ingested 381 OTS tickets → 6
   new articles + inventory.

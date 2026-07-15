@@ -1,7 +1,7 @@
 # Glossary — Flyer Processing Terms & Acronyms
 
 > **What this covers:** Plain-language definitions of the terms, tools, and
-> acronyms used across this knowledge base. The chatbot should use this to
+> acronyms used across this CXE Help Center. The chatbot should use this to
 > decode jargon in a user's question (e.g. someone pastes a "PZ" or "CLSD" and
 > expects the bot to understand).
 
@@ -17,7 +17,7 @@
 | **FQC** | **F**inal **Q**uality **C**heck — verification that a run is correct before go-live. |
 | **QC** | Quality Check / Quality Control (e.g. tag QC, thumbnail QC). |
 | **CLSD** | The escalation ticket type filed for issues needing Content Collection / CI / dev investigation. |
-| **TOSS** | The Jira project historically used for Ops Troubleshooting tickets (source of many codesheet error examples in this KB). |
+| **TOSS** | The Jira project historically used for Ops Troubleshooting tickets (source of many codesheet error examples in this CXE Help Center). |
 | **PS** | **P**rocessing **S**upport — the Flex team that executes uploads, vendor setups, FQCs, page swaps, and revisions for many retailers. |
 | **FLEX** | Flexible/vendor staffing org that provides PS Scrum Masters and processors. |
 | **FTE** | Full-Time Employee (as opposed to FLEX / DSP hourly staff). |

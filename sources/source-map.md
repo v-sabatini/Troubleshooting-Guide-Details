@@ -88,7 +88,7 @@ Indexer" = "merchants on Tesseract that didn't gather the latest flyer correctly
 
 - Searched; the flyer-related results were **"DRAW Audit / Automation Scorecard"**
   spreadsheets (workflow-analysis, owned by vanessa.sabatini@flipp.com), not
-  troubleshooting docs. Not ingested into the KB. Revisit if they contain
+  troubleshooting docs. Not ingested into the CXE Help Center. Revisit if they contain
   error-handling SOPs.
 
 ## Not yet ingested (candidate sources for future sessions)

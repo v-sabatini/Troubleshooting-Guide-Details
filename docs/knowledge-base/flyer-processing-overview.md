@@ -14,7 +14,7 @@ The Confluence **Processing Support KB** (space FLX) is, as of **June 2026**,
 **no longer maintained** — it points to the **Processing Support ClickUp space**
 for the latest training and process updates. Treat the process details below as
 orientation and **verify current process against ClickUp**. (Pulling that
-ClickUp space into this knowledge base is a recommended next step — see the
+ClickUp space into this CXE Help Center is a recommended next step — see the
 session log.)
 
 ---

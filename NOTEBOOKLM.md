@@ -1,7 +1,7 @@
-# Migrating This Knowledge Base into NotebookLM
+# Migrating This CXE Help Center into NotebookLM
 
 This repo is the **authoring home** for the flyer-processing troubleshooting
-knowledge base. NotebookLM is the **delivery surface** — where your team will
+CXE Help Center. NotebookLM is the **delivery surface** — where your team will
 actually chat with it. This guide explains how to move from one to the other.
 
 ## Why keep authoring in GitHub?

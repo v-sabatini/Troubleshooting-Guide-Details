@@ -1,6 +1,6 @@
-# Flipp Flyer-Processing Troubleshooting — Knowledge Base
+# Flipp Flyer-Processing Troubleshooting — CXE Help Center
 
-> Combined bundle of the general troubleshooting knowledge base. For retailer-specific processing, see the "Retailers - <letter>" bundles.
+> Combined bundle of the CXE Help Center's general troubleshooting guidance (codesheet errors, missing flyers/indexing, clipping/AutoBox, stores/harmonization, dates, hosted/previews, publishing/go-live, storefront, escalation routing, glossary). For retailer-specific processing, see the "Retailers - <letter>" bundles.
 
 ---
 
@@ -20,7 +20,7 @@ The Confluence **Processing Support KB** (space FLX) is, as of **June 2026**,
 **no longer maintained** — it points to the **Processing Support ClickUp space**
 for the latest training and process updates. Treat the process details below as
 orientation and **verify current process against ClickUp**. (Pulling that
-ClickUp space into this knowledge base is a recommended next step — see the
+ClickUp space into this CXE Help Center is a recommended next step — see the
 session log.)
 
 ---
@@ -1251,7 +1251,7 @@ Troubleshooting Guide" (XPTCXE); "Processing Support - Knowledge Base" (FLX);
 > (Marketing Science). MSC mostly handles **Foursquare advertising/measurement**
 > (feasibility checks, trip reporting, data submissions). The **actual
 > store-harmonization fixes** are worked in **CLSD** (and historically the **HTS**
-> queue), not MSC. Earlier drafts of this KB routed harmonization to "PIA" — the
+> queue), not MSC. Earlier drafts of this CXE Help Center routed harmonization to "PIA" — the
 > accurate path is **CLSD** for the fix, MSC for measurement/trip data.
 
 ---
@@ -1357,7 +1357,7 @@ figures are sample-based estimates. See `sources/source-map.md`. Last reviewed:
 # Glossary — Flyer Processing Terms & Acronyms
 
 > **What this covers:** Plain-language definitions of the terms, tools, and
-> acronyms used across this knowledge base. The chatbot should use this to
+> acronyms used across this CXE Help Center. The chatbot should use this to
 > decode jargon in a user's question (e.g. someone pastes a "PZ" or "CLSD" and
 > expects the bot to understand).
 
@@ -1373,7 +1373,7 @@ figures are sample-based estimates. See `sources/source-map.md`. Last reviewed:
 | **FQC** | **F**inal **Q**uality **C**heck — verification that a run is correct before go-live. |
 | **QC** | Quality Check / Quality Control (e.g. tag QC, thumbnail QC). |
 | **CLSD** | The escalation ticket type filed for issues needing Content Collection / CI / dev investigation. |
-| **TOSS** | The Jira project historically used for Ops Troubleshooting tickets (source of many codesheet error examples in this KB). |
+| **TOSS** | The Jira project historically used for Ops Troubleshooting tickets (source of many codesheet error examples in this CXE Help Center). |
 | **PS** | **P**rocessing **S**upport — the Flex team that executes uploads, vendor setups, FQCs, page swaps, and revisions for many retailers. |
 | **FLEX** | Flexible/vendor staffing org that provides PS Scrum Masters and processors. |
 | **FTE** | Full-Time Employee (as opposed to FLEX / DSP hourly staff). |

@@ -4,10 +4,10 @@
 > instruction guides** ("OneGuides"). The source of truth is the Confluence
 > **OneGuide** page (space **VEN / Vendor**, page `10823336187`), which links out
 > to **one Google Doc per retailer/banner**. This file mirrors that directory so
-> the knowledge base has a complete map of which retailer guides exist and where.
+> the CXE Help Center has a complete map of which retailer guides exist and where.
 >
 > **Retailer processing articles** built from these live in `docs/retailers/`.
-> Only some are converted so far — see the KB index for status.
+> Only some are converted so far — see the CXE Help Center index for status.
 
 ## ⚠️ Handling notes (important)
 

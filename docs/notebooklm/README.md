@@ -1,6 +1,6 @@
 # NotebookLM Upload Bundles
 
-These files are the **upload-ready version** of the knowledge base, bundled so the
+These files are the **upload-ready version** of the CXE Help Center, bundled so the
 whole thing fits inside NotebookLM's per-notebook **source limit** (~50 free /
 ~300 paid). Uploading the ~500 individual files would exceed that; these **28
 bundles** hold the same content.

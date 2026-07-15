@@ -1,8 +1,9 @@
-# Flyer Processing Troubleshooting — Knowledge Base
+# Flyer Processing Troubleshooting — CXE Help Center
 
-A curated knowledge base that powers a **chatbot to help the flyer-processing
-team troubleshoot issues and errors**. It's being prototyped here (in Claude +
-GitHub) and will eventually be migrated into **NotebookLM**.
+The **CXE Help Center** — a curated set of troubleshooting and retailer-specific
+guidance that powers a **chatbot to help the flyer-processing team resolve issues
+and errors**. It's being prototyped here (in Claude + GitHub) and will eventually
+be migrated into **NotebookLM**.
 
 Everything is written as clean, self-contained **Markdown** so it reads well for
 humans in GitHub *and* uploads cleanly as NotebookLM sources.
@@ -17,7 +18,7 @@ humans in GitHub *and* uploads cleanly as NotebookLM sources.
 
 ```
 README.md                       ← you are here
-NOTEBOOKLM.md                    ← how to migrate this KB into NotebookLM
+NOTEBOOKLM.md                    ← how to migrate this CXE Help Center into NotebookLM
 docs/
   00-index.md                    ← master table of contents
   knowledge-base/                ← the actual troubleshooting articles
@@ -36,7 +37,7 @@ sessions/
   logs/                          ← what was done each session + next steps
 ```
 
-## How the knowledge base is written
+## How the CXE Help Center is written
 
 Every article follows the same shape so the chatbot gives consistent answers:
 

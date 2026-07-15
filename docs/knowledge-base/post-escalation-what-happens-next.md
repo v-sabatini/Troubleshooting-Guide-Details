@@ -26,7 +26,7 @@
 > (Marketing Science). MSC mostly handles **Foursquare advertising/measurement**
 > (feasibility checks, trip reporting, data submissions). The **actual
 > store-harmonization fixes** are worked in **CLSD** (and historically the **HTS**
-> queue), not MSC. Earlier drafts of this KB routed harmonization to "PIA" — the
+> queue), not MSC. Earlier drafts of this CXE Help Center routed harmonization to "PIA" — the
 > accurate path is **CLSD** for the fix, MSC for measurement/trip data.
 
 ---

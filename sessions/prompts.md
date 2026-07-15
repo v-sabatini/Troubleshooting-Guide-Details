@@ -19,7 +19,7 @@ Next session   →  paste RESUME prompt (it reads the latest log)  →  you're i
 
 > We are continuing to build the **Flyer Processing Troubleshooting knowledge
 > base** in the GitHub repo `troubleshooting-guide-details` (branch
-> `claude/flyer-chatbot-knowledge-base-yhsxxb`). It's a prototype knowledge base
+> `claude/flyer-chatbot-knowledge-base-yhsxxb`). It's a prototype CXE Help Center
 > that will eventually be migrated into **NotebookLM** to power a chatbot that
 > helps my team troubleshoot flyer-processing issues and errors.
 >
@@ -54,7 +54,7 @@ Next session   →  paste RESUME prompt (it reads the latest log)  →  you're i
 
 ## 🧩 3. ADD-A-SOURCE PROMPT — when you want to fold in new material
 
-> I want to add a new source to the knowledge base: **[describe it — e.g. "the
+> I want to add a new source to the CXE Help Center: **[describe it — e.g. "the
 > Processing Support ClickUp space", a Confluence page URL, a Jira filter, a
 > Google Doc, or a Slack channel]**.
 >
@@ -78,7 +78,7 @@ Next session   →  paste RESUME prompt (it reads the latest log)  →  you're i
 
 ## 🔎 5. GAP-CHECK PROMPT — periodically, to find what's missing
 
-> Review the knowledge base against my connected sources. Search Jira (TOSS and
+> Review the CXE Help Center against my connected sources. Search Jira (TOSS and
 > any relevant projects) and Confluence for **recurring flyer-processing errors
 > that we don't yet have an article for**, and search `#helpme-ops` /
 > `#flex-processingsupport` for common questions we don't cover. Give me a
@@ -89,7 +89,7 @@ Next session   →  paste RESUME prompt (it reads the latest log)  →  you're i
 ## 🚚 6. NOTEBOOKLM-PREP PROMPT — when ready to migrate
 
 > We're ready to move this into NotebookLM. Read `NOTEBOOKLM.md` and confirm the
-> knowledge base is in good shape to upload: check that every article is
+> CXE Help Center is in good shape to upload: check that every article is
 > self-contained, error strings are verbatim, and the index is current. Flag
 > anything that won't translate well as NotebookLM sources, and give me the
 > upload order and suggested notebook settings.
