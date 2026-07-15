@@ -2,7 +2,7 @@
 
 > **This is the single, always-current snapshot.** Read this first to resume —
 > you don't need to read the individual session logs unless you want detail.
-> **Last updated: 2026-07-15 (session 6).**
+> **Last updated: 2026-07-15 (session 7).**
 
 ---
 
@@ -134,3 +134,7 @@ analysis), `README.md`, `NOTEBOOKLM.md` (migration guide), `sessions/prompts.md`
 - **Session 6** (`logs/2026-07-15-session-06.md`) — completed the retailer rollout:
   **489 guides** converted via parallel subagent waves, leak-scanned & committed
   (2 source docs unavailable).
+- **Session 7** (`logs/2026-07-15-session-07.md`) — NotebookLM bundling; renamed
+  the product to **CXE Help Center**; started the **Gap Log** (GAP-001/002); added
+  a **Content V2 & V2 Publishing** article from Confluence research; began bot-mode
+  testing.

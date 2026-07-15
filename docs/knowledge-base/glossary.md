@@ -64,5 +64,19 @@
 | **Clone / cloning** | Copying a flyer run; used to resolve a run stuck between states, and a distinct source of "clone erroring" issues. |
 | **Tesseract** | Internal tool for indexing sessions (`tesseract.flippback.com`), used to verify indexing/added flyers. |
 | **Track ID** | Identifier a page needs to be included in tile-generation sessions; pages missing it get excluded. |
+| **Content V2 / V2** | The newer **Global-Centric** content model (Offers, Products, Promotions, Publications with global IDs), replacing the **Flyer-Centric** V1 model. See `content-v2-and-publishing.md`. |
+| **V1 (Flyer-Centric)** | The legacy content model where everything hangs off a flyer (`flyer_id`, `flyer_item_id`). Being migrated to V2. |
+| **Publication** | V2 equivalent of a flyer — a curated, dynamic collection of displayable items; can be distributed per channel/place. A **Publication Plan** (queries + rendering) is "hydrated" into a **Publication Payload** (what the user sees). |
+| **Section / Section Plan** | V2 equivalent of a flyer page; a subset of a publication that can have its **own distribution** and rendering. |
+| **Offer** | V2 equivalent of a flyer item — a price/discount on one or more products for a period, for one retailer/language. **One Offer can map to many V1 flyer items.** |
+| **Atom** | Parent type of **Offer** and **Promotion**; replaces the V1 "merchandise/items" concept. |
+| **Promotion** | A V2 displayable ad (image + click action) with no specific product/offer (e.g. a store-opening ad). |
+| **Product** | A purchasable thing sold at one retailer (V2 dimension). |
+| **Global ID** | V2 identifier for content, independent of any flyer (vs V1 `flyer_id`/`flyer_item_id`). |
+| **Distribution / Place** | V2 targeting: a **Distribution** targets a **Place** (postal code, **store**, FSA, polygon), a channel, or (future) a user segment. In V2, flyers distribute to **stores, not FSAs**. |
+| **Nexus API** | The single V2 **entry point / source of truth** for incoming flyer content; Fadmin produces V2 print content into it. |
+| **Curator** | The single V2 **serving source**; pulls items/publications/distributions and feeds all channels. |
+| **Flyers-NG** | The V1 **compatibility layer** during the V1→V2 transition; converts V2→V1 on read so legacy App/Web/Hosted keep working. |
+| **DVM** | The active V2 distribution path today (NativeX, retailer apps); built on the V2 model. |
 
-*Last reviewed: 2026-07-14. Add terms as new articles are written.*
+*Last reviewed: 2026-07-15. Add terms as new articles are written.*

@@ -77,6 +77,22 @@ not a "PIA" project — earlier session-2 drafts were corrected accordingly.
 Verified via `getJiraIssue PIA-8847` → returns `MSC-8847`. FD issue type "Broken
 Indexer" = "merchants on Tesseract that didn't gather the latest flyer correctly."
 
+## Confluence — Content V2 / publishing platform (session 7)
+
+Backs `content-v2-and-publishing.md` (orientation on the V1→V2 shift + how it
+affects processing). All read-only.
+
+| Title | Space | Page ID |
+|---|---|---|
+| Transitioning to Global-Centric Model: Content V2 & Event V2 Adoption Framework | DATAV | 13022527510 |
+| Content V2 Dimensions | DATAV | 13245906978 |
+| V1 => V2 Data Pipeline Transition | EN | 12597657799 |
+| DET Content V2 Discovery ("flyers distributed to stores, not FSAs") | DATAV | 12291965139 |
+| Transitioning from V1 → V2 for Content Retrieval | CTLR | 11268554758 |
+
+Related to Gap Log GAP-001 / GAP-002 (V2 publish/distribution behaviors). These
+are architecture/strategy docs — they explain the model, not ops runbooks.
+
 ## Slack
 
 | Channel | Used for |

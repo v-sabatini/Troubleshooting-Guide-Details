@@ -13,7 +13,12 @@ a proper article (or add to an existing one) and mark the gap **Resolved**.
 
 ---
 
-## GAP-001 — "Publish Publications" errors under hosted-only distribution 🔴 Open
+## GAP-001 — "Publish Publications" errors under hosted-only distribution 🟡 Investigating
+
+- **V2 context added 2026-07-15:** `content-v2-and-publishing.md` now explains
+  *why* per-channel distribution ("hidden except hosted") is a first-class concept
+  — in V2, Publications and their Sections are each distributed per channel/store.
+  This is the *background*; the specific publish-error root cause/fix is still open.
 
 - **Logged:** 2026-07-15 (test session)
 - **Scenario:** The **Publish Publications** task keeps erroring. Unhiding the
@@ -50,7 +55,14 @@ a proper article (or add to an existing one) and mark the gap **Resolved**.
 
 ---
 
-## GAP-002 — V2 Publishing fails for one pricing zone; pipeline task errored with no logs 🔴 Open
+## GAP-002 — V2 Publishing fails for one pricing zone; pipeline task errored with no logs 🟡 Investigating
+
+- **V2 context added 2026-07-15:** `content-v2-and-publishing.md` explains the V2
+  publishing flow (Fadmin → Nexus API → Item/Publication/Distribution APIs →
+  Curator) and that Sections/zones are distributed independently — so a single
+  zone/section failing publish is consistent with the V2 model. Still open: the
+  confirmed answer to "does it block the whole flyer or just that zone's coverage?"
+  and the exact re-run procedure.
 
 - **Logged:** 2026-07-15 (test session)
 - **Scenario:** **V2 Publishing** failed for **one pricing zone but not others**.
