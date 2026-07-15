@@ -50,6 +50,32 @@ a proper article (or add to an existing one) and mark the gap **Resolved**.
 
 ---
 
+## GAP-002 — V2 Publishing fails for one pricing zone; pipeline task errored with no logs 🔴 Open
+
+- **Logged:** 2026-07-15 (test session)
+- **Scenario:** **V2 Publishing** failed for **one pricing zone but not others**.
+  The pipeline task shows **errored but with no logs** explaining why. User asks:
+  *will the flyer still go live, and how do I re-run publishing?*
+- **What the Help Center currently says:** General republish/rerun path is
+  covered (`storefront-publishing-errors.md`, `publishing-and-go-live.md`,
+  glossary "Republish") and stuck/errored pipelines → escalate **CLSD**. **Not
+  covered:** "V2 Publishing" as a named task, **per-pricing-zone** publish
+  failure, an **errored task with empty logs**, and a definitive answer to
+  "**will a partial-zone failure still go live?**"
+- **Working answer given (needs confirmation):** Zones that published should go
+  live for their stores; the failed zone likely won't be live for the stores
+  mapped to it (partial go-live). Try **republish in FADMIN** → re-run system
+  tasks → clone/re-process; the no-logs error is a backend failure → **CLSD**
+  (urgent if go-live close), with run ID + the specific zone.
+- **Source scan:** Not yet scanned (Confluence/Slack). Likely overlaps with
+  GAP-001 (V2 / publish-pipeline behavior).
+- **Recommended follow-up:** Confirm with engineering/CLSD (a) whether a
+  single-zone V2 publish failure blocks the whole flyer or just that zone's
+  coverage, and (b) the standard way to re-run V2 publishing for one zone. Then
+  add a "V2 Publishing" section to `publishing-and-go-live.md` and mark 🟢.
+
+---
+
 ## Entry template (copy for new gaps)
 
 ```
