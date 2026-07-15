@@ -40,10 +40,11 @@ NotebookLM (or read by Claude) as an individual source.
 ## Retailer-specific processing guides
 
 Per-retailer processing instructions converted from the **OneGuide** docs. See
-[`docs/retailers/`](retailers/README.md) for the set (phased rollout, 6/493 so
-far) and [`sources/oneguide-retailer-index.md`](../sources/oneguide-retailer-index.md)
-for the full 493-retailer directory. Use these when a question is about a
-**specific retailer** ("how do I process ALDI / Ace Hardware?").
+[`docs/retailers/`](retailers/README.md) — **✅ complete: 489 retailer guides**
+(all reachable OneGuides; 2 source docs were unavailable). Full directory in
+[`sources/oneguide-retailer-index.md`](../sources/oneguide-retailer-index.md).
+Use these when a question is about a **specific retailer** ("how do I process
+ALDI / Ace Hardware?"). Contacts/credentials are omitted from every guide.
 
 ## Supporting material
 

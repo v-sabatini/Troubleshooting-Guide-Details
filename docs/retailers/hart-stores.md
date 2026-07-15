@@ -33,7 +33,7 @@
 
 ### Setup QC
 - No theme, no external run name; Standard 4 thumbnails; complete setup QC checklist.
-- Add the Flyer ID to the VAST tracker for FQC (POD 4).
+- Add the Flyer ID to the VAST tracker for FQC.
 
 ## ⚠️ Common errors / risk items
 - **If region isn't specified, upload pages twice** (once per language) so both EN and FR zones have them.

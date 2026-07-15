@@ -2,7 +2,7 @@
 
 > **This is the single, always-current snapshot.** Read this first to resume —
 > you don't need to read the individual session logs unless you want detail.
-> **Last updated: 2026-07-15 (session 5).**
+> **Last updated: 2026-07-15 (session 6).**
 
 ---
 
@@ -61,7 +61,7 @@ analysis), `README.md`, `NOTEBOOKLM.md` (migration guide), `sessions/prompts.md`
 | Storefront / publishing | ✅ |
 | Escalation + post-escalation (FD/CLSD/MSC) | ✅ (with turnaround estimates) |
 | **Processing Support (ClickUp)** | 🚫 **Known gap — not accessible.** Connected ClickUp exposes only 3 spaces (CXE Enablement, CXE Training Sandbox, Brand Media Campaigns); no PS space/docs. Vanessa to check with the owning team on what data exists & whether to connect it. |
-| **Retailer-specific guides (OneGuide)** | 🔄 **In progress — phased.** 6 / 493 done (`docs/retailers/`). All 493 indexed in `sources/oneguide-retailer-index.md`. Contacts/credentials omitted. |
+| **Retailer-specific guides (OneGuide)** | ✅ **Complete — 489 guides** (`docs/retailers/`; ~491 unique retailers, 2 source docs unavailable). Contacts/credentials omitted. |
 | Data piping | ⬜ Deferred (out of first scope) |
 
 ---
@@ -95,13 +95,17 @@ analysis), `README.md`, `NOTEBOOKLM.md` (migration guide), `sessions/prompts.md`
 
 ## Next steps (priority order)
 
-1. **Continue the retailer OneGuide rollout** (phased, all 493). 6 done; continue
-   alphabetically from **Ace Hardware Canada** — see `docs/retailers/README.md`
-   for the exact continuation steps. Omit contacts/credentials.
-2. **Subject-matter review** by Vanessa — spot-check the articles for accuracy,
-   especially escalation destinations and the post-escalation turnaround framing.
-3. **NotebookLM test-run** — upload `docs/knowledge-base/` + `docs/retailers/` and
+1. **Subject-matter review** by Vanessa — spot-check articles for accuracy
+   (retailer guides + escalation/turnaround framing). Retailer guides are
+   AI-converted from the OneGuides and should get a sanity pass on the
+   highest-volume accounts.
+2. **NotebookLM test-run** — upload `docs/knowledge-base/` + `docs/retailers/` and
    try real questions (`NOTEBOOKLM.md`); improve weak answers at the source.
+   NOTE: 489 retailer sources may exceed NotebookLM source limits — consider
+   bundling retailer guides (e.g. by letter) for upload.
+3. **Retailer refresh cadence** — OneGuides are living docs; plan periodic
+   re-conversion. Re-add the 2 unavailable docs (Sportsman's Warehouse, Wellwise
+   SDM) if restored.
 4. **Optional deep dives:** theme-level CLSD articles (categorization gaps,
    cloning/WES errors); confirm whether **HTS** is still an active harmonization queue.
 5. **Refresh cadence:** re-run the OTS pull periodically (e.g. monthly) with the
@@ -126,3 +130,6 @@ analysis), `README.md`, `NOTEBOOKLM.md` (migration guide), `sessions/prompts.md`
 - **Session 5** (`logs/2026-07-15-session-05.md`) — found the retailer **OneGuide**
   (493 per-retailer Google Docs); indexed all 493 + built template + converted the
   first 6 retailer guides (phased rollout, contacts/credentials omitted).
+- **Session 6** (`logs/2026-07-15-session-06.md`) — completed the retailer rollout:
+  **489 guides** converted via parallel subagent waves, leak-scanned & committed
+  (2 source docs unavailable).

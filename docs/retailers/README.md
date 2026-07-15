@@ -4,37 +4,38 @@ Retailer-specific processing instructions, converted from the **OneGuide** Googl
 Docs (one per retailer/banner). These let the bot answer "how do I process
 [retailer] / what's special about it?"
 
-- **Master directory of all 493 retailers:** [`sources/oneguide-retailer-index.md`](../../sources/oneguide-retailer-index.md)
+- **Master directory of all retailers:** [`sources/oneguide-retailer-index.md`](../../sources/oneguide-retailer-index.md)
 - **Article template:** [`_TEMPLATE.md`](_TEMPLATE.md)
+
+## Status: ✅ Complete
+
+**489 retailer guides converted** from the OneGuide directory (~491 unique
+retailers). Built in phased batches via parallel subagents; every batch was
+leak-scanned before commit.
+
+### Not converted (source Google Doc unavailable)
+
+These OneGuide entries link to Google Docs that returned "Requested entity was not
+found" (deleted, moved, or access-revoked at time of conversion). Re-add if the
+docs are restored:
+
+- **Sportsman's Warehouse** — Doc `17kIdvfi60quOc_qHJZOyow0hg7b76bVAh_Q4ZR3gho4`
+- **Wellwise SDM** — Doc `1GACOVeDkq_XUw1D64G5VkCnHSreySPgSw-jIKHeN7rw`
 
 ## Conventions
 
-- **Contacts and credentials are omitted** (per project decision). Passwords,
-  staff names, and emails from the source docs are never copied here; the bot
-  points people to the OneGuide for who to contact.
-- Each article records the source Google Doc ID + the OneGuide "Last Updated" date.
+- **Contacts and credentials are omitted** (project decision). Passwords, staff
+  names, and emails from the source docs are never copied here; the bot points
+  people to the OneGuide for who to contact.
+- Each article records the source Google Doc ID + (where present) the OneGuide
+  "Last Updated" date, and ends with a `Contacts/credentials omitted` source line.
 - Source docs are **living documents** — plan a periodic refresh.
 
-## Progress — phased rollout (all 493, alphabetical)
+## How to refresh / re-run
 
-**Done (6 / 493):**
-- [ALDI](aldi.md)
-- [The Beer Store](the-beer-store.md)
-- [2001 Audio Video](2001-audio-video.md)
-- [Academy Sports + Outdoors](academy-sports-outdoors.md)
-- [Accès Pharma](acces-pharma.md)
-- [Ace Hardware](ace-hardware.md)
-
-**Next batch (continue alphabetically):** Ace Hardware Canada → Acme Fresh Market
-→ AG Foods → Al Arsh Halal Meat → Alaska Commercial → Albertsons United Banners →
-Alf Curtis → … (see the master directory for the full ordered list).
-
-## How to continue (for the next session)
-
-1. Open `sources/oneguide-retailer-index.md` for the ordered retailer → Google Doc list.
-2. For each retailer: read the Doc via Google Drive, then write
-   `docs/retailers/<slug>.md` from `_TEMPLATE.md` — capturing account facts,
-   cadence, upload/codesheet steps (config names + toggles), box/tag include-exclude
-   rules, **retailer-specific common errors / risk items**, and FQC notes.
-   **Strip all contacts and any credentials.**
-3. Move the retailer to the "Done" list above and commit.
+1. `sources/oneguide-retailer-index.md` has the ordered retailer → Google Doc list.
+2. To rebuild one retailer: read its Doc via the Google Drive connector, then
+   rewrite `docs/retailers/<slug>.md` from `_TEMPLATE.md` (strip contacts/credentials).
+3. To refresh everything, re-run the phased batch process (see session-06 log).
+   Slugs are Unicode-normalized: lowercase, accents stripped, `&`→"and",
+   apostrophes removed, non-alphanumerics → hyphens.
