@@ -34,9 +34,32 @@ NotebookLM (or read by Claude) as an individual source.
 > Troubleshooting (OTS) tickets** (Jan 2024–Jul 2026). See
 > [`sources/ots-ticket-inventory.md`](../sources/ots-ticket-inventory.md).
 >
-> **New in session 3:** Article 12 documents the downstream escalation boards
+> **New in session 3:** Article 13 documents the downstream escalation boards
 > (**FD** indexing, **CLSD** content-platform, **MSC** measurement) with real
 > turnaround expectations.
+
+## Process, QC & runbook guides (from Confluence)
+
+Ingested from current Confluence ops/QC pages:
+
+| Guide | Use it when… |
+|---|---|
+| [Turbo & CP-Legacy Error Guide](knowledge-base/turbo-cp-legacy-error-guide.md) | You hit a Turbo or CP-Legacy error string (e.g. `Invalid Flyer Type for Merchant`, 403 image-blocked, "Not enough rows in Product CSV"). |
+| [Home Depot US Troubleshooting](knowledge-base/home-depot-us-troubleshooting.md) | HDUS CP-Legacy / Call Sheet / Flyer-PDF / Fadmin errors (1000-zone limit, data-piping stuck, page 1 removed). |
+| [Retailer Onboarding Process](knowledge-base/retailer-onboarding-process.md) | Onboarding/offboarding a merchant (direct or indexed), rebranding. |
+| [Indexing — CI Baseline Tasks](knowledge-base/indexing-ci-baseline-tasks.md) | The daily CI baseline shift: date review, FD board ops check, duplicates, Top-50/Premium checks. |
+| [Account Flyer Review (directory)](knowledge-base/account-flyer-review-directory.md) | Finding a retailer's flyer-review doc. |
+| [Coupon Ops: Verification, Matching & QC](knowledge-base/coupon-ops-verification-matching-qc.md) | The coupon Verify→Match→QC pipeline. |
+| [Coupons Accuracy Checks](knowledge-base/coupon-accuracy-checks.md) | The Thu/Sun false-positive/negative matchup audit. |
+| [Live Date Checks](knowledge-base/live-date-checks.md) | FLEX weekend / TideRise weekday live-date verification + merchant-specific rules. |
+| [Alert Runbooks](knowledge-base/alert-runbooks.md) | On-call: Content Sieve unpublished items, HDCA DVM module, Live Flyer Check. |
+| [Publisher QA SOP (DSP)](knowledge-base/publisher-qa-dsp.md) | ⚠️ Paused SOP — pointer only. |
+
+## Retailer processing SOPs (Content Production)
+
+Per-retailer CP processing SOPs live in [`docs/processing-sops/`](processing-sops/README.md)
+(distinct from the Vendor OneGuides in `docs/retailers/`; cross-referenced). Use
+these for hands-on CP processing steps for a specific retailer.
 
 ## Retailer-specific processing guides
 

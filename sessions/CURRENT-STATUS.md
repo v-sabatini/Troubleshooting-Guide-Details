@@ -2,7 +2,7 @@
 
 > **This is the single, always-current snapshot.** Read this first to resume —
 > you don't need to read the individual session logs unless you want detail.
-> **Last updated: 2026-07-15 (session 7).**
+> **Last updated: 2026-07-15 (session 8).**
 
 ---
 
@@ -24,7 +24,12 @@ prototyped in Claude now, to be **migrated into NotebookLM** later.
 
 ---
 
-## What exists now (13 CXE Help Center articles + scaffolding)
+## What exists now (~25 Help Center articles + 18 CP SOPs + 489 retailer guides)
+
+> Session 8 added process/QC/runbook articles (onboarding, indexing CI tasks,
+> coupon & live-date QC, alert runbooks, Turbo/CP-Legacy & HDUS error guides) and
+> a new `docs/processing-sops/` folder (18 CP retailer SOPs). Core troubleshooting
+> articles below; see `docs/00-index.md` for the full current list.
 
 **CXE Help Center (general troubleshooting) — `docs/knowledge-base/`:**
 1. `flyer-processing-overview.md` — how flyers get processed; where things break.
@@ -60,6 +65,8 @@ analysis), `README.md`, `NOTEBOOKLM.md` (migration guide), `sessions/prompts.md`
 | Publishing / go-live / front-end | ✅ |
 | Storefront / publishing | ✅ |
 | Escalation + post-escalation (FD/CLSD/MSC) | ✅ (with turnaround estimates) |
+| Process / QC / runbook guides (onboarding, indexing CI, coupon & live-date QC, alert runbooks, Turbo/CP-Legacy & HDUS error guides) | ✅ (session 8, from Confluence) |
+| Retailer processing SOPs — Content Production (CP) | ✅ 18 in `docs/processing-sops/` (session 8; distinct from OneGuides) |
 | **Processing Support (ClickUp)** | 🚫 **Known gap — not accessible.** Connected ClickUp exposes only 3 spaces (CXE Enablement, CXE Training Sandbox, Brand Media Campaigns); no PS space/docs. Vanessa to check with the owning team on what data exists & whether to connect it. |
 | **Retailer-specific guides (OneGuide)** | ✅ **Complete — 489 guides** (`docs/retailers/`; ~491 unique retailers, 2 source docs unavailable). Contacts/credentials omitted. |
 | Data piping | ⬜ Deferred (out of first scope) |
@@ -100,10 +107,10 @@ analysis), `README.md`, `NOTEBOOKLM.md` (migration guide), `sessions/prompts.md`
    AI-converted from the OneGuides and should get a sanity pass on the
    highest-volume accounts.
 2. **NotebookLM test-run** — ✅ upload bundles ready in `docs/notebooklm/`
-   (**28 sources**: 1 knowledge-base bundle + 27 A–Z retailer bundles, all 489
-   retailers). Upload those (see `docs/notebooklm/README.md`), try real questions,
-   and improve weak answers by editing the source in `docs/knowledge-base/` or
-   `docs/retailers/` then regenerating the bundles.
+   (**30 sources**: 1 knowledge bundle + 27 A–Z retailer bundles + 1 CP-SOP
+   bundle). Upload those (see `docs/notebooklm/README.md`), try real questions,
+   and improve weak answers by editing the source in `docs/knowledge-base/`,
+   `docs/retailers/`, or `docs/processing-sops/` then regenerating the bundles.
 3. **Retailer refresh cadence** — OneGuides are living docs; plan periodic
    re-conversion. Re-add the 2 unavailable docs (Sportsman's Warehouse, Wellwise
    SDM) if restored.
@@ -138,3 +145,7 @@ analysis), `README.md`, `NOTEBOOKLM.md` (migration guide), `sessions/prompts.md`
   the product to **CXE Help Center**; started the **Gap Log** (GAP-001/002); added
   a **Content V2 & V2 Publishing** article from Confluence research; began bot-mode
   testing.
+- **Session 8** (`logs/2026-07-15-session-08.md`) — broad Confluence sweep: added
+  11 process/QC/runbook articles (Turbo/CP-Legacy & HDUS error guides, onboarding,
+  indexing CI tasks, coupon & live-date QC, alert runbooks) + **18 CP retailer
+  processing SOPs** in new `docs/processing-sops/`; regenerated bundles (30 sources).

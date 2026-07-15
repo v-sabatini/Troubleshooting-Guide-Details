@@ -3,7 +3,7 @@
 These files are the **upload-ready version** of the CXE Help Center, bundled so the
 whole thing fits inside NotebookLM's per-notebook **source limit** (~50 free /
 ~300 paid). Uploading the ~500 individual files would exceed that; these **28
-bundles** hold the same content.
+bundles (~30 files) hold the same content.
 
 > These are **generated** from `docs/knowledge-base/` and `docs/retailers/` — the
 > originals stay the source of truth. Regenerate after edits (see below).
@@ -12,8 +12,9 @@ bundles** hold the same content.
 
 | File | What's in it |
 |---|---|
-| `00-flipp-troubleshooting-knowledge-base.md` | All general troubleshooting: codesheet errors, missing flyers/indexing, clipping/AutoBox, stores/harmonization, dates, hosted/previews, publishing/go-live, storefront, escalation routing (FD/CLSD/MSC), glossary. |
-| `retailers-A.md` … `retailers-Z.md`, `retailers-0-9.md` | The 489 retailer-specific processing guides, grouped by first letter (contacts/credentials omitted). |
+| `00-flipp-troubleshooting-knowledge-base.md` | All general troubleshooting/process/QC/runbook content: codesheet errors, Content V2, missing flyers/indexing, clipping/AutoBox, stores/harmonization, dates, hosted/previews, publishing/go-live, storefront, Turbo/CP-Legacy & Home Depot US error guides, onboarding, indexing CI tasks, coupon & live-date QC, alert runbooks, escalation routing (FD/CLSD/MSC), glossary. |
+| `retailers-A.md` … `retailers-Z.md`, `retailers-0-9.md` | The 489 Vendor OneGuide retailer processing guides, grouped by first letter (contacts/credentials omitted). |
+| `retailers-cp-processing-sops.md` | The Content Production (CP) per-retailer processing SOPs (distinct from the OneGuides). |
 
 Just upload every `.md` file in this folder as a NotebookLM source (drag-and-drop,
 or Add source → Upload). That's it — 28 files instead of 500.

@@ -1,6 +1,6 @@
 # Flipp Flyer-Processing Troubleshooting — CXE Help Center
 
-> Combined bundle of the CXE Help Center's general troubleshooting guidance (incl. Content V2/publishing, codesheet errors, missing flyers/indexing, clipping/AutoBox, stores/harmonization, dates, hosted/previews, publishing/go-live, storefront, escalation routing, glossary). For retailer-specific processing, see the "Retailers - <letter>" bundles.
+> Combined bundle of the CXE Help Center's general troubleshooting, process, QC, and runbook guidance. For retailer-specific processing, see the "Retailers - <letter>" bundles and the "CP Processing SOPs" bundle.
 
 ---
 
@@ -424,6 +424,75 @@ See `escalation-and-tickets.md` for the full ticketing guide.
 *Sources: Confluence "Code sheet Troubleshooting Guide" (XPTCXE, 3129146347);
 TOSS Jira tickets 494, 6360, 7012, 7020, 7027, 7029, 7030, 7033, 7042, 7043,
 7059. See `sources/source-map.md`. Last reviewed: 2026-07-14.*
+
+
+---
+
+# Turbo & CP-Legacy — Error Guide
+
+> **What this covers:** The processor-facing errors seen in **Turbo** and
+> **CP Legacy** import/custom-action jobs, with the exact error strings, the
+> usual cause, and the self-serve fix. Source Confluence page id: 13617366001
+> (space CP, "Error Guide: Turbo & CP-Legacy [2026]").
+>
+> **Audience:** Content Production processors.
+> **Escalation path:** If self-serve steps fail, escalate per
+> `escalation-and-tickets.md`.
+
+---
+
+## Turbo errors
+
+### `Invalid Flyer Type for Merchant`
+
+- **Symptom:** The error log reads `Invalid Flyer Type for Merchant`.
+- **Likely cause:** The wrong **Flyer Type ID** was entered for that specific
+  retailer.
+- **Fix:** Double-check the Flyer Type ID, correct it as required, and submit the
+  **Import Job** again.
+
+---
+
+## CP Legacy errors
+
+### `Error processing image: Request was blocked by retailer. Please try with proxy option. HTTP 403 - Forbidden`
+
+- **Symptom:** A CP Legacy job errors with, verbatim:
+  `"Error processing image: Request was blocked by retailer. Please try with proxy option. HTTP 403 - Forbidden"`
+- **Likely cause:** More often than not, the URL for the problematic SKU is
+  incorrect or invalid.
+- **Fix:**
+  1. Copy the problematic **SKU / Ecom ID** and look it up in the **product data
+     sheet**.
+  2. Click the product **image URL** link to confirm it works.
+  3. If the link is invalid, update it with the correct URL and **rerun the
+     custom action**.
+
+### `ERROR: Not enough rows in Product CSV for zone [Insert Store Set here]`
+
+- **Symptom:** A CP Legacy job errors with, verbatim:
+  `"ERROR: Not enough rows in Product CSV for zone [Insert Store Set here]"`
+- **Likely causes:**
+  - An invalid/incorrect SKU image URL (same class as above); **and/or**
+  - A **mismatch** between the **"Store Sets"** and **"Sale Story"** values.
+- **Fix:**
+  1. Check the problematic SKU/Ecom ID against the product data sheet and fix any
+     invalid image URL (as above).
+  2. In the preview, confirm the **Store Sets** and the **Sale Story** are correct
+     and **match the expected values in the Story Curation Sheet**.
+  3. Resubmit the **Import Job**.
+
+---
+
+## See also
+
+- `home-depot-us-troubleshooting.md` — retailer-specific CP Legacy / Snicket /
+  Fadmin errors.
+- `escalation-and-tickets.md` — when and how to escalate.
+
+---
+
+*Source: Confluence "Error Guide: Turbo & CP-Legacy [2026]" (CP, 13617366001). Contacts/credentials omitted. Last reviewed: 2026-07-15.*
 
 
 ---
@@ -1251,6 +1320,1652 @@ thumbnails, or not fully processed.
 *Sources: Confluence "How to troubleshoot Storefront errors" (QKB, 11540496444);
 "Alert Runbook: Live Flyer Check" (CTLR, 11691786294). See
 `sources/source-map.md`. Last reviewed: 2026-07-14.*
+
+
+---
+
+# Home Depot US (HDUS) — Troubleshooting Guide
+
+> **What this covers:** Retailer-specific errors and fixes for the **Home Depot
+> US (HDUS)** flyer pipeline — CP Legacy, Call Sheet (specialist), Flyer PDF, and
+> Fadmin-related issues — plus the API used as source of truth. Source Confluence
+> page id: 11997315103 (space CP, "Home Depot US Troubleshooting Guide [2025]").
+>
+> **Audience:** Content Production processors / HDUS specialists.
+> **Escalation path:** Flag to Partner Technology (PT) or escalate per
+> `escalation-and-tickets.md`.
+
+---
+
+## Snicket errors (ARCHIVED — reference only)
+
+The **Snicket Issues** section of the source page is marked **Archived**. It is
+kept here only for reference; confirm the current process before acting on it.
+Errors documented there: *missing columns / validation not possible*,
+`API error - FETCH_IMAGE_URL. processBatch. ItemId: not found`, *insufficient
+items to fill page*, `API Error - 403: Forbidden - backfill - get nvalues error`,
+and *missing marketing asset on s3*. If you hit one of these on a live Snicket
+run, check whether the workflow has moved to CP Legacy first, then flag to PT.
+
+---
+
+## CP Legacy errors
+
+### Image Data not found
+
+- **Symptom:** `Image Data not found` — an image in the data sheet could not be
+  found or retrieved.
+- **Fix:**
+  1. Copy the **OMSID** for the affected product(s).
+  2. Find those OMSIDs in the **product data sheet** and **remove the entire
+     row**.
+  3. Update the **placement order** column to adjust for the removed rows.
+  4. Redownload the product data sheet and **rerun the Custom Action**.
+
+---
+
+## Call Sheet errors (SPECIALIST ONLY)
+
+### Image Exists — Not Found
+
+- **Symptom:** An item shows `Not Found` under the **Image Exists** column of the
+  Call Sheet.
+- **Fix:**
+  1. Filter for the item with the image not found and copy its **N-Value**.
+  2. Open the **backfill file** and Ctrl-F the N-Value.
+  3. Copy the **OMSID** for a backfill item with that N-Value.
+  4. Replace the OMSID of the not-found item with the new backfill OMSID.
+  5. Copy the **Image Shape** from the backfill into the Call Sheet's Image Shape.
+  6. Change the item's **Image Exists** value from `Not Found` to `Found`.
+  7. Save the Call Sheet.
+
+---
+
+## Flyer PDF errors
+
+### Pricing doesn't match website
+
+- **Symptom:** HDUS flags that flyer pricing does not match the website.
+- **Key fact:** The **HDUS API updates daily at 3 AM**; all jobs run after
+  **3:30 AM**.
+- **Fix / response:**
+  1. Check the API to confirm whether the website price matches the API.
+  2. The Home Depot **GraphQL API**
+     (`https://apionline.homedepot.com/federation-gateway/graphql`) pulls the
+     product info and reflects what is in the consumer ad — this is the **source
+     of truth**.
+  3. If the API matches the ad, explain that the discrepancy is likely due to
+     **caching**, since data is pulled after the API refresh.
+
+### Incorrect banner assigning
+
+- **Symptom:** An old or incorrect banner is assigned on the PDF.
+- **Fix:**
+  1. Confirm the new banner uploaded into **Lago** properly and was not rejected;
+     if rejected, reconvert and re-upload. Confirm the banner filename matches the
+     **Market Asset Sheet**, and that the file is **72 DPI JPG**.
+  2. If the banner is in **Lago Explorer**, check banner assignment there:
+     project list → Home Depot US → expand all projects → find the **CP Legacy
+     ID** for the run → open the affected page → expand **articles → all** →
+     select the marketing block → **Asset Assignment** tab.
+  3. If **two banners** are assigned (usually because they share the same name),
+     delete the one you don't need. You must **hard delete** that image in the
+     remote desktop.
+  4. In the **master image list**, for each banner add a letter or two before the
+     first `x` in the marketing-block text to create a new unique ID (e.g. add
+     `LL`). Apply the same letters to the marketing-block text in the **call
+     sheet**.
+  5. Re-drop the master image list and **re-run the flyer** with the new call
+     sheet.
+
+### Blank banner
+
+- **Symptom:** No banner assigns to the PDF; the space is blank.
+- **Fix:**
+  1. Same banner checks as above (uploaded/not rejected, filename matches Market
+     Asset Sheet, **72 DPI JPG**). The **master image list** assigns banners, so
+     if it isn't uploaded, banners won't assign.
+  2. On **Lago web** (`https://comosoft-app-lago5.flipp.com:8500/LAGO/`) go to
+     the Home Depot US project type → **Monitor → transfer jobs → pending jobs**;
+     confirm no tasks are pending.
+  3. If none pending, check **done jobs** for `New Snicket Master Image List
+     PRO/CON` and confirm no errors. If there is an error, download the error log
+     and troubleshoot per the message.
+  4. If the banner is in **Lago Explorer**, check assignment (same navigation as
+     above). If the Asset Assignment window has no banner, **manually assign**
+     one: in the **Asset Light Table**, drag-and-drop the desired banner into the
+     Asset Assignment window.
+  5. Apply the **unique-ID / re-drop / re-run** steps as in *Incorrect banner
+     assigning*.
+
+---
+
+## Fadmin-related errors
+
+### Pricing zones exceed 1000
+
+- **Symptom:** A run exceeds Fadmin's **1000 pricing-zone limit**, causing
+  sessions to fail to generate and clogging the Fadmin queue. Zone count is
+  visible in the **session tab** under **flyer level tile gen** (example run
+  showed 1011 zones).
+- **Likely cause:** Increased versioning — usually HDUS providing **non-national
+  SKUs**, which raises backfill items and unique pricing and creates more zones.
+- **Fix:**
+  1. Get the **CP Legacy ID** for the run and search email for the run's CSV
+     (datasheet).
+  2. In the CSV, add filters to the top row and scroll to column **AX
+     (`id_3`)**. Pages aren't in order in the CSV, so use this category column to
+     find where most items come from.
+  3. Filter each category, note row counts, and find the **page** tied to the
+     category with the most rows — that page is driving the versioning.
+  4. Contact Home Depot: inform them of the increased job size and the suspected
+     page. Ask them to either **resend with national SKUs** or **remove a page or
+     two** to reduce versions. Recommend using **insert pages** (not templates)
+     for categories without national SKUs going forward.
+
+### Data piping stuck (yellow) or errored (red)
+
+- **Symptom:** A data-piping task in the pipeline is **stuck (yellow)** or
+  **errored (red)**.
+- **Fix:**
+  1. **Rerun the task** `Generate Sibling Groups`.
+  2. If that fails, click the **Unblock Flyer Run** button (three dots next to
+     the comment box).
+
+### Page 1 removed
+
+- **Symptom:** Business logic removes pages when too many versions push pricing
+  zones over 1000. If **Page 1** is removed it can cause **CUSAT** issues; FLEX &
+  co-ops check for Page 1 during morning QC and flag missing Page 1 in the
+  `hdus-cp` channel.
+- **Fix / response:**
+  1. Set **yesterday's / failsafe run live** and **hide today's run**.
+  2. Find the `Content Production FlyerRun: Datasheet generated` email for
+     today's run and check which **OMSIDs** are causing the variation (products
+     with **5+ variations** are usually the issue).
+  3. Email the HDUS contact: state Page 1 was removed due to increased variation
+     exceeding the version limit, that a backup ad is live, list the problem
+     OMSIDs, and request **additional national backup OMSIDs**. **Timeline: 2
+     business days.** (Note: if new OMSIDs are not national, the page-removal
+     logic may still remove Page 1.)
+  4. If the issue occurs at the **end of the flyer**, check with HDUS whether any
+     backfill OMSIDs are national and can be used; if so, **swap the national
+     backfill items into the call sheet**.
+  5. If HDUS provides **net-new OMSIDs**, rerun the process in **Snicket from
+     scratch** to produce a new call sheet. Then create a new flyer run in the
+     HDUS flyer type, run a **5-store test** (any 5 stores), **cancel triggers**,
+     and create new triggers for the rest of the week with the new call sheet.
+
+---
+
+## Source of truth: the HDUS API
+
+The Home Depot **GraphQL API**
+(`https://apionline.homedepot.com/federation-gateway/graphql`) is used to pull
+product info and reflects what appears in the consumer ad. It **refreshes daily
+at 3 AM**; jobs run after **3:30 AM**. Use it to confirm pricing when HDUS flags
+a discrepancy. (Access credentials/details are in the source doc — not stored
+here.)
+
+---
+
+## See also
+
+- `turbo-cp-legacy-error-guide.md` — general Turbo & CP Legacy error strings.
+- `home-depot-canada-dvm-module-runbook.md` — HDCA DVM feed/rendering runbook.
+- `escalation-and-tickets.md` — escalation and ticketing.
+
+---
+
+*Source: Confluence "Home Depot US Troubleshooting Guide [2025]" (CP, 11997315103). Contacts/credentials omitted. Snicket section is archived in source. Last reviewed: 2026-07-15.*
+
+
+---
+
+# Retailer Onboarding & Offboarding — Process Guide
+
+> **What this covers:** How the Ops Onboarding (OBQB) team takes a retailer from
+> assignment to go-live — direct (full-processing) onboarding, indexed
+> onboarding, rebranding, and offboarding — including the exact FAdmin/MAdmin
+> merchant-setup steps and workflow toggles processors must set. Source
+> Confluence page id: 3129144452 (space XPTCXE).
+>
+> **Audience:** Onboarding quarterbacks (OBQBs) and flyer processors setting up
+> new or returning merchants.
+
+---
+
+## Who owns onboarding
+
+The **Onboarding Quarterbacks (OBQBs)** are an Operations team that makes retailer
+onboarding fast and seamless for Ops, BD, and retail partners. **Hosted owner:**
+Technical Enablement Team.
+
+**Loop in an OBQB when:**
+- The retailer is a **net-new onboarding**.
+- A retailer is returning to Flipp after an extended absence.
+- A retailer is **adding a banner** to an existing merchant group.
+- There is a one-off, pre-approved campaign for a net-new retailer.
+- A CPG/Brand requires new merchant setup.
+
+**The OBQB team is NOT responsible for:** setting up Hosted 2.0, Hosted
+troubleshooting, budget/revenue, Salesforce, reporting, or NativeX (outside
+campaign setup).
+
+**How to include an OBQB:**
+1. File an **Onboarding Ticket** in Jira on the **Operations Onboarding Board
+   (project `MM`, board 274)**.
+2. Post in the **#onboardings** Slack channel and tag **@qbs**.
+3. Include: retailer name, ideal launch date, and the ticket link.
+4. An OBQB picks up the ticket within **24–48 hours** and follows up for details.
+
+---
+
+## Direct (full-processing) onboarding — end-to-end
+
+### 1. Assignment & Jira ticket
+New onboardings are posted in **#onboardings** by BD with an accompanying ticket
+on the Operations Onboarding Board (MM). Tickets are picked up within 24–48 hours.
+
+### 2. Intro to retailer
+Once assigned, the QB is introduced to the retailer by email and establishes
+timelines, expectations, and relationship details. This can be informal (Slack /
+email) — it does not need to be a formal meeting. Use the Internal Kickoff
+Discussion Checklist (link in source doc).
+
+### 3. SFTP creation
+1. Create SFTP credentials using the **SFTP Automation** (via AWS Chatbot — see the
+   EF1 SOP "How to Create or Retrieve SFTP Credentials via AWS Chatbot").
+   *(credentials in the source doc — not stored here)*
+2. After the merchant is created in FAdmin, add SFTP credentials:
+   **Merchant Page > Details > Edit Merchant > FTP Username, Base Path, toggle ON
+   FTP Sync Enabled > Save Changes.**
+3. After the external intro: send the retailer a **one-time URL** with their SFTP
+   credentials, ask them to drop assets to the SFTP, and confirm receipt.
+
+### 4. Create the merchant in FAdmin (new client)
+**Salesforce is the single source of truth** for newly created retailers. Country
+information is entered via Salesforce; flag discrepancies to BD (they update or
+create a net-new merchant).
+
+1. Open the **Merchant Admin (MAdmin)** interface.
+2. Search the incoming retailer name; it appears under **Account Name** with
+   **(To Be Filled)** in the Name column. *(Sync can take ~1 hour; if not visible
+   after 1–2 hours, flag to BD.)*
+3. Click the **To Be Filled** hyperlink to open the Merchant page.
+4. Fill in:
+   - **Internal Name** — pre-filled from Salesforce; editable if needed.
+   - **Relationship?** → **Direct**
+   - **Distribution Channels?** / Only Show In → **All Channels**
+   - **Supported Language?** → English (add French only if there is French content).
+   - **Display Name** — input language, Name, and Display Name for all languages.
+   - **Name Identifier** — all lowercase, no spaces (e.g. `IGA Southwest` → `igasouthwest`).
+5. **Upload logos:** main logo (any shape, rectangular recommended; Vector or
+   transparent PNG, HD) and **Storefront Logo** (square `.jpg`, min 60×60,
+   max 120×120 px). Input SFTP details and toggle ON Sync Enabled if not done.
+6. **Details > Processing Settings:** URL = merchant website; enter Salesforce ID
+   (from BD); enter the store locator URL in **Default Store Locator URL**.
+7. **Custom tab:** disable **Show Simplified Pop** (if enabled); set default
+   **chrome setting to "flatsheet."**
+8. **Details tab > Edit Store Settings:** Harmonize stores with Foursquare → Yes;
+   select a Foursquare Venue Category; Update.
+   *(Note: Harmonize/Venue Category no longer function in this UI — see the "Add
+   Stores to Merchant" flow / stores-and-harmonization.md.)*
+9. Add categories from the retailer's website.
+10. Assign yourself as **DOC and DOL** on the merchant.
+11. Post in **#osteam** to determine vendors to auto-assign, providing: Content
+    Type (Grocery/Electronics), Language, Processing Type (Simp Pop or Full),
+    Budget (Y/N), flyer cadence (weekly/monthly), approx. items per publication,
+    and lead time.
+
+### 5. Workflow settings (all retailers)
+Set every retailer up with these Merchant Workflow toggles:
+- Use PDF image extraction
+- Use PDF Image Auto Selection
+- Uses auto box draw **(do NOT skip Box QC)**
+- Vendor Tag
+- Tag QC
+- Vendor Spot Check
+- Auto Tag Enhanced
+- **Auto Tag Fields → All**
+
+> **Always ensure Flyer Type settings match Merchant Workflow settings** — Flyer
+> Type overrides the merchant level.
+
+### 6. Build the Flyer Type
+1. Create Flyer Type name.
+2. Create SEO Name (Flyer Type name, no spaces).
+3. Enable store selection.
+4. Enable **Geo-Awareness (GA)** if confirmed in IKO (**US retailers only**).
+5. Enable **max store distance** (Canadian retailers, or US retailers not using GA).
+6. Add Hosted URL.
+7. Submit a ticket to add any Flyer Type to stacks.
+8. Move the Jira ticket to **Content Processing** when files are received.
+
+### 7. Process & prep assets
+- Upload received files and begin processing.
+- Create a **OneGuide 2.0** from the template.
+- If proceeding with an OKO, prep the OKO deck (separate CA / USA templates).
+- Tier 1/2 retailers may get an end-to-end analysis from the Content Strategy
+  team — confirm with them before offering externally.
+
+### 8. Codesheet creation (if a codesheet is provided)
+- First understand the codesheet and build 1–2 versions of the ad yourself.
+- File a **TOSS** ticket to automate the codesheet process, including: how to read
+  and version the pages, how to determine stores per version, and any info needed
+  to paginate correctly.
+- Create a Merchant Code Sheet page (Confluence OP space).
+- See `codesheet-errors.md` for troubleshooting once it's live.
+
+### 9. Links check (tracking codes)
+- Check received links for tracking codes (**quick check: look for `utm` in the
+  URL**). If present, inform the account team — BD communicates that only promoted
+  retailers receive tracking codes.
+- Tracking codes on **product URLs** are removed automatically when the "Buy Now"
+  button turns off.
+- **Direct links** keep tracking codes even when budget runs out — but if the
+  retailer is launching **organic**, remove direct-link tracking codes before go-live.
+
+### 10. Vendor assignment & store upload
+- Confirm vendors via **#osteam** and auto-assign on the merchant page.
+- Upload the most recent store list. As long as the **merchant store code matches**,
+  data updates in place; if the code does not match, upload then delete duplicates.
+- **Systematically build all lat/longs using the Geocode Google Sheets add-on**
+  (see the Lat/Long SOP and `stores-and-harmonization.md`). For many mall stores,
+  an OS ticket can be filed to audit Geocode lat/longs (front-entrance inaccuracy);
+  use internal resources to audit when possible.
+
+### 11. Dry run (optional — account team's discretion)
+Process the publication in full and set up a walkthrough with retailer + BD.
+Consider a dry run when: the retailer is integrating Hosted, is very unfamiliar
+with Flipp, has confusing/specific tagging needs, or is an enterprise retailer.
+
+### 12. Go-live walkthrough
+- Present OKO deck and risk items (e.g. clean images cannot be extracted from the
+  files provided).
+- Update Vendor Guide and merchant-specific FQC per feedback.
+- Follow up with preview link and OKO deck, then next steps.
+- Get sign-off on the preview and confirm go-live.
+- Update the Audit Cycle Spreadsheet.
+
+### 13. Go-live checklist
+- [ ] Stacks assigned
+- [ ] Stores have lat/longs and **≥90% harmonized**
+- [ ] Turn off Indexer (if required)
+- [ ] **Always un-check "Indexed?" when transitioning a retailer from Indexed to Direct**
+- [ ] Upload Merchant Schedule to FAdmin
+- [ ] Links set up correctly
+- [ ] Confirm distribution with retailer + BD
+- [ ] Add retailer to Capacity Allocation
+- [ ] Close Jira ticket
+
+---
+
+## Onboarding a client that already exists in FAdmin
+
+Open **Merchant Page > Details > Edit Merchant Information** and update as needed:
+- Name — ensure Name Identifier has **no spaces**.
+- Upload Logo and Storefront Logo (square `.jpg`, 60×60 to 120×120 px).
+- Merchant website URL; Salesforce ID (from BD); SFTP credentials; store locator URL.
+- If currently indexed, disable **"Flipp-Only?"**
+- **Whitelist** the retailer so it appears in Flipp web search.
+- **Mobile tab:** ensure "Use new mobile experience" is enabled.
+- **Custom tab:** disable Show Simplified Pop (if enabled); set default chrome to
+  **"flatsheet."**
+- Add categories from the retailer's website.
+- Assign yourself as **Lead**; confirm vendors via #osteam.
+
+> **DO NOT un-check "Indexed?" at this stage of the process.**
+
+Then apply the same **Workflow Settings** and **Flyer Type** steps as a new client.
+
+---
+
+## Indexed content — onboarding & disabling
+
+Before indexing, confirm content is scrapable and does **not** fall into the
+do-not-index categories:
+- Content is from a competitor's hosted iframe.
+- Content is not on the retailer's own domain but on a third party (Facebook,
+  Adobe, blog domain).
+- Content fails content policy: no shoppable items, advertises a service only,
+  consistently too few items, or contains prohibited content.
+
+If you doubt scrapability, file an **"Ops Request" FD ticket** (OS Eng confirms).
+Otherwise proceed and get final confirmation after filing a **"New Indexer" FD
+ticket**.
+
+**Indexed merchant setup mirrors the direct flow, with one key difference:**
+- **Relationship? → Indirect.** *(If this is not "Indirect," the retailer will
+  not appear in Tesseract.)*
+- Complete the remaining steps: determine task workflow, build Flyer Type, assign
+  stacks, add stores, **file New Indexer ticket**, and **confirm the indexer is up
+  and running**.
+
+**What makes content ideal to index:** downloadable PDF/JPEG pages; valid dates on
+the same page the flyer lives; same URL week over week; consistently meets content
+policy. **Less ideal:** dates only on the flyer page(s) (needs extra QA — indexers
+can't pull dates from pages); URL changes week to week; interactive/link-out pages
+(case-by-case, e.g. Costco, Whole Foods).
+
+**Requests to index new content come from** (most→least common) Business
+Development (Flipp Lite / Tier 5), Customer Experience (user CX tickets), and
+internal requests. Explore any option unless previously asked to stop indexing
+that retailer.
+
+**Flipp Lite (Tier 5):** low-cost indexed package, **minimum $500/month**. Ads get
+daily live/valid-date/function checks by part-time staff. The participating-merchant
+list ("Indexed Flipp Lite + Top 50" sheet) is maintained by the Skeleton Team via
+**#flipplite** (no direct edit access).
+
+**Support channels for indexing:**
+
+| Channel | Purpose |
+|---|---|
+| #onboardings | OBQB team; onboarding questions (tag @QB) |
+| #helpme-ops | Skeleton Team; confirm correct escalation for indexing issues (tag @SkeletonTeam) |
+| #ops-stack-support | Support adjusting flyer-type stacks |
+
+> The escalation path for indexing was noted as changing soon (indexing revamp in
+> progress) — confirm the current process in the channels above.
+
+See also `missing-flyers-and-indexing.md` and `indexing-ci-baseline-tasks.md`.
+
+---
+
+## Rebranding a retailer (manual changes)
+
+**Prerequisites:**
+- Confirm the go-live date of the rebrand before changing merchant name & logo.
+- Request the updated merchant name and updated logos for both **Logo** and
+  **Storefront Logo** fields (Details page).
+- If the Hosted experience is moving to a different website, involve the account PT
+  (or file a Technical Enablement (TE) Support Ticket) to determine whether new
+  credentials are needed or the retailer reuses the same integration code — this
+  depends on whether a **new name identifier** is generated. A new name identifier
+  implies new SFTP credentials and a new codesheet config name.
+- Confirm the new Hosted URL; if changing, update it in FAdmin and in the Account &
+  Vendor Guides, and inform OS for live-check purposes.
+- **File a Harmonization Troubleshooting (HTS) ticket** to determine whether to
+  re-harmonize existing stores or ask Foursquare to rename stores.
+  **DO NOT re-harmonize existing stores before confirmation — you will lose
+  existing store trip reporting.**
+- Connect with BD to confirm past-flyer reporting is unaffected (they check with
+  the PIA team).
+- Connect with Marketing to update the merchant name in push notifications.
+- If the retailer has a US/Canadian counterpart with an account team, give that
+  Ops team visibility.
+
+**Day of the rebrand:**
+- Update & live-check logos and name on **both Hosted and Flipp App/Web**.
+- To reflect changes on the Storefront scrolling interface, **unmark Autostack
+  Spotcheck / Spotcheck QC complete, then re-mark complete.**
+- Live-check that the flyer is live on the correct Hosted URL and verify any other
+  changes.
+
+---
+
+## Offboarding
+
+**Offboard a retailer when:**
+1. Ops has not received content in **6 months** (and the retailer is not seasonal).
+2. The account team has had no communication / indication of assets in 6 months.
+3. The retailer advises they will no longer send assets.
+
+**If the account stops sending files:**
+1. Notify the account team.
+2. Advise the **Content Improvement team** to start assessing whether content can
+   be indexed. Provide: Merchant Name, FAdmin Merchant ID, Merchant Website URL,
+   and the **content cutoff date** (last day Flipp will have content).
+
+**BD cutting a retailer for budget reasons:** processing stops if the retailer
+won't meet the BD-proposed **Minimum Spend** (typically $2–5k monthly to stay
+live). Stay looped in, ensure the Minimum Spend Operations Progress Tracker fields
+are filled, and the Ops Lead should confirm via Slack that BD has notified Content
+Improvement to assess indexing.
+
+**Content becoming indexed** (cost-analysis initiative): BD reaches out to the Ops
+Lead. Action items: confirm the indexer turn-on date with BD, confirm BD is filing
+the indexer ticket (BD tells the retailer), and email the retailer confirming their
+last processed publication and that you'll no longer be on the account (a template
+is in the source doc — contacts/addresses omitted here).
+
+---
+
+*See also: `codesheet-errors.md`, `stores-and-harmonization.md`,
+`missing-flyers-and-indexing.md`, `indexing-ci-baseline-tasks.md`,
+`hosted-and-previews.md`, `publishing-and-go-live.md`, `escalation-and-tickets.md`.*
+
+*Source: Confluence "Retailer Onboardings" (XPTCXE, 3129144452). Contacts/credentials
+omitted. Last reviewed: 2026-07-15.*
+
+
+---
+
+# Indexing CI Baseline Tasks — Shift Procedure
+
+> **What this covers:** The daily CI (Content Improvement) Baseline Task shift for
+> indexed flyers — Date Review, FD Board Ops Check, managing duplicate flyers, the
+> Top 50 / Premium merchant check, and filing FD tickets. Step-by-step so a
+> processor can run the shift end to end. Source Confluence page id: 12181569663
+> (space XPTCXE).
+>
+> **Audience:** CI Baseline Task processors working indexed content.
+
+---
+
+## Tools you'll use
+
+| Tool | Use |
+|---|---|
+| **Tesseract** (`tesseract.flippback.com`) | Date Review, Content Health, Duplicate Flyer Merchants, Indexed Merchants |
+| **FD Board** (Jira project `FD`, board 312 — "Flipp Content Daily Priorities") | Ops Check lane; filing Broken Indexer tickets |
+| **FADMIN** (`fadmin.flippback.com`) | Flyer runs, flyer sorting, toggles, geography/FSA |
+| **Duplicate Indexed Flyer Tracking** sheet | Log duplicates removed |
+| **Flyer Indexing Daily Health Checks** sheet | Top 50 / Premium daily log |
+
+> Order of work is up to the shift, but complete Date Review and the FD Board Ops
+> Check first; use leftover time for the full duplicate sweep.
+
+---
+
+## Task 1 — Date Review
+
+Verify indexed flyers show the correct valid dates.
+
+1. In Tesseract, open **Date Review** (`/date_reviews`). Three tabs:
+   - **Pending** — flyers with dates inconsistent week over week.
+   - **Flagged** — possible date errors, flagged for review.
+   - **Approved** — done, no action.
+2. For a run, open both **sources**:
+   - **Preview** — internal preview; check for printed dates on the flyer and
+     whether they match our system.
+   - **Website** — the merchant's site (retailers sometimes list flyer dates there).
+3. **The dates next to the CATEGORIES header are our system dates, NOT the true
+   flyer dates.** Use the dates printed on the flyer itself as the source of truth
+   (usually top or bottom of page 1; skim if not there).
+4. Cross-reference that the preview matches the flyer live on the merchant website.
+5. **If the printed dates match** the "Valid Dates" column → click **Approve**,
+   then in FADMIN find the merchant → **Flyer Runs** tab → locate the run → ensure
+   **"Hide in Flipp"** and **"Hide in Distribution"** are **un-toggled** (unchecked)
+   so the ad pushes to the front end.
+6. **If the printed dates do NOT match** → click **Edit**, input the correct dates,
+   then repeat the FADMIN step above.
+
+> **Risk item:** Always find dates from the flyer PDFs themselves or the merchant
+> website. If unsure, flag in **#flex-ci**.
+
+---
+
+## Task 2 — FD Board Ops Check
+
+Confirm fixed indexers are actually live.
+
+1. Open the **FD board** and the **"Ops Check"** lane. Open the first ticket.
+2. Look for a comment reading **"Verified as per this indexing session:"** with a
+   Tesseract link — this means the indexer has been fixed and is ready to check.
+   If instead there are ongoing questions/discussion, leave it and move to the next.
+3. On Tesseract **Content Health**, search the merchant — confirm the indexer is
+   **green** with no issues. (A **red** indexer language means it's broken / not
+   scraping.)
+4. In FADMIN, confirm the flyer has been scraped.
+5. In the flyer run's **Geography** tab, grab an **FSA** to live-check.
+   - **Live check** = open the Flipp app, enter the FSA/postal code, and confirm the
+     flyer is live.
+   - **Canadian** FSA is 3 characters — append **`1A1`** to make a valid postal
+     code (e.g. FSA `N6H` → `N6H1A1`).
+   - **US** zip codes paste into Flipp as-is.
+6. If the flyer is live → move the ticket to **Done**.
+7. **If the flyer is not live:**
+   - On Tesseract Content Health, check whether the indexer is red (broken).
+   - Confirm the flyer isn't just hidden on Flipp (check the flyer-run toggles); if
+     hidden, complete Date Review flags in Tesseract.
+   - If you can't resolve it, escalate to the Content Operations specialist in
+     **#flex-ci**.
+
+**Leave for the specialist** (do not action; leave in the Ops Check lane):
+- Creation of a flyer type (wrong cadence: weekly / bi-weekly / monthly).
+- Missing stores in FADMIN.
+- A comment asking for further direction.
+
+> If you're unsure of next steps to gather content, **bump the ticket in #flex-ci
+> before signing off** for your shift.
+
+---
+
+## Task 3 — Managing duplicate flyers
+
+Use leftover shift time to clear duplicates (including non–Top 50 / non-Premium).
+
+> **Risk item:** When removing a duplicate, remove the **OLDER** flyer. Keep the
+> **newest** flyer by **indexing date** live.
+
+1. Open Tesseract **Duplicate Flyer Merchants** (`/duplicate_flyers_merchants`) and
+   the **Duplicate Indexed Flyer Tracking** spreadsheet.
+2. Go through each set of duplicates. Right-click IDs under the "indexed flyers"
+   column → open in new tab to see details that reveal false duplicates:
+   - **Ad Name** (e.g. "Weekly Ad" vs "Easter Specials" suggests a *false* duplicate).
+   - **Distribution Area** (do both cover the same areas and match FADMIN?).
+   - **Indexed dates** (when scraped — keep the most recent).
+3. **Before removing:** in the tracking spreadsheet, find the retailer and correct
+   week and add the number of duplicates seen in Tesseract. **Track false
+   duplicates too.** If a retailer already has duplicates logged earlier in the
+   same week, add the latest count to the tally.
+4. **To remove a duplicate — backdate or delete the run in FADMIN:**
+   - Search the retailer; open **Flyer Sorting** to see live flyers.
+   - Open the retailer's website in another tab.
+   - Open each live run (Flyer Sorting → "Details") and compare.
+   - If both are the same and correct → **delete or backdate the older one** (by
+     indexing date).
+   - If runs show different flyers → keep the one matching the retailer's website.
+5. Refresh Duplicate Flyer Merchants — the merchant should disappear once only one
+   run remains. Repeat for the full list.
+
+---
+
+## Task 4 — Top 50 & Premium merchant check
+
+> **Risk item (before filing any FD ticket):** Check the retailer's website to
+> confirm there **is** a live, current flyer to scrape. If there is no flyer, or
+> it's expired, **do not file an FD ticket** — the indexer is not broken. Also
+> confirm a ticket isn't already filed (use the board's "search board" bar or
+> Ctrl+F for the merchant name).
+
+1. Open the Tesseract **"Top 50"** and **"Premium Merchant"** tabs and the log sheet
+   in the **Flyer Indexing Daily Health Checks** workbook.
+2. Set up a new section below the most recent day and add today's date.
+3. For each retailer with a **TRUE** entry, act based on which column is TRUE:
+
+**"Has Duplicates" = TRUE** (indexer created live duplicates):
+- Open the retailer's Tesseract page (ID column).
+- Click **Sample Zip** (2nd column) to open Backflipp (live flyers for that zip/
+  postal code).
+- Ctrl+F to the retailer.
+- Determine whether they're true duplicates or multiple content pieces.
+- If duplicates → **delete the one with the lower flyer run ID** (lower ID = older
+  run).
+- If different content → false positive, no action.
+
+**"Missing Live Flyer" = TRUE** (Tesseract flags no live flyer):
+- Open the Tesseract page → click **Goto**. If no current flyer on the site →
+  **false positive**, no action.
+- If there is a current flyer and **Gathering State** shows **"No New Flyer"** →
+  click **Run All Pricing Zones** (top right).
+- If Gathering State or Processing State are **red** → follow the Broken Indexer
+  steps below.
+
+**"Failed PZG" = TRUE:** disregard — a Tesseract function under construction; no
+action.
+
+**"Broken Indexer" = TRUE:** file an FD ticket (see Task 5). Title
+**"Broken Indexer - [RETAILER NAME]"**, add the Tesseract page to the Tesseract
+Pricing Zone field, the Goto link to the Merchant Site URL field, request type
+**Broken Indexer**, and Severity **TOP50** (if in the Top 50 report) or **other**
+(Premium — note this in the ticket body). **Set priority to "2 - Must Do"** for all
+Top 50/Premium merchants. Submit and move to the **"Do Next"** swimlane.
+
+4. Log every TRUE retailer in the tracker: **Column A** Retailer Name, **Column B**
+   Issue Type (the TRUE column, or "False Positive"), **Column C** actions taken,
+   **Column D** helpful notes.
+
+---
+
+## Task 5 — Filing FD tickets
+
+> **Same risk item as Task 4:** confirm there is a live, current flyer on the
+> retailer's site before filing, and that no ticket already exists for the merchant.
+
+1. Go to Jira → **FD board** (project FD, board 312, "Flipp Content Daily
+   Priorities").
+2. Search the merchant name in the board to confirm no existing ticket.
+3. Click **Create**. Required fields:
+   - **Summary** — the issue (e.g. "Broken Indexer"); note if the merchant is
+     Premium or Top 50 to flag urgency.
+   - **Tesseract Pricing Zone** — search the merchant on Tesseract and copy the URL
+     you land on (`.../pricing_zones?merchant_id=<id>`).
+   - **Merchant** — the merchant name.
+   - **Merchant Site URL** — from the Tesseract Pricing Zone page, hit **"Go To"**
+     under "Starting URL" and paste that link.
+4. **To classify Premium/Top 50:** on Tesseract → **Indexed Merchants** → search the
+   retailer. If **Top 50** or **Premium** is TRUE, pick it in the ticket dropdown;
+   otherwise **N/A**.
+5. Click **Create** and move the ticket to the **"Do Next"** swimlane for the
+   Trianglz team's review.
+
+---
+
+*See also: `missing-flyers-and-indexing.md`, `flyer-dates.md`,
+`retailer-onboarding-process.md`, `escalation-and-tickets.md`,
+`post-escalation-what-happens-next.md`.*
+
+*Source: Confluence "Indexing Tasks - CI Baseline Tasks" (XPTCXE, 12181569663).
+Contacts/credentials omitted. Last reviewed: 2026-07-15.*
+
+
+---
+
+# Account Flyer Review Directory — Reference
+
+> **What this covers:** What the Account Flyer Review directory is and how
+> processors use it. Source Confluence page id: 10670702896 (space XPTCXE).
+
+The **Account Flyer Review** page is an **alphabetical directory of per-retailer
+flyer-review documents**. Each entry links to that retailer's own Google Doc
+(hosted in Google Drive), which holds the retailer-specific flyer-review /
+processing notes for that account.
+
+**How to use it:**
+- Find the retailer alphabetically (A–Z) and open its linked doc for
+  retailer-specific review guidance before processing or QC'ing that account's
+  flyer.
+- Some entries **share one doc** because the banners are grouped under a single
+  merchant/account (e.g. *Albertsons Market / United Supermarkets / Market Street /
+  Amigos United*; *Pet Valu / Total Pet / Tisol / Paulmac's Pets / Bosley's*; the
+  SpartanNash family such as *Family Fare / D&W Fresh Markets / Martin's / VG's
+  Grocery*). Follow the link rather than assuming one doc per banner name.
+- A few retailers list multiple docs by content type (e.g. *Food 4 Less* has
+  separate Adult Bev and Weekly Ad docs; *Lidl US* splits Weekly Ad and Magazine).
+
+**Notes:**
+- The directory itself contains **no processing procedure** — it is a navigation
+  index. The actionable detail lives in each retailer's linked doc.
+- Contents of the linked Google Docs are not stored in this knowledge base; open
+  the source directory page for the current links.
+
+---
+
+*See also: `retailer-onboarding-process.md`, `codesheet-errors.md`,
+`common-live-flyer-issues.md`.*
+
+*Source: Confluence "Account Flyer Review" (XPTCXE, 10670702896). Contacts/credentials
+omitted. Last reviewed: 2026-07-15.*
+
+
+---
+
+# Coupon Ops Daily Queues — Verification, Item Matching & OS Match QC — Guide
+
+> **What this covers:** The three linked Coupon Ops baseline tasks that form the
+> coupon pipeline — **Coupon Verification**, **Item Matching**, and **OS Match
+> QC** — including what each queue is, its daily target, and the risk items to
+> watch. Sourced from Confluence pages 13536002653 (Coupon Verification),
+> 13536002854 (Vendor Guide: Item Matching), and 13536003039 (OS Match QC).
+>
+> **Audience:** Coupon Ops team and OS vendors.
+
+---
+
+## Pipeline order
+
+These three tasks run in sequence. **OS Match QC** explicitly lists **Coupon
+Verification** and **Item Matching** as its prerequisites:
+
+1. **Coupon Verification** — verify incoming coupons (assign brands) so they are
+   eligible to be matched.
+2. **Item Matching** — match flyer items to the verified coupons.
+3. **OS Match QC** — QC the matches for discrepancies flagged by OS.
+
+All three queues **should be cleared by EOD every day.**
+
+---
+
+## 1. Coupon Verification
+
+**What it is:** The most important baseline task. Coupons arrive in FADMIN via
+multiple feeds and **must be verified before they can be matched** to flyer
+items. Queue: `admin.flipp.com/coupons/next_to_verify`.
+
+**Target:** Clear the queue by EOD every day.
+
+**Risk items and how to mitigate:**
+
+| Risk | Detail / fix |
+|---|---|
+| **Incorrect brand and/or not all brands assigned** | The correct brand(s) must be assigned so all possible item matches are gathered for matching and L2ID badging. For a **multi-brand coupon, assign all brands.** |
+| **Brand not in system** | Brands must be added to coupons and each brand must be tied to a manufacturer. In some cases you must **create a new manufacturer and a new brand** before you can assign it. |
+
+**Exceptions — Meijer coupons** follow the same general process, with two
+differences:
+- **Storewide is allowed** (e.g. "10% off general merchandise"). *Note: Family
+  Dollar can also have storewide coupons.*
+- **Final Price = Disallowed**, and **High Risk = No**.
+
+---
+
+## 2. Item Matching
+
+**What it is:** The process where items from flyers are matched to applicable
+coupons. Executed by **OS** and monitored by the Coupon Ops team so thresholds
+are not exceeded.
+
+**Target:** Match items as soon as they are added to the Item Matching queue;
+ideally the queue is cleared by EOD every day.
+
+**Matching rules** consider **brand, type of item, sizing, and exclusions.**
+(An OS Decision Chart for Matching accompanies the source page.)
+
+**Watch for common name variations** — the same product category appears under
+many labels. Match across all of these:
+
+- **Toilet Paper** = Bathroom Tissue / Bath Tissue / Toilet Tissue
+- **Dish Detergent** = Dishwashing Liquid / Liquid Dish Detergent / Dish Soap /
+  Dish Liquid. *Note: Dawn Dish Detergent may be labelled "Dawn Ultra"; Gain
+  also has a "Gain Ultra" dish detergent.*
+- **Fabric Softener** = Fabric Conditioner / Fabric Enhancer / Liquid Fabric
+  Softener / Liquid Fabric Conditioner / Liquid Fabric Enhancer
+- **Dryer Sheets** = Fabric Softener Sheets / Fabric Softener Dryer Sheets /
+  Fabric Sheets
+- **In-Wash Scent Booster** = In-Wash Fragrance Booster / In-Wash Scent Booster
+  Beads / Laundry Scented Beads / Laundry Scented Booster / Fragrance Booster /
+  Scent Booster Beads / Scent Booster
+- **Invisible Spray** = Dry Spray / Body Spray / Antiperspirant / Deodorant
+- **Clear Gel** = Antiperspirant / Deodorant
+
+---
+
+## 3. OS Match QC
+
+**What it is:** A queue populated by coupons that have an **item-match
+discrepancy flagged by OS.** Owned by the Coupon Ops team.
+
+**Target:** Both the Coupon Item Match and OS Match QC queues should be cleared
+by EOD every day.
+
+**Risk items and mitigation:**
+
+| Risk | Mitigation |
+|---|---|
+| **Incorrect items matched to a coupon** | Thoroughly read all inclusions and exclusions (size, type, count); Google items when unsure what they are or what size (e.g. loads vs. oz for laundry items); run the OS Accuracy Check. |
+| **Not all applicable items matched to a coupon** | Run the OS Accuracy Check. |
+
+**Prerequisites before starting:** Coupon Verification and Item Matching.
+
+---
+
+## See also
+- `coupon-accuracy-checks.md` — the downstream False Positive / False Negative
+  audit of live coupon matchups on Flipp Web and hosted sites.
+- `escalation-and-tickets.md` — where to raise issues that need dev/config help.
+
+---
+
+*Source: Confluence "Copy of Coupon Verification" (VEN, 13536002653), "Copy of
+Vendor Guide: Item Matching" (VEN, 13536002854), and "Copy of OS Match QC" (VEN,
+13536003039). Contacts/credentials omitted. Last reviewed: 2026-07-15.*
+
+
+---
+
+# Coupons Accuracy Checks — QC SOP
+
+> **What this covers:** How to audit the quality of live coupon matchups on
+> Flipp Web and hosted retailer sites — checking for both **False Positives**
+> (wrong matchups) and **False Negatives** (items with a call-to-action that are
+> missing a coupon badge). Sourced from Confluence page 8733982776.
+>
+> **Audience:** OS vendors / Coupon Ops. **Cadence:** every **Thursday and
+> Sunday**. Start **no earlier than 5 AM ET**; notify Coupon Ops by email that
+> the check is complete by **9 AM ET** (addresses in the source doc).
+
+---
+
+## Setup
+
+- The Coupon Ops team pastes weekly templates into the **OS Coupon Accuracy
+  Checks** spreadsheet. Each flyer listed must be checked for **both** False
+  Positives and False Negatives; record both results in the same template.
+- **Recommended method:** complete the False Positive and False Negative checks
+  for one flyer before moving to the next.
+- Open a browser to Flipp.com and enter the **ZIP code** of the flyer being
+  checked. Search the merchant; if more than one flyer is available, open them
+  all and match the **Flyer Type** in the URL to the template.
+  - The Flyer Type is the segment **after** the retailer name. Example —
+    CORRECT: `flipp.com/en-us/agawam-ma/weekly_ad/7864488-walgreens-weekly-ad?`
+    (the `weekly-ad` after the name). Do not read the `weekly_ad` path segment
+    before the ID.
+  - **If the Flyer Type is listed as `(HOSTED SITE)`**, do the check on the
+    retailer's own website instead: open the site, enter the listed ZIP, select
+    the first store location, and open the **newest** weekly flyer. (Hosted
+    retailers include Food Lion, Stop & Shop, Giant Carlisle, Martin's Foods,
+    Giant Landover, Family Dollar.)
+
+---
+
+## False Positive check (are the existing matchups correct?)
+
+1. **Count the matchups.** Open the flyer for the correct Flyer Type. Find items
+   with coupon badges; for each, open the item, scroll down, and count all
+   coupons matched to it. Record the total in the template under **"# of
+   Matchups"**.
+2. **Verify each matchup.** Open each badged item and apply the item-matching
+   rules — **brand, type of item, sizing, and exclusions** — to decide whether
+   each coupon is correctly matched. A matchup is a **False Positive** when the
+   item's size/count falls outside the coupon's stated sizing. Examples:
+   - Item size 90 oz. not within coupon sizing (25 oz, 40–60 ct, 9.7 oz) → FP
+   - Item size 20 lbs. not within coupon sizing (12 lb – 13.5 lb) → FP
+   - Item count 4 pk. not within coupon sizing (6 to 12 pk.) → FP
+3. Repeat until all matchups on the flyer are evaluated; record each error.
+
+**How to record a False Positive** — fill in: **Merchant, Issue, Flyer ID,
+Flyer Item ID, Coupon ID.**
+- **Flyer ID** — in the flyer URL with no item open.
+- **Flyer Item ID** — in the URL once an item is opened.
+- **Coupon ID** — click "Clipping/Redemption Help", then read it from the URL.
+- **For hosted-site retailers:** record the **Item Name** under Flyer Item ID
+  and the **coupon text** under Coupon ID.
+
+---
+
+## False Negative check (are any CTA items missing a badge?)
+
+1. **Count and document the number of CTAs (calls-to-action)** in the flyer.
+   Refer to each merchant's CTA definitions in their account-specific L2ID
+   Vendor Guide. Record the total under **"Total # of CTAs in Flyers"**.
+2. **Record any flyer item that has a CTA but no coupon badge** on it.
+
+**How to record a False Negative** — fill in: **Merchant, Issue, Flyer ID, Flyer
+Item ID.**
+- **Flyer ID** — flyer URL with no item open.
+- **Flyer Item ID** — URL with the item open.
+- **For hosted retailers:** you do **not** need the Flyer ID. Record the **page
+  number** where the item was found, plus the **Item Name** (click "Details" to
+  open the item pop, copy the name) under Flyer Item ID.
+
+---
+
+## See also
+- `coupon-ops-verification-matching-qc.md` — the upstream verification and
+  item-matching tasks (and the full item-matching rules) that these checks audit.
+- `escalation-and-tickets.md` — for issues needing dev/config follow-up.
+
+---
+
+*Source: Confluence "[NEW] Coupons Accuracy Checks" (VEN, 8733982776).
+Contacts/credentials omitted. Last reviewed: 2026-07-15.*
+
+
+---
+
+# Content Production Live Date Checks — SOP (FLEX & TideRise)
+
+> **What this covers:** The morning (and, on weekdays, afternoon) live-date
+> checks on Customer Success Delivery (CSD) Content Production flyers — pulling
+> the "flyers going live" export, filtering to CP runs, loading them into the
+> Live Dates spreadsheet, running each live check, and reporting results.
+> Combines two SOPs: the **weekend FLEX** SOP (Confluence 12554666222,
+> Sat/Sun) and the **weekday TideRise** SOP (Confluence 12468649985, Mon–Fri),
+> which share the same core process and differ mainly in cadence, timing, and
+> reporting channel.
+>
+> **Audience:** FLEX / TideRise live-check vendors and CSD specialists.
+
+---
+
+## Cadence and timing at a glance
+
+| | FLEX (weekend) | TideRise (weekday) |
+|---|---|---|
+| Days | Saturday & Sunday | Monday–Friday |
+| Est. time | ~30 min | 1–1.5 hours |
+| Morning download | run by **10:00 AM ET** | **no earlier than 9:30 AM ET** |
+| Afternoon check | none | yes (same-day go-live content) |
+| Report channel (Slack) | **#cs-delivery** (tag `@csdelivery`) | **#csd-tiderise-pdfsf** |
+
+**Assets required (both):** Live Dates spreadsheet; Flipp app and Reebee app
+installed on your phone. Access via the FADMIN vendor login (credentials in the
+source doc — not stored here).
+
+---
+
+## Step 1 — Pull and archive the export
+
+1. In FADMIN, go to **Third Parties → Vendors**, then press the **"Flyers going
+   live"** button at the bottom. This downloads **`flyers_runs_going_live.csv`**.
+2. Upload the **unedited** export to the Flyer Pipeline Archive Google Drive
+   folder (folders by year/month; create the folder if it's the first of the
+   month/year). Rename it with today's date in **"Month Day"** format
+   (e.g. `August 23 - flyer_runs_going_live`). This keeps a daily record.
+
+## Step 2 — Filter to Content Production (CP) runs
+
+1. Open the .csv in Google Sheets and turn on filters (all header row columns).
+2. On **Column F – "Flyer Run Content Identifier"**, choose **Clear**, type
+   **`CP`** in the search box, **Select all → OK**. This surfaces the Content
+   Production runs.
+3. Copy the result rows into a new tab called **"CP Runs"**.
+4. Back on the export tab, also search the terms **`CP_Processed`** and
+   **`Genesis`** (same steps) and add any runs not caught by `CP` to "CP Runs".
+5. **All** CP runs receive live-date checks.
+
+**Exclusions / flags:**
+- Check the **Available Start / End** dates. If a flyer is live for **only 1
+  minute** and has **"Proof"** or **"Preview"** in the Content Identifier,
+  **exclude** it.
+- If a "Proof"/"Preview" flyer instead shows **"Y"** for Distribution or Flipp,
+  **and/or** its live window is longer than 1 minute, **flag it** with a note in
+  **column T** of the Live Dates spreadsheet.
+- **Home Depot US "Dynamic ads"** have their own rules — see Merchant-specific
+  notes below.
+
+## Step 3 — Load data into the Live Dates spreadsheet (Feedback tab)
+
+Do **not** delete previous days' data — keep appending through the week.
+(TideRise afternoon check is the exception; see below.)
+
+- **Column B** — the date (column A is hidden and auto-fills the month).
+- Export **Column A (Merchant Name)** → **Column C (Merchant Name)**. Columns
+  **G–K auto-populate**; if not, the merchant name is misspelled.
+- Export **Column F (Flyer Run Content Identifier)** → **Column D (Flyer Run
+  Name)**.
+- Export **Column G (Hosted URL)** → **Column E (Hosted URL)**.
+- Export **Column D (Flyer Run ID)** → **Column F (Flyer Run ID)**.
+
+---
+
+## Live Check Process
+
+1. **Determine which checks apply** from the category assigned to the retailer
+   in **column J** (checklist is on the Category tab of the spreadsheet).
+   - Example — a **"Dark"** category requires only: "Did it go live on Flipp?"
+     and "Have all pages generated every image?"; mark the rest **N/A**.
+   - *(On weekends, Dark / Brand / CTE-CEC flyers rarely go live.)*
+2. **Confirm you're on the right flyer** when an account has multiple live
+   flyers: if the account has more than one publication, a **FADMIN link
+   auto-populates**. Open it, and **(TideRise) check there is no red banner
+   saying the flyer is blocked from going live** — if present, flag the
+   specialist ASAP. Go to the action column, press **vertical preview** for a
+   pricing zone, and note the flyer name and what page 1 looks like. Compare
+   against the live hosted flyers to pick the correct one.
+
+Then run each applicable check and record Yes/No:
+
+- **Available on Flipp? (Column L)** — set the ZIP/postal from **column K** in
+  the Flipp app, search the retailer (column C). Not found → **No**; visible →
+  **Yes**.
+- **Available on Hosted? (Column N)** — open the Hosted URL (column E); confirm
+  the ad (name from column D) is in the carousel of selectable ads. Yes/No.
+- **Generated Images? (Column P)** — in the Flipp app confirm every item across
+  the flyer has a generated image. Any missing image → **No**.
+- **Clickable Items? (Column R)** — click 2 items per page (they should circle),
+  press-and-hold to bring up the item pop, then click **"See it"** and confirm
+  the flyer price matches the retailer website price. Any function failing →
+  **No** (note which items in column T). **Premium retailers:** repeat on two
+  items across **all** pages.
+- **Notes (Column T)** — anything unsure or in question.
+
+---
+
+## Merchant-specific rules
+
+- **Home Depot US** — has several ad types. Check daily the **PRO Dynamic Ad**
+  (Shop Pro Ad, black banner) and **CON Dynamic Ad** (Weekly Ad, white banner),
+  both using **ZIP 30339**. These aren't always in the export, hence the extra
+  check. **Tax Event, Kids Workshops, Grand Opening** are one-page **Hosted
+  only** (not on Flipp/Reebee/Distribution) and use the ZIP from the export;
+  they can be done with the regular morning check. **Local Ad** (compressed ad
+  blocks) is **not a CP flyer — do not check or include** (it's in the direct
+  Live Date Check). **Do not** live-check Home Depot US flyers with "Preview" or
+  "Failsafes" in the Content Identifier.
+- **Grocery Outlet** — check the Flyer Run Name: **"GENESIS CP"** is on Flipp,
+  Reebee and Hosted (check all). A **"HOSTED CP"** flyer is hidden on purpose and
+  not on Flipp — mark **N/A** for "Available on Flipp?" (and Reebee).
+- **Staples (Canada)** — two flyers go live: the **Weekly** flyer (run name
+  `CP_WK# Go-Live`) is available across all channels; the **"QC Hosted Only"**
+  flyer is hosted-site only — mark **N/A** for "Available on Flipp?" (Column L).
+  The QC Hosted Only run corresponds to the *Circulaire* shown on the Bureau en
+  Gros site (`bureauengros.com/a/contenu/flyers`); the Weekly run corresponds to
+  the flyer on `staples.ca/a/content/flyers` for a non-Quebec postal code.
+- **Bureau en Gros** — one flyer weekly (Fridays); **not on Hosted**, so skip the
+  Hosted check and mark **column N = N/A**. In the Flipp app BEG is a separate
+  merchant.
+- **Geo-Targeting (Staples CA / Bureau en Gros)** — indicated by a third Staples
+  run with "Geo-target" or a store number in the run name; the specialist should
+  send a specific postal code to check it. If you see a geo-targeted run and have
+  no postal code, message the assigned specialist in **#csd-tiderise-pdfsf**.
+- **Walmart US** — not on Hosted; mark **column N = N/A**. Still a **premium**
+  retailer, so complete all other checks.
+- **Costco CA / Costco Grocery (and Costco US / US Grocery)** — confirm the
+  correct flyer; up to three flyer types can exist. For Costco Grocery, find the
+  **Grocery & Household Deals** flyer.
+
+---
+
+## TideRise afternoon check (weekdays only)
+
+- **Same-day go-live Dark content:** include all flyers scheduled for processing
+  that same day, unless other dates are given in the **"Processing Notes"**
+  column.
+- **Same-day go-live Direct content:** re-download the export, filter to CP runs
+  as above, and compare the Flyer Run IDs against the morning check so you only
+  add **net-new** flyers. Before starting, **hide** existing rows/data for a
+  clean page (**do not delete rows**), add today's date in column B, and copy the
+  retailer name from the "Retailer Data" tab into column C (G–K auto-fill; if
+  not, flag the specialist in #csd-tiderise-pdfsf).
+
+---
+
+## Reporting and escalation
+
+- When done, post in the Slack channel (FLEX: **#cs-delivery**, tag
+  `@csdelivery` not @production; TideRise: **#csd-tiderise-pdfsf**) with a
+  screenshot of the live dates and the **link to the Live Dates sheet**. Include
+  the completion date as **MM.DD.YY**.
+  - 0 errors → add **"All good ✅"**.
+  - Any errors → add **"Errors found ❌"** and follow the escalation path.
+- **(FLEX weekends)** If any **Direct or Premium** retailer has a column marked
+  **No**, escalate to the CSD specialist / on-call lead via Slack DM, then the
+  backup contact if there's no response within ~1 hour or the lead is OOO
+  (contacts in the source doc — not stored here).
+
+---
+
+## Specialist maintenance (TideRise SOP)
+
+- **Quarterly:** audit the Retailer Data tab so it reflects current accounts;
+  ensure each merchant name matches the FADMIN merchant page exactly; set the
+  "secondary publication" column correctly (Yes if other ops/CP flyers may be
+  live at the same time on the front end).
+- **Yearly:** archive the prior year's Feedback data so the sheet doesn't slow
+  down. In the Analytics tab, copy the year's accuracy percents and **paste as
+  values** (hard-coding them before deletion). Duplicate the Feedback tab as
+  **"Feedback YEAR [ARCHIVE]"** and hide it, then clear all Feedback data except
+  the autofill columns (row-3 autofill formulas and analytics formulas are
+  preserved in the source SOP for reference). Real errors = errors flagged by TR
+  and marked **TRUE** by the specialist; FALSE-marked flags are not counted.
+
+---
+
+## See also
+- `publishing-and-go-live.md` and `content-v2-and-publishing.md` — how flyers get
+  published / go live.
+- `common-live-flyer-issues.md` — troubleshooting missing images, tiles, pricing
+  once a live issue is found.
+- `hosted-and-previews.md` — hosted-site and vertical-preview behavior.
+- `escalation-and-tickets.md` — raising blocked/erroring runs beyond the SOP.
+
+---
+
+*Source: Confluence "Content Production Live Date Check [FLEX team SOP]" (VEN,
+12554666222) and "CS Delivery Live Dates Check [TideRise SOP]" (VEN,
+12468649985). Contacts/credentials omitted. Last reviewed: 2026-07-15.*
+
+
+---
+
+# Alert Runbooks — On-Call Reference
+
+> **What this covers:** On-call/alert runbooks for three content-pipeline
+> alerts: **Content Sieve — flyer items unpublished > 1 day**, the **Home Depot
+> Canada (HDCA) DVM module**, and the **Live Flyer Check**. For each: what the
+> alert means, how to investigate, and how to resolve. Grounded in Confluence
+> pages 12697240306 and 11691786294 (space CTLR) and 13564379282 (space RT).
+>
+> **Audience:** On-call engineers and content-platform staff. This is more
+> engineering/on-call oriented than the processor-facing articles.
+>
+> **See also:** `storefront-publishing-errors.md` (holds a shorter Live Flyer
+> Check summary), `content-v2-and-publishing.md`, `publishing-and-go-live.md`,
+> `missing-flyers-and-indexing.md`, `escalation-and-tickets.md`.
+
+---
+
+## 1. Content Sieve — Flyer Items unpublished for more than a day
+
+**Alert name:** `Content Sieve - Flyer Items are unpublished for more than a day`
+**Priority:** P2 — lost revenue from missing searchable flyer items.
+
+**What it means:** Content Sieve continuously polls for eligible flyer items to
+publish to the `Eventification.FlyerItems` topic, joining `Merchants`,
+`Flyer Runs`, `Flyers`, `Page Items` and `CrowdCuration Flyer Items` from their
+Kafka topics. When items sit at `READY_FOR_PUBLISHING` for more than a day, the
+Datadog monitor fires (there is also a **Content Sieve Lag** monitor).
+
+**Potential impact:** Flyer items would not be available in Search and IMS.
+
+**Key references:** service repo `wishabi/content-sieve`; event emitter
+`app/lib/jobs/flyer_run_check.rb`; Prime Radiant service
+`content-sieve-consumer`; consumer group in Lenses
+(`content-sieve-consumer`). (Dashboard/monitor/log links in the source doc.)
+
+### Investigation
+
+1. **Verify the alert** by running the `FlyerRunCheck` query. Note the
+   `flyers.available_to >= NOW()` filter — only currently-active flyers are
+   returned; items with expired flyers can never be published and should not be
+   investigated here.
+
+   ```sql
+   SELECT DISTINCT `flyer_items`.`flyer_run_id`
+   FROM `flyer_items`
+       INNER JOIN `page_items` ON `page_items`.`id` = `flyer_items`.`page_item_id`
+       INNER JOIN `flyer_runs` ON `flyer_runs`.`id` = `flyer_items`.`flyer_run_id`
+       LEFT OUTER JOIN `flyers` ON `flyers`.`id` = `flyer_items`.`flyer_id`
+   WHERE `flyer_runs`.`state` = 'ops_complete'
+     AND `flyer_runs`.`available_to` >= CURDATE()
+     AND `flyer_items`.`publish_status` = 'READY_FOR_PUBLISHING'
+     AND `flyer_items`.`updated_at` < DATE_SUB(NOW(), INTERVAL 1 DAY)
+     AND `flyers`.`id` IS NOT NULL
+     AND `flyers`.`available_to` >= NOW();
+   ```
+
+2. **Check publishing lag** — this query should return **no** row with
+   `flyer_items.updated_at >= 1 day ago`:
+
+   ```sql
+   SELECT count(*) FROM flyer_items FORCE INDEX(index_flyer_items_on_publish_status)
+   INNER JOIN `flyers` ON `flyers`.`id` = `flyer_items`.`flyer_id`
+   INNER JOIN `flyer_runs` ON `flyer_runs`.`id` = `flyer_items`.`flyer_run_id`
+   INNER JOIN `page_items` ON `page_items`.`id` = `flyer_items`.`page_item_id`
+   INNER JOIN `merchants` ON `merchants`.`id` = `flyer_items`.`merchant_id`
+   WHERE `flyer_items`.`publish_status` = 'READY_FOR_PUBLISHING'
+     AND `flyer_runs`.`state` = 'ops_complete'
+     AND `flyers`.`available_to` >= NOW() LIMIT 2000;
+   ```
+
+   (A fuller row-level variant selecting the joined item/page/flyer/merchant
+   columns is in the source doc.)
+
+3. **Confirm recent output** — messages published to `Eventification.FlyerItems`
+   in the last few hours:
+
+   ```sql
+   USE `kafka`;
+   SELECT * FROM Eventification.FlyerItems where _meta.timestamp > NOW() - '4h' LIMIT 100;
+   ```
+
+4. **Confirm the consumer has active connections** to the cluster (Lenses
+   consumer group `content-sieve-consumer`).
+
+5. **Identify missing joins** — each of these should ideally return **no**
+   results. Missing rows mean upstream content never landed:
+   - **Merchants:** `LEFT JOIN merchants ... WHERE merchants.id IS NULL`
+   - **Flyer Runs:** `LEFT JOIN flyer_runs ... WHERE flyer_items.flyer_run_id IS NULL`
+   - **Flyers:** `LEFT JOIN flyers ... WHERE flyer_items.flyer_id IS NULL`
+   - **Page Items:** `LEFT JOIN page_items ... WHERE flyer_items.page_item_id IS NULL`
+
+   (Full SQL for each in the source doc; all filter on
+   `publish_status = 'READY_FOR_PUBLISHING'` and active flyers.)
+
+### Resolution
+
+1. Use the join queries above to determine if upstream content is missing.
+2. Republish the missing upstream content (see the Rails-console section below).
+3. If a topic/partition has stalled, follow **Stuck partition / consumer
+   offset** below.
+4. **Missing merchant record** (Step 5 Merchants returns IDs with no
+   `merchants` row): the `Merchants.Merchant` Kafka message was never published
+   or failed to upsert.
+   - Check whether the merchant exists in fadmin.
+   - Verify it is a Canadian or American merchant (merchant-admin edit page).
+   - If it exists, trigger a **republish of the merchant** to the
+     `Merchants.Merchant` topic **from merchant-admin** (not fadmin — fadmin has
+     no `Merchants.Merchant` producer). content-sieve-consumer will ingest it,
+     and the poller publishes the affected flyer items on the next cycle.
+   - If the merchant does **not** exist in fadmin, the content cannot be
+     recovered. Silence the alert by moving the items to a terminal status:
+
+     ```sql
+     UPDATE flyer_items
+     SET publish_status = 'UNPUBLISHABLE'
+     WHERE merchant_id IN (<affected_ids>)
+       AND publish_status = 'READY_FOR_PUBLISHING';
+     ```
+
+5. Republish the affected flyer items.
+
+### Republishing from the fadmin production Rails console
+
+Several resolution steps ("republish page items / flyer items") run from the
+**fadmin production Rails console**. It re-emits upstream content to the topics
+content-sieve consumes (`Flyers.PageItem`, `Flyers.FlyerItem`).
+
+The console runs on the `fadmin` web pods in the `services-eks-prod` EKS cluster
+(us-east-1, namespace `fadmin`). Exec into a `fadmin-*` pod (container `fadmin`)
+via k9s or kubectl and start the console. `RAILS_ENV` is **not** set in the
+container, so pass it explicitly or Rails won't boot as production:
+
+```shell
+POD=$(kubectl --context fadmin-prod get pods -l app=fadmin -o jsonpath='{.items[0].metadata.name}')
+kubectl --context fadmin-prod exec -it "$POD" -c fadmin -- env RAILS_ENV=production bundle exec rails console
+# or, once shelled into the pod:
+RAILS_ENV=production bundle exec rails console
+```
+
+This is **production** (`fadmin_production`): reads are safe; any producer call
+or write hits live data. Use the `fadmin-*` web pods, **not** `delayed-jobs-*`
+pods. For read-only poking, `rails console --sandbox` rolls back on exit. (The
+staging console uses a different pod label and `RAILS_ENV` — see the source
+doc's staging-access page.)
+
+**Republish page items** (content-sieve joins on page items, so this is the
+usual recovery lever). Producer `Kafka::Producers::PageItemProducer` → topic
+`Flyers.PageItem`. `send_events` always emits for the records passed (no
+dirty-check), so it is safe for manual recovery:
+
+```ruby
+# one or more page items by id
+Kafka::Producers::PageItemProducer.send_events(PageItem.where(id: PAGE_ITEM_IDS))
+
+# every page item in a flyer run, batched
+PageItem.where(page_id: FlyerRun.find(FLYER_RUN_ID).page_ids).ids.in_groups_of(100) do |group|
+  Kafka::Producers::PageItemProducer.send_events(PageItem.where(id: group.compact))
+end
+```
+
+**Republish flyer items.** Producer `Kafka::Producers::FlyerItemsProducer` →
+topic `Flyers.FlyerItem`:
+
+```ruby
+# one or more flyer items by id
+Kafka::Producers::FlyerItemsProducer.send_events(FlyerItem.where(id: FLYER_ITEM_IDS))
+
+# all flyer items on a flyer, batched
+Flyer.find(FLYER_ID).flyer_items.in_groups_of(100) do |group|
+  Kafka::Producers::FlyerItemsProducer.send_events(group.compact)
+end
+```
+
+### Stuck partition / consumer offset
+
+A partition can get pinned on a single offset that never advances — the
+**Content Sieve Lag** monitor fires, and Lenses shows the consumer group's
+committed offset on one partition not moving.
+
+**How to recognize it:**
+- In Lenses, one partition's committed offset is frozen while lag climbs.
+- In CloudWatch, the **same entity** (same `id` / `message_id`) is reprocessed
+  every few minutes, each time on a **different** `container_id`, often
+  interleaved with a rebalance storm (`Timed out while waiting for response` on
+  `join_group`/`sync_group`, `Kafka::RebalanceInProgress`).
+
+**Root-cause pattern:** The consumer only republishes flyer items when a
+**monitored attribute** of the incoming message differs from the stored row
+(`app/lib/utils/flyer_item_updater.rb#monitored_attributes`):
+
+| Model | Monitored attributes |
+| --- | --- |
+| `Merchant` | `large_image_path`, `storefront_logo_url`, `translations` |
+| `Fadmin::Flyer` | `language`, `available_to`, `available_from`, `valid_to`, `valid_from` |
+| `Fadmin::FlyerRun` | `state` |
+
+The whole batch is consumed in **one transaction**. If a monitored attribute
+differs, the consumer fires `republish_flyer_items`. If that republish can't
+commit (lock contention / deadlock / the member is kicked mid-batch and
+rebalances), the **entire batch rolls back** — so the differing attribute is
+never persisted, the diff never resolves, and the offset never advances. The
+redelivered message hits the same diff and loops indefinitely.
+
+**Resolution:**
+1. From Lenses, get the message at the stuck offset; pull the corresponding row
+   from the Content Sieve DB.
+2. Diff the **monitored attributes** for that model (table above) — find the
+   field that differs between the Kafka message and the DB row.
+3. Align the DB row to the message so the diff disappears, e.g. (merchant
+   translations diff):
+
+   ```sql
+   UPDATE merchants
+   SET translations = '<exact JSON from the Kafka message>'
+   WHERE id = <merchant_id>;
+   ```
+
+   On the next consume the dirty-check comes back empty → no republish → the
+   batch commits cheaply → the offset advances.
+
+4. **If you get** `Lock wait timeout exceeded`, a long-running consumer
+   transaction (the stuck batch itself) is holding the row lock. Find and kill
+   it, then immediately re-run the `UPDATE`:
+
+   ```sql
+   SELECT trx_id, trx_state, trx_started,
+          TIMESTAMPDIFF(SECOND, trx_started, NOW()) AS age_s,
+          trx_mysql_thread_id AS thread_id,
+          trx_rows_locked, trx_rows_modified, LEFT(trx_query, 200) AS query
+   FROM information_schema.innodb_trx
+   ORDER BY trx_started ASC;          -- oldest / highest rows_locked is the culprit
+   KILL <thread_id>;
+   ```
+
+   Killing it just rolls back the batch that was failing anyway. After the kill,
+   Kafka must rebalance before another consumer re-reads the offset — that's
+   your window.
+
+A heavy `republish_flyer_items` (large merchant/flyer/run) is what makes this
+loop likely. PR #68 switched `republish_flyer_items` from per-row `update!` to
+bulk `update_all` to shrink the deadlock window.
+
+**Verify:** publishing lag reduced; consumer lag on ingested topics reduced;
+messages appear on `Eventification.FlyerItems`; the Lenses offset advances past
+the stuck offset; the `Changed attributes <Model> <id>` / `Updating flyer items`
+CloudWatch lines for that entity stop recurring.
+
+**Notable past occurrences:**
+- *2026-05-11* — flyer_runs 1207647/1207648: missing merchant 7321 (absent from
+  fadmin and Kafka). flyer_runs 1062812/1139066: flyer expired Sept 2025.
+  Fixed the verification query and Step 5a SQL bug, and tightened the
+  `FlyerRunCheck` window from `6.months.ago` to `Time.zone.now`.
+- *2026-06-09* — `Merchants.Merchant` partition 3 stuck at offset 1695430 on
+  merchant 1976 (Familiprix): DB `translations` carried a stale `es` locale
+  absent from the message → merchant flagged "changed" on every redelivery →
+  per-row `update!` republish deadlocked against the poller and never committed
+  → offset looped + rebalance storm. Aligned `merchants.translations` to the
+  message (after `KILL`-ing the transaction holding the row lock). Root-cause
+  fix: PR #68.
+
+---
+
+## 2. Home Depot Canada (HDCA) DVM module — On-Call Runbook
+
+**Module type:** Top Offers + Weather Signals (Phase 2). Slack channel
+`#thdca-dvm`.
+
+**Overview:** The HDCA DVM module delivers dynamically rendered promotional
+content on Flipp's Hosted and App channels. Phases:
+- **Phase 1 – Top Offers:** live since 2026-03-26 (Hosted).
+- **Phase 2 – Weather Signals:** live since 2026-04-16 (Hosted & App).
+
+Data flows daily: retailer-supplied local feed → **AMP Production ingestion** →
+**DVM rendering**. Hourly audits post results to `#dvm-rendering-incidents`;
+feed-ingestion failures surface in `#content-feeds-support` via Datadog alerts.
+
+**Module schedule (EST):**
+
+| Ingestion job | Scheduled time | Notes |
+| --- | --- | --- |
+| PRODUCT ingestion | ~10:10 AM | Must complete before OFFERS |
+| OFFERS ingestion | ~10:30 AM | Depends on the PRODUCT run |
+| Feed file expected by | ~10:00–10:15 AM | Late delivery is the #1 cause of incidents |
+| Audit checks | Hourly | Results post to `#dvm-rendering-incidents` |
+
+**Monitoring:**
+- Datadog alert in `#content-feeds-support` → feed ingestion failed or feed file
+  not received.
+- Audit check fails in `#dvm-rendering-incidents` → module has missing or 0
+  offers; may indicate ingestion didn't run.
+
+### Troubleshooting playbook
+
+1. **Identify the alert.** Check `#dvm-rendering-incidents` for hourly audit
+   failures and `#content-feeds-support` for Datadog feed-ingestion alerts
+   tagged to Home Depot Canada.
+2. **Check if the feed file was delivered.** The most common root cause is HDCA
+   delivering the feed file *after* the ingestion scheduler ran (expected by
+   ~10:00–10:15 AM EST).
+   - Check whether the feed file exists in the expected S3 location (ask AMP eng
+     / feeds support if you lack AWS access).
+   - **Not yet present:** wait and monitor; escalate to the Partner Technology
+     Manager or the HDCA contact if the file is more than 2 hours late.
+   - **Present but not picked up:** proceed to step 3.
+   - **Known pattern:** HDCA often uploads after the scheduled ingest time
+     (10:47 AM observed on 2026-05-28); the job has already run and missed the
+     file, so a manual re-run is required.
+3. **Manually restart ingestion.** Tag `@amp-prod-eng` (or the AMP feed-ingestion
+   engineers) in `#content-feeds-support`:
+   - Restart **PRODUCT ingestion** first.
+   - Once PRODUCT completes, restart **OFFERS ingestion**.
+   - Confirm the feed configs are re-run (reply to the Datadog alert thread).
+4. **Verify the module is live.** Check the next hourly audit in
+   `#dvm-rendering-incidents` to confirm the module is populating with offers;
+   you can also verify via the module URL / test environment.
+5. **Check the module schedule.** If the module is expected live but isn't,
+   verify the current flyer-run dates/schedule on the *DVM Partner: Home Depot
+   CA Modules* page (Confluence RT 13052313621). The module is only live during
+   active flyer periods — expired offers won't show even if ingestion is
+   healthy. If the module isn't scheduled to be live (between flyer runs),
+   missing offers have **no user impact** — confirm before escalating
+   externally.
+6. **Escalate if unresolved.** If the issue persists after re-running ingestion:
+   tag the Partner Technology Manager in `#thdca-dvm` with what was tried; loop
+   in the Engineering Manager if eng investigation is needed; if HDCA data is
+   the issue and the module is live, have Customer Success reach out to the HDCA
+   contact.
+
+**Recurring pattern:** HDCA feed delivery is inconsistent — files expected
+before ~10:15 AM EST have arrived as late as 10:47 AM or not at all. Across
+recent incidents (Mar–Jun 2026) the predominant root cause is **late feed-file
+delivery by HDCA**. The AMP team is investigating a longer-term event-driven
+ingestion trigger (vs. a fixed schedule).
+
+**Reference tickets/links:** PPP-1119 (feed ingestion, AMP/CCOL); DR-358 / DR-280
+(DVM Rendering epics); channels `#content-feeds-support`,
+`#dvm-rendering-incidents`, `#thdca-dvm`. (Contacts in the source doc — not
+stored here.)
+
+---
+
+## 3. Live Flyer Check
+
+**Alert name:** `Live Flyer Check failed`. **Priority:** P2.
+
+> A shorter version of this runbook already lives in
+> `storefront-publishing-errors.md`. This section is the fuller reference.
+
+**What it means:** Live flyers are not available in **FMS** (Flyer Metadata
+Service). The alert fires when the live-flyer-check script detects a flyer is
+not available in FMS.
+
+**Potential impact:** Missing/unavailable flyers, potentially leading to lost
+revenue.
+
+**Reference:** GitHub Actions workflow `missing_flyers.yml` in
+`wishabi/flyer-metadata-service-api`.
+
+### Investigation
+
+1. **Rerun** the *Missing Flyer Check* GitHub Actions workflow.
+2. Check whether the alerted flyer IDs are **already known / intentionally
+   ignored** — see *Suppressing known flyers* below before investigating
+   further.
+3. **Verify the flyer IDs are not in** the `production_fms_flyer_metadata`
+   DynamoDB table. To show in the FMS dynamo table, a flyer must exist in both
+   Kafka topics below:
+
+   ```sql
+   SELECT * FROM Eventification.Flyers
+     WHERE _meta.timestamp > NOW() - "7d"
+       AND _value.flyer.id IN ( 7972679, 7972680, 7972687, 7972688 );
+   ```
+
+   ```sql
+   SELECT * FROM Flyers.Thumbnail
+     WHERE _meta.timestamp > NOW() - "7d"
+       AND _value.flyer_id IN ( 7972679, 7972680, 7972687, 7972688 );
+   ```
+
+   (The IDs above are examples — substitute the alerted flyer IDs.) A flyer
+   missing here may need the Ops team pinged (`@enable-cxe`).
+4. Investigate the flyer **eventification pipeline**.
+
+### Resolution
+
+1. **If the flyer is not in the database**, reduce the flyer run's `valid_to`
+   and `available_to` in fadmin, then republish. Find the flyer run id:
+
+   ```sql
+   select id, flyer_run_id, available_to from flyers where id in () group by flyer_run_id;
+   ```
+
+   Then edit and **republish** the run at
+   `fadmin.flippback.com/flyer_runs/{FLYER_RUN_ID}`.
+2. **Check the flyer IDs in the pricing zones for errors** at
+   `flyers.merchants.wishabi.ca/flyer_runs/{FLYER_RUN_ID}/pricing_zones`. If
+   errors are found, notify the `content-public` channel.
+3. Re-confirm the flyer now exists in both `Eventification.Flyers` and
+   `Flyers.Thumbnail` topics (queries as in Investigation step 3).
+4. **If it is in the database**, it's a **code issue** — investigate/escalate to
+   engineering.
+
+### Suppressing known flyers
+
+Use when a flyer run is intentionally being ignored (mid-migration, known
+processing delay) and the alert is expected noise. The check supports an
+`IGNORED_FLYER_IDS` allowlist; any flyer ID in the list is excluded from the
+missing-metadata check and will not alert.
+
+**To add IDs:** in `wishabi/flyer-metadata-service-api`, go to **Settings →
+Secrets and variables → Actions → Variables**, edit `IGNORED_FLYER_IDS` (a JSON
+array of integers, e.g. `[7945656, 7945657]`), and save. The next hourly run
+skips those IDs.
+
+**To remove IDs:** edit `IGNORED_FLYER_IDS` and remove them (or set `[]` to
+clear). **Always clear the allowlist once the issue is resolved** — suppressed
+IDs will never alert even if they go missing for a different reason.
+
+**Verify:** rerun the failing instance of the Live Flyer Check job.
+
+**Notable past occurrences:** most resolutions were "edit dates with no real
+change and resubmit/republish," which made the flyer appear in DynamoDB; some
+were flyers still processing (message `content-public`); one (2026-05-22) was
+intentional suppression via `IGNORED_FLYER_IDS` for flyers `7945656`/`7945657`
+(allowlist feature added in PR #62).
+
+---
+
+*Source: Confluence "Alert Runbook: Content Sieve - Flyer Items are unpublished
+for more than a day" (CTLR, 12697240306); "Home Depot Canada DVM Module —
+On-Call Runbook" (RT, 13564379282); "Alert Runbook: Live Flyer Check" (CTLR,
+11691786294). Contacts/credentials omitted. Last reviewed: 2026-07-15.*
+
+
+---
+
+# Home Depot Canada (HDCA) DVM Module — On-Call Runbook
+
+> **Moved:** To avoid duplication, the full HDCA DVM module on-call runbook now
+> lives in **[`alert-runbooks.md`](alert-runbooks.md) → Section 2 "Home Depot
+> Canada (HDCA) DVM module"** (feed-ingestion schedule, the late-feed incident
+> pattern, PRODUCT→OFFERS manual re-run, and escalation).
+>
+> This short stub remains so the runbook is still findable by retailer name.
+> **See also:** the retailer guide `../retailers/home-depot-canada.md`, and
+> `content-v2-and-publishing.md` (DVM is the active V2 distribution path).
+
+*Source: Confluence "Home Depot Canada DVM Module — On-Call Runbook" (RT,
+13564379282). Consolidated into `alert-runbooks.md`. Last reviewed: 2026-07-15.*
+
+
+---
+
+# Publisher QA (DSP / Off-App) — Superseded / Paused
+
+> **What this covers:** Pointer to the Publisher QA SOP for off-app (DSP)
+> publisher domains. Sourced from Confluence page 11424890881.
+
+**Status: PAUSED — do not treat as current process.** As of 2026-04-22 the SOP
+states the current process "does not drive value" and is **paused until the team
+re-aligns**, pending ThoughtSpot automation discovery and an updated KPI set
+(the intended direction is a **weekly Thursday** check keyed on Level-1
+performance KPIs such as eCPM out of range, 0% item-interaction, served-but-not-
+viewable impressions, and negative margin — not the former Monday/Thursday WoW
+EV / clicker-rate flags).
+
+Because the SOP is mid-revision, its step-by-step instructions (ThoughtSpot
+export, forcing the Native X experience on direct integrations, ad-placement QC,
+and the stakeholder email) are **not ingested here.** If you need this process,
+confirm the current owner and revised SOP before following the source page.
+
+*Source: Confluence "Publisher QA SOP Instructions - DSP" (VEN, 11424890881).
+Contacts/credentials omitted. Last reviewed: 2026-07-15.*
 
 
 ---
