@@ -64,6 +64,6 @@ NotebookLM (or read by Claude) as an individual source.
 | Storefront / publishing | ✅ First version |
 | Common live-flyer issues | ✅ First version (from `#helpme-ops`) |
 | Data piping | ⬜ Deferred (not in first scope) |
-| ClickUp process material | ⬜ Not yet ingested (current source of truth for PS) |
+| ClickUp process material | 🚫 Known gap — PS space not in connected ClickUp (see session-04 log) |
 
 *Last updated: 2026-07-14.*

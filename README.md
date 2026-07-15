@@ -74,7 +74,7 @@ So we never lose context between sessions:
 | Storefront / publishing | ✅ First version |
 | Common live-flyer issues | ✅ First version |
 | Data piping | ⬜ Deferred |
-| Processing Support (ClickUp) | ⬜ Not yet ingested — current source of truth |
+| Processing Support (ClickUp) | 🚫 Known gap — not in connected ClickUp; owning team to advise |
 
 ## Status
 

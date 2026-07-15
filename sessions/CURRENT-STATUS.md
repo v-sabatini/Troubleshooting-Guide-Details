@@ -2,7 +2,7 @@
 
 > **This is the single, always-current snapshot.** Read this first to resume —
 > you don't need to read the individual session logs unless you want detail.
-> **Last updated: 2026-07-14 (end of session 3).**
+> **Last updated: 2026-07-15 (session 4).**
 
 ---
 
@@ -60,7 +60,7 @@ analysis), `README.md`, `NOTEBOOKLM.md` (migration guide), `sessions/prompts.md`
 | Publishing / go-live / front-end | ✅ |
 | Storefront / publishing | ✅ |
 | Escalation + post-escalation (FD/CLSD/MSC) | ✅ (with turnaround estimates) |
-| **Processing Support (ClickUp)** | ⬜ **Not yet ingested — current source of truth for PS process** |
+| **Processing Support (ClickUp)** | 🚫 **Known gap — not accessible.** Connected ClickUp exposes only 3 spaces (CXE Enablement, CXE Training Sandbox, Brand Media Campaigns); no PS space/docs. Vanessa to check with the owning team on what data exists & whether to connect it. |
 | Data piping | ⬜ Deferred (out of first scope) |
 
 ---
@@ -79,8 +79,9 @@ analysis), `README.md`, `NOTEBOOKLM.md` (migration guide), `sessions/prompts.md`
   Science). Harmonization *fixes* happen in CLSD.
 - **Enablement pod (CXE)** absorbed the former Skeleton Team; reachable at
   `@enable-cxe` in `#helpme-ops`. (You, Vanessa, are on it.)
-- **Processing Support KB (Confluence) is retired (Jun 2026)** → current source of
-  truth is the **Processing Support ClickUp space** (not yet ingested).
+- **Processing Support KB (Confluence) is retired (Jun 2026)** → it points to a
+  **Processing Support ClickUp space**, but that space is **not in the connected
+  ClickUp** (see known gap below). Vanessa is checking with the owning team.
 
 ## Conventions / decisions
 
@@ -95,15 +96,16 @@ analysis), `README.md`, `NOTEBOOKLM.md` (migration guide), `sessions/prompts.md`
 
 1. **Subject-matter review** by Vanessa — spot-check the articles for accuracy,
    especially escalation destinations and the post-escalation turnaround framing.
-2. **Ingest the Processing Support ClickUp space** (the current source of truth for
-   PS process) — carried over from sessions 1–3. *(Use the Add-a-Source prompt.)*
+2. **NotebookLM test-run** — upload `docs/knowledge-base/` and try real questions
+   (`NOTEBOOKLM.md`); improve any weak answers at the source article.
 3. **Optional deep dives:** theme-level CLSD articles (categorization gaps,
    cloning/WES errors); retailer-specific quirks; confirm whether **HTS** is still
    an active harmonization queue.
 4. **Refresh cadence:** re-run the OTS pull periodically (e.g. monthly) with the
    Gap-Check prompt to catch new recurring issues.
-5. **When coverage feels solid:** run the **NotebookLM-prep prompt** (`NOTEBOOKLM.md`)
-   and do a test upload with real questions.
+5. **Processing Support (ClickUp) — BLOCKED / known gap.** Not in the connected
+   ClickUp workspace. Revisit only if the owning team confirms useful data and the
+   right workspace is connected (or a direct link is shared).
 
 ---
 
@@ -115,3 +117,6 @@ analysis), `README.md`, `NOTEBOOKLM.md` (migration guide), `sessions/prompts.md`
   new articles + inventory.
 - **Session 3** (`logs/2026-07-14-session-03.md`) — ingested FD/CLSD/MSC
   post-escalation boards + fixed the PIA→MSC routing.
+- **Session 4** (`logs/2026-07-15-session-04.md`) — investigated the ClickUp
+  Processing Support ingest; found it's not in the connected ClickUp workspace, so
+  marked it a known gap (owning team to advise).
