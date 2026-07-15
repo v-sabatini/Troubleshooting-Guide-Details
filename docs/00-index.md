@@ -51,6 +51,7 @@ ALDI / Ace Hardware?"). Contacts/credentials are omitted from every guide.
 - [Help Center Article Template](templates/kb-article-template.md) — use this to add new
   articles consistently.
 - [Source Map](../sources/source-map.md) — provenance for every article.
+- [Gap Log](GAP-LOG.md) — questions the assistant couldn't fully answer yet + follow-ups.
 - [OTS Ticket Inventory](../sources/ots-ticket-inventory.md) — categorized
   analysis of 381 Ops Troubleshooting tickets + escalation routing.
 - [Session Prompts](../sessions/prompts.md) — copy-paste prompts to resume/wrap
