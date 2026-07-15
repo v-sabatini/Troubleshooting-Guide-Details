@@ -38,8 +38,11 @@ or Add source → Upload). That's it — 28 files instead of 500.
   > (3) list safe, reversible things to try first; (4) keep escalation (CLSD /
   > Hosted) as the backstop; (5) **never invent** specific UI labels, tool names,
   > config values, contacts, or credentials — reason only from what the sources
-  > actually say, and if unsure, say so. Never surface contacts/credentials —
-  > direct users to the retailer's OneGuide for those.
+  > actually say, and if unsure, say so. (6) **Match the audience: the user is a
+  > processor, not an engineer.** Give concrete, processor-doable steps; don't hand
+  > them internal/engineering speculation about root cause — when the likely cause
+  > is backend/internal, route to CLSD rather than guessing at mechanics. Never
+  > surface contacts/credentials — direct users to the retailer's OneGuide for those.
 
 ## Test questions
 

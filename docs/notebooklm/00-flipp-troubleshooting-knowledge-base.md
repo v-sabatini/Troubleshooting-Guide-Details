@@ -230,6 +230,15 @@ newer content (DVM, NativeX EU/South America) has **only V2 ids**, no V1 id.
   billing/legacy reports still depend on V1 ids (kept alive by converters).
 - **Legacy display depends on conversion** (Flyers-NG V2→V1). If something renders
   oddly on a legacy channel *during the transition*, the converter is a suspect.
+- **V1 and V2 can succeed/fail independently.** Because both paths run during the
+  transition, a **V2 publish failure doesn't necessarily take the flyer dark** — a
+  zone whose **V2** publish failed can still be **live on V1-powered experiences**,
+  just missing from **V2-powered experiences**. *(Confirmed via processing-team
+  feedback, 2026-07-15.)*
+- **A failed V2 publish task can block other sessions.** The bigger operational
+  impact is often not the missing V2 content but that the **errored task blocks
+  other flyer sessions from kicking off** — which is why these escalate quickly.
+  See `publishing-and-go-live.md` → "V2 Publishing fails for one pricing zone."
 
 ## Troubleshooting note / current gaps
 
@@ -918,6 +927,32 @@ OTS-1992, OTS-2048 "flyer stuck", OTS-2060 "flyer blocked".)*
    flyer under a different flyer run.")*
 2. If cloning resolves it but you don't know **why** it got stuck, **file a CLSD**
    so the source can be investigated.
+
+### Issue: V2 Publishing fails for one pricing zone (V1 still succeeds)
+
+**Symptom:** **V2 Publishing** errors for **one pricing zone but not others**. The
+pipeline task shows errored (sometimes **with no logs**), and — importantly — the
+**errored task blocks other flyer sessions from kicking off**.
+
+**What it means for go-live:** During the V1→V2 transition, most experiences have
+both a V1 and a V2 path. If **V2 fails but V1 succeeds**, that zone **still goes
+live on V1-powered experiences — just not on V2-powered experiences.** So the
+flyer usually isn't fully dark; the real problem is the **errored task blocking
+downstream sessions.** (See `content-v2-and-publishing.md`.)
+
+**What to try / know:**
+- **You can't re-publish a single zone — republishing is all-or-nothing.** A
+  manual republish often **just repeats the same error**, so don't expect it to
+  clear this on its own.
+- **Cloning *might* resolve it, but the error can also block the clone** — it's not
+  a guaranteed fix.
+- **Setup is usually not the culprit** and is typically already verified by the
+  time this reaches the help desk — don't spin on re-checking the zone's setup.
+
+**Escalate to CLSD.** This is the confirmed path — the root cause (why V2 publish
+fails for the zone) is a content-platform/engineering matter. Include: the flyer
+run link, the specific zone, that the **errored task is blocking other sessions**,
+and that a **manual republish repeated the error**. Mark urgent if go-live is close.
 
 ### Issue: Cloning pipeline stuck / clone erroring out
 

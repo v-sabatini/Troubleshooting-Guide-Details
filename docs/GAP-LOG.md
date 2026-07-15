@@ -65,7 +65,12 @@ a proper article (or add to an existing one) and mark the gap **Resolved**.
 
 ---
 
-## GAP-002 — V2 Publishing fails for one pricing zone; pipeline task errored with no logs 🟡 Investigating
+## GAP-002 — V2 Publishing fails for one pricing zone; pipeline task errored with no logs 🟢 Resolved (guidance documented)
+
+- **Resolved 2026-07-15 via processing-team (SME) feedback.** Documented in
+  `publishing-and-go-live.md` → "V2 Publishing fails for one pricing zone (V1 still
+  succeeds)" and `content-v2-and-publishing.md`. Residual open item is purely
+  engineering: the *root cause* of why V2 publish fails for a zone (a CLSD matter).
 
 - **V2 context added 2026-07-15:** `content-v2-and-publishing.md` explains the V2
   publishing flow (Fadmin → Nexus API → Item/Publication/Distribution APIs →
@@ -91,20 +96,23 @@ a proper article (or add to an existing one) and mark the gap **Resolved**.
   (urgent if go-live close), with run ID + the specific zone.
 - **Source scan:** Not yet scanned (Confluence/Slack). Likely overlaps with
   GAP-001 (V2 / publish-pipeline behavior).
-- **Hypotheses to test (educated, from the V2 model — NOT confirmed fixes):**
-  - **Re-publish scoped to the failed section/zone:** V2 sections/zones distribute
-    independently, so try re-triggering publish for just that zone rather than the
-    whole run.
-  - **Diff the failing zone vs. a good one:** the zone-specific difference
-    (distribution/store mapping, dates, pages, or a missing attribute) is the
-    likely culprit for a per-zone publish failure.
-  - **Clone / re-process for a fresh pipeline run:** may surface logs the errored
-    task didn't emit (the run flows Fadmin → Nexus API → Item/Publication/
-    Distribution APIs → Curator; a fresh run can re-emit at a stage that logged).
-  - **Will it go live? (educated):** zones that reached Curator should serve their
-    stores; the failed zone likely **won't** be live for its stores until it
-    re-publishes → **partial go-live** is the probable outcome. Confirm before
-    promising the retailer.
+- **SME-confirmed facts (2026-07-15) — corrections to the earlier educated guesses:**
+  - **Go-live:** V2 failed but V1 didn't, so the zone **still went live on
+    V1-powered experiences — just not V2-powered ones.** (Earlier guess "won't be
+    live for its stores" was **wrong**.)
+  - **Real impact:** the errored pipeline task was **blocking other flyer sessions
+    from kicking off** — that's the actual urgency.
+  - **Can't republish one zone** — republishing is all-or-nothing, and a **manual
+    republish just repeated the error**. (Earlier "re-publish just the zone" was
+    **not possible**.)
+  - **Setup/diff-the-zone was NOT the culprit**, and setup is typically already
+    verified before it reaches the help desk. (Earlier "diff the zone" guess was
+    **off**.)
+  - **Cloning:** *possibly* would resolve it, but the error might also block the
+    clone — untested here. (Earlier "clone" guess was **plausible**.)
+  - **UX lesson:** the "will it go live" engineer-level reasoning would **confuse a
+    processor** — keep processor-facing answers at the processor's level.
+  - **CLSD escalation was correct.**
 - **Recommended follow-up:** Confirm with engineering/CLSD (a) whether a
   single-zone V2 publish failure blocks the whole flyer or just that zone's
   coverage, and (b) the standard way to re-run V2 publishing for one zone. Then

@@ -86,6 +86,15 @@ newer content (DVM, NativeX EU/South America) has **only V2 ids**, no V1 id.
   billing/legacy reports still depend on V1 ids (kept alive by converters).
 - **Legacy display depends on conversion** (Flyers-NG V2→V1). If something renders
   oddly on a legacy channel *during the transition*, the converter is a suspect.
+- **V1 and V2 can succeed/fail independently.** Because both paths run during the
+  transition, a **V2 publish failure doesn't necessarily take the flyer dark** — a
+  zone whose **V2** publish failed can still be **live on V1-powered experiences**,
+  just missing from **V2-powered experiences**. *(Confirmed via processing-team
+  feedback, 2026-07-15.)*
+- **A failed V2 publish task can block other sessions.** The bigger operational
+  impact is often not the missing V2 content but that the **errored task blocks
+  other flyer sessions from kicking off** — which is why these escalate quickly.
+  See `publishing-and-go-live.md` → "V2 Publishing fails for one pricing zone."
 
 ## Troubleshooting note / current gaps
 
