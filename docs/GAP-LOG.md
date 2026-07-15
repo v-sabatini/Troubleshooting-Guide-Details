@@ -44,6 +44,16 @@ a proper article (or add to an existing one) and mark the gap **Resolved**.
 - **Diagnostic clue:** Error is reproducible **only** with the hosted-only
   distribution toggle → points at the hosted/distribution config or the
   **publication mapping**, not general processing.
+- **Hypotheses to test (educated, from the V2 model — NOT confirmed fixes):**
+  - **Empty/invalid hosted distribution:** in V2, a publication (and each section)
+    is distributed per channel to a Place/store set. Under hosted-only, verify the
+    publication actually has a **valid hosted distribution target** — an empty or
+    unmapped hosted Place set could be what the Publish task chokes on.
+  - **Isolate the trigger:** re-apply the channel toggles **one at a time** to find
+    whether it's the hosted-only state specifically (or one channel) that breaks it.
+  - **Section-vs-publication distribution mismatch:** if a section's distribution
+    isn't a subset of the publication's, hosted-only may create an invalid state —
+    check section-level distribution against the publication's.
 - **Recommended follow-up:**
   1. For live cases, escalate to **CLSD** (Content Layer service desk) and loop
      the **Hosted team (HS)**; include run ID, the exact reproduction, and steps
@@ -81,6 +91,20 @@ a proper article (or add to an existing one) and mark the gap **Resolved**.
   (urgent if go-live close), with run ID + the specific zone.
 - **Source scan:** Not yet scanned (Confluence/Slack). Likely overlaps with
   GAP-001 (V2 / publish-pipeline behavior).
+- **Hypotheses to test (educated, from the V2 model — NOT confirmed fixes):**
+  - **Re-publish scoped to the failed section/zone:** V2 sections/zones distribute
+    independently, so try re-triggering publish for just that zone rather than the
+    whole run.
+  - **Diff the failing zone vs. a good one:** the zone-specific difference
+    (distribution/store mapping, dates, pages, or a missing attribute) is the
+    likely culprit for a per-zone publish failure.
+  - **Clone / re-process for a fresh pipeline run:** may surface logs the errored
+    task didn't emit (the run flows Fadmin → Nexus API → Item/Publication/
+    Distribution APIs → Curator; a fresh run can re-emit at a stage that logged).
+  - **Will it go live? (educated):** zones that reached Curator should serve their
+    stores; the failed zone likely **won't** be live for its stores until it
+    re-publishes → **partial go-live** is the probable outcome. Confirm before
+    promising the retailer.
 - **Recommended follow-up:** Confirm with engineering/CLSD (a) whether a
   single-zone V2 publish failure blocks the whole flyer or just that zone's
   coverage, and (b) the standard way to re-run V2 publishing for one zone. Then
