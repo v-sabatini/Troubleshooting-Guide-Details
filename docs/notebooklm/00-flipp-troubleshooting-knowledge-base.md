@@ -510,7 +510,43 @@ TOSS Jira tickets 494, 6360, 7012, 7020, 7027, 7029, 7030, 7033, 7042, 7043,
 
 ---
 
-## Quick triage
+## ⭐ Start here: is it a *processed* flyer or an *indexed* flyer?
+
+This determines where to look — and they point in **opposite directions**:
+
+- **Processed (non-indexed) flyer** — one your team builds/uploads and processes.
+  **If you're a processor asking "my flyer is missing," this is almost always the
+  case.** The cause is in **processing/publishing, not the indexer** — jump to
+  **"Processed flyer missing"** below.
+- **Indexed flyer** — auto-scraped from the retailer's website (often a
+  CX-reported "missing flyer" for an indexed retailer). Here the usual cause **is**
+  a broken indexer — see **Cause 1** below.
+
+---
+
+## Processed flyer missing (the processor default)
+
+For a flyer you're processing, work these before ever thinking about the indexer:
+
+1. **Still processing / not live yet** — confirm the run actually finished:
+   sessions complete, state is **Ops-complete** (not stuck in "preview ready").
+   → see `publishing-and-go-live.md`.
+2. **Stuck run / didn't go live** — clone / re-process the run; escalate to
+   **CLSD** if it won't move. → `publishing-and-go-live.md`.
+3. **Wrong dates** — valid-from set in the future, or an expired flyer showing /
+   a live one reading as expired → fix dates in FADMIN. → `flyer-dates.md`.
+4. **Published but hidden / distribution** — check availability & channel toggles
+   (hidden on all channels, or a hosted-only distribution). → `hosted-and-previews.md`,
+   `publishing-and-go-live.md`.
+5. **A specific area sees nothing** — coverage/FSA or wrong-region geo-targeting
+   (see "Coverage" causes below).
+
+Only if none of the above applies — and the retailer is genuinely **indexed** —
+move on to the broken-indexer path.
+
+---
+
+## Quick triage (indexed flyers)
 
 1. **Is it a timing issue?** A new flyer can still be **processing**, or the old
    one just **expired** and the new one isn't live yet. Indexed flyers can take
@@ -524,7 +560,10 @@ TOSS Jira tickets 494, 6360, 7012, 7020, 7027, 7029, 7030, 7033, 7042, 7043,
 
 ---
 
-## Cause 1 — Broken indexer (the most common root cause)
+## Cause 1 — Broken indexer (the top cause for *indexed* retailers)
+
+> Applies to **indexed** retailers only. For a **processed** flyer, use the
+> "Processed flyer missing" section above instead — the indexer isn't involved.
 
 **Symptom:** An indexed retailer's flyer isn't appearing at all, past the normal
 processing window. Titles like "Flyer Missing", "broken indexer", "not indexed".
