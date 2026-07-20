@@ -11,6 +11,14 @@
 > Contacts and credentials are omitted from every SOP; each cites its source
 > Confluence page id. These are living docs — plan periodic refresh.
 
+> **🤖 Bot usage note (precedence):** These CP SOPs are a **last resort** for the
+> assistant. Its audience is the ops/CX help-desk, **not** the CP team (who
+> generally won't use the bot). The bot answers from the general Help Center and
+> the Vendor OneGuides first, and only surfaces a CP SOP as a **secondary
+> consideration** — when a problem may be **laddering up from a CP-processed
+> flyer** — rather than leading with CP steps. (See the bot instructions in
+> `../notebooklm/README.md`, rule 7.)
+
 ## SOPs in this folder (18)
 
 - [`bumper-to-bumper-cp-sop.md`](bumper-to-bumper-cp-sop.md) — Bumper to Bumper — CP Processing SOP

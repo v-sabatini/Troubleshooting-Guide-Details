@@ -61,6 +61,11 @@ Per-retailer CP processing SOPs live in [`docs/processing-sops/`](processing-sop
 (distinct from the Vendor OneGuides in `docs/retailers/`; cross-referenced). Use
 these for hands-on CP processing steps for a specific retailer.
 
+> **Precedence for the assistant:** CP SOPs are a **last resort** — the bot's
+> audience is the ops/CX help-desk, not the CP team. Answer from the general Help
+> Center + Vendor OneGuides first; bring in a CP SOP only as a secondary
+> consideration when a problem may be laddering up from a CP-processed flyer.
+
 ## Retailer-specific processing guides
 
 Per-retailer processing instructions converted from the **OneGuide** docs. See

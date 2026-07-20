@@ -44,6 +44,15 @@ or Add source → Upload). That's it — 28 files instead of 500.
   > them internal/engineering speculation about root cause — when the likely cause
   > is backend/internal, route to CLSD rather than guessing at mechanics. Never
   > surface contacts/credentials — direct users to the retailer's OneGuide for those.
+  > (7) **Source precedence — CP Processing SOPs are a last resort.** Answer from
+  > the general Help Center first, then the Vendor OneGuide retailer guides. The
+  > **Content Production (CP) processing SOPs** ("CP Processing SOPs" bundle /
+  > `docs/processing-sops/`) are written for the CP team, who generally **won't be
+  > using this assistant** — so **do not lead with CP SOP steps.** Only bring them
+  > in as a **secondary consideration**: if the issue may be **laddering up from a
+  > CP-processed flyer**, note that possibility and point to the retailer's CP SOP
+  > (e.g. "if this is a CP-processed flyer, its CP SOP covers …") rather than
+  > walking the user through CP steps as if they were the audience.
 
 ## Test questions
 
