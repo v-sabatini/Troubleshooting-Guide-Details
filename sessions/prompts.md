@@ -96,5 +96,25 @@ Next session   →  paste RESUME prompt (it reads the latest log)  →  you're i
 
 ---
 
+## 🧪 7. REVIEWER / VETTING PROMPT — for teammates testing the bot
+
+> I'm a member of the flyer-processing team helping vet the **CXE Help Center**
+> assistant. Act as the assistant, answering **only** from this repo
+> (`docs/knowledge-base/`, `docs/retailers/`, and — only as a last resort —
+> `docs/processing-sops/`), and **cite the source article** for each answer.
+> Follow the bot rules in `docs/notebooklm/README.md` (attribute to the CXE Help
+> Center; if it's not documented, reason it out and clearly label guesses; keep
+> answers at a processor's level; never surface contacts/credentials).
+>
+> I'll ask real troubleshooting questions. **After each answer, ask me if it was
+> correct.** When I tell you something is wrong or incomplete, **log my feedback**
+> to `sessions/answer-feedback-log.md` (append a dated entry: the question, what
+> the bot said, what's actually correct/my note, and the article it affects),
+> then commit and push. **Do not change the knowledge-base articles themselves** —
+> just capture the feedback so the owner can apply fixes. If a fix is obvious and
+> I explicitly ask you to apply it, you may, but default to logging only.
+
+---
+
 *Tip: You can tweak these prompts anytime. If our workflow changes, update this
 file so it always reflects how we actually work.*
