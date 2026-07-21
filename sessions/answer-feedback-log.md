@@ -111,3 +111,11 @@ will append entries for you — or add one manually with the template below.
   6. **To save a value as a blank string**, put **`*blank*`** as the cell contents.
 - **Article(s) affected:** **New article needed** — there is no item-import file-format reference in the Help Center. Create one (e.g. `docs/knowledge-base/item-import-format.md`) capturing points 1–6: required `item_id`/`sku` column order, the full accepted-header list, `english_`/`french_` prefixes, `YYYY-MM-DD` date format, and the `*blank*` convention. Also add "wrong column order (item_id/sku not in positions 1/2)" as a documented item-import failure cause.
 - **Owner action:** Author the item-import format article and cross-link it from `codesheet-errors.md` / `common-live-flyer-issues.md`. 🔴 Not yet applied.
+
+### FB-007 — Item import requires a minimum of 3 columns 🔴 Open
+- **Date / reviewer:** 2026-07-21 / Hannah S-K
+- **Question asked:** "I'm trying to do a SKU update. I have a column with item_ids and a column with SKUs, in the correct order. Why isn't it working?"
+- **What the bot said:** Suggested (1) SKU values mangled by the spreadsheet into scientific notation / commas (documented gotcha), (2) header names not exactly `item_id`/`sku`, (3) blank cells needing `*blank*` to clear. Asked whether it errors vs. runs but doesn't change SKUs.
+- **What's actually correct / the issue:** SKU formatting (cause 1) was correctly formatted in this case, though it's a valid thing to keep in mind, and causes 2–3 are worth pointing out. **The real cause the knowledge base is missing: an item import requires a MINIMUM of 3 columns.** A two-column file of just `item_id` + `sku` will not run. You need `item_id`, `sku`, **and any third column — even if it is entirely blank.** Example: adding a blank column with just the header `url` (no values) would likely have let it run.
+- **Article(s) affected:** The planned item-import format article (see FB-006). Add the **minimum-3-columns** requirement: `item_id` (col 1), `sku` (col 2), plus at least one more valid header column (may be empty). Note this applies to SKU-update imports specifically (two-column item_id + sku files fail).
+- **Owner action:** Document the 3-column minimum in the item-import format article. 🔴 Not yet applied.
