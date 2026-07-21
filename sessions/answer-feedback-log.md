@@ -67,3 +67,18 @@ will append entries for you — or add one manually with the template below.
      - If the codesheet is **out of order**, pull the store list from **Overview > Manage Stores** and provide it (e.g. to the chat bot) to determine **where the codesheet stopped adding zones**, then check that zone for the typo.
 - **Article(s) affected:** `codesheet-errors.md` (NilClass section — needs `generic_stores`/store-assignment guidance: PZ-name typo & leading/trailing space as top cause, the "missing store code names itself, so it's not NilClass" clarification, and the Pricing Zone Page / Manage Stores locating technique). Possibly cross-link from `stores-and-harmonization.md`.
 - **Owner action:** Add a store-assignment (`generic_stores`) subsection to the NilClass guidance capturing points 1–5 above. 🔴 Not yet applied.
+
+### FB-004 — Page Tile Generation error: add "delete the whole track" workaround + Slack-first escalation 🔴 Open
+- **Date / reviewer:** 2026-07-21 / Hannah S-K
+- **Question asked:** "Page Tile Generation errored on one of my flyer's tracks. It's blocking the Final QC checklist task from generating. Will this keep my flyer from going live? How do I fix it?"
+- **What the bot said:** Treat as go-live-blocking (FQC is a required gate); try first = re-run the tile/thumbnail generation session, wait for the queue, confirm upstream steps completed; if still broken file an **urgent CLSD** with the run link, the specific track, and that the errored task is blocking FQC. Inferred the blocker is the stuck task, not the whole flyer being dark.
+- **What's actually correct / the issue:** Answer confirmed correct (**if the Final QC checklist is not completed, the flyer does not publish**). Two things to **add to the KB**:
+  1. **"Delete the whole track" workaround.** If only **one track** is erroring, it may be worth asking whether that track can be **deleted** — e.g. if it's just a **revised page**, or **category pages added post-initial upload**.
+     - ⚠️ **Only if the WHOLE track can be deleted.** **Partially** deleting a track causes downstream impacts — do not partially delete.
+     - **Make a backup first.**
+     - Deleting the erroring track (within those constraints) can **temporarily get the run into a state where FQC can proceed**; they can then **retry the upload of the erroring track**.
+     - They can also **check the error message on the Page Tile Generation task** to see whether the problem is with a **specific page**.
+  2. **Slack-first escalation.** Before filing a CLSD, they can **ask in `#helpme-cxe` on Slack** for department advice — specifically from the **Enablement team**. CLSD is for errors whose **system cause the CXE team cannot identify**; the Slack check comes first.
+- **Article(s) affected:** `common-live-flyer-issues.md` ("Flyer tile generation error" — add the whole-track delete workaround + backup + check-error-for-specific-page, and the ask-in-Slack-before-CLSD step). Also `publishing-and-go-live.md` and `escalation-and-tickets.md` for the Slack-before-CLSD step.
+- **⚠️ Discrepancy to reconcile:** Reviewer names the Slack channel **`#helpme-cxe`** (Enablement team). `common-live-flyer-issues.md` (intro) currently references **`#helpme-ops`** ("to the Enablement pod / `@enable-cxe`"). Confirm the correct channel name and make it consistent across articles.
+- **Owner action:** Add the whole-track-delete workaround (with the WHOLE-track-only + backup constraints) and the Slack-first escalation step; reconcile the `#helpme-ops` vs `#helpme-cxe` channel name. 🔴 Not yet applied.
