@@ -95,3 +95,19 @@ will append entries for you — or add one manually with the template below.
 - **Article(s) affected:**
   - `common-live-flyer-issues.md` — **"Auto-categorization gaps (missing Google categories)"** entry: correct the claim that re-running sessions repopulates categories (auto-cat can't be manually re-run) and clarify that a missing category doesn't block tagging. **Add a new entry** for **Vendor/Tag QC task erroring when moving between items → likely a page/item deleted before Vendor tasks completed**, with "provide the task error log" as the diagnostic and CLSD as the unblock.
 - **Owner action:** Fix the auto-categorization entry; add the deleted-page/item Tag-QC entry; note that CLSD (not the processor) typically identifies the culprit item. 🔴 Not yet applied.
+
+### FB-006 — Item import failed because of COLUMN ORDER; Help Center has no item-import file-format spec 🔴 Open
+- **Date / reviewer:** 2026-07-21 / Hannah S-K
+- **Question asked:** "I tried to do an item import but it failed. Look at the .csv and tell me why." (File `Test_Flyer_Item_Import__Sheet1.csv`, header row `item_id,name,sku,google_category_id`.)
+- **What the bot said:** Called the CSV structurally clean; guessed the problem was the `google_category_id` column (claimed no documented import uses it, and that Google Category must be a name/path not a numeric ID like `319`); suggested dropping that column. Also flagged that the Help Center has no item-import format reference.
+- **What's actually correct / the issue (multiple corrections + new spec to document):**
+  1. **Wrong diagnosis — the real problem is COLUMN ORDER.** `item_id` **must be column 1 and `sku` must be column 2.** In the file the order was `item_id, name, sku, google_category_id`, so `sku` was in position 3 → import fails. (The bot also misread the column order, which is how it missed this.)
+  2. **`google_category_id` IS a valid column header** — the bot was wrong to flag it. In FAdmin the Google Category is **displayed in words**, but the **backend ID is a numerical value**, so `319` is a legitimate value.
+  3. **The retailer guides do NOT list all accepted import headers.** The full set of accepted column headers is:
+     `analytics_categories, auto_play_video, bonus_offer_description, brand, brand_id, data_piping_url, deferred, description, disclaimer_text, display_type, display_url, external_override_image_source_url, feature_html, google_category_id, id_1, id_2, id_3, id_4, id_5, id_6, iframe_display_height, iframe_display_width, in_store_only, item_corrections, item_side_list_url_text, keywords, name, overlay_url, page_destination, play_video_inline, pre_price_text, price_text, qualifying_quantity, raw_current_price, raw_dollars_off, raw_original_price, raw_percent_off, reward_quantity, sale_story, sku, url, valid_from, valid_to, video_sound_on, youtube_embedded_url`
+     (plus `item_id`). **Required order:** `item_id` = column 1, `sku` = column 2.
+  4. **Language prefixes:** you can prepend **`english_`** or **`french_`** to any field so it applies only to English or French items. Example: `"item_id","sku","english_url","french_url","keywords"`.
+  5. **Date columns** (e.g. `valid_from`, `valid_to`) **must be in `YYYY-MM-DD` format.**
+  6. **To save a value as a blank string**, put **`*blank*`** as the cell contents.
+- **Article(s) affected:** **New article needed** — there is no item-import file-format reference in the Help Center. Create one (e.g. `docs/knowledge-base/item-import-format.md`) capturing points 1–6: required `item_id`/`sku` column order, the full accepted-header list, `english_`/`french_` prefixes, `YYYY-MM-DD` date format, and the `*blank*` convention. Also add "wrong column order (item_id/sku not in positions 1/2)" as a documented item-import failure cause.
+- **Owner action:** Author the item-import format article and cross-link it from `codesheet-errors.md` / `common-live-flyer-issues.md`. 🔴 Not yet applied.
