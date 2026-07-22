@@ -770,14 +770,25 @@ wrong flyer run to those postal codes.
 
 ---
 
-## Cause 4 — Pages missing a track ID / processing blocked
+## Cause 4 — Pages missing a track ID at upload / processing blocked
 
 **Symptom:** Specific pages don't appear; processing is blocked because a page is
 **missing a track ID**, so it's excluded from tile-generation sessions.
 *(OTS-1954: re-running tile gen didn't help because untracked pages are excluded.)*
 
-**Fix:** This needs the pages correctly tracked before tile gen will include them;
-escalate if you can't assign the track ID yourself.
+**Scope — this is an *upload-step* problem, not a page-revision one.** Track IDs
+are **assigned automatically at upload**. OTS-1954 was a case of the **upload step
+going awry**; it does **not** involve page revisions/swaps.
+
+**Fix:** Go back to the **Upload page and hit "Save and Complete"** to
+(re)assign the track ID, then let tile gen include the page; escalate if that
+doesn't resolve it.
+
+> **Not for a page swap.** If a *swapped/revised* page isn't appearing, a missing
+> track ID is **very unlikely** the cause — the page couldn't have been added to
+> pricing zones for the revision without one — so **don't lead with this cause**
+> and don't cite OTS-1954 for it. See the page-swap guidance in
+> `publishing-and-go-live.md`.
 
 ---
 
@@ -797,7 +808,8 @@ whether a new flyer is still processing.
 
 *Sources: OTS (Ops Troubleshooting) Jira board 315, ~120 tickets Jan 2024–Jul
 2026, incl. OTS-1927/1928/1929/1930/1931/1939/1944/1954/1959/1960/1963/1969/1975/
-1985/1986/1997. See `sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-14.*
+1985/1986/1997; team SME review (answer-feedback-log FB-009). See
+`sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-22.*
 
 
 ---
@@ -1139,9 +1151,15 @@ specific links and where they should point.
 
 | Situation | Escalate to |
 |---|---|
-| Preview/iframe/Hosted rendering after confirming flyer is live | **Hosted team (HS)** |
-| Page stitching didn't fix cropped pages | **Hosted team (HS)** |
+| Preview/iframe/**Hosted-only** rendering after confirming flyer is live | **Hosted team (HS)** |
+| Page stitching didn't fix cropped pages (Hosted) | **Hosted team (HS)** |
+| Same issue shows up **everywhere** on the front end (not Hosted-only) | Ask the **Enablement team in Slack**, then **CLSD** — not HS |
 | Flyer isn't live yet (root cause is publishing) | See `publishing-and-go-live.md` |
+
+> **HS is for Hosted-ONLY issues.** If the problem also appears outside the
+> Hosted experience (i.e. everywhere on the front end), it routes to Slack
+> (Enablement) → **CLSD**, not the Hosted team. **Confirm the scope** (Hosted-only
+> vs everywhere) before routing — ask the user if it's unclear.
 
 Always confirm live/processed status **before** escalating — many preview issues
 are really "the flyer isn't live yet."
@@ -1149,7 +1167,8 @@ are really "the flyer isn't live yet."
 ---
 
 *Sources: OTS Jira board 315, incl. OTS-1961/1962/1966/1968/1971/1973/1980/1988/
-1992/1995/2012. See `sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-14.*
+1992/1995/2012; team SME review (answer-feedback-log FB-009). See
+`sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-22.*
 
 
 ---
@@ -1260,6 +1279,25 @@ in vertical preview. *(OTS-1971, OTS-1974.)*
 - If new items/links **still** won't reflect, escalate to the **Hosted team (HS)**
   *(OTS-1971 → HS-3281)*.
 
+### Issue: A page swap isn't appearing on the front end
+
+**Symptom:** A page was **swapped/revised** but the change isn't showing on the
+front end.
+
+**Fix (try in order):**
+1. Rule out a **false alarm** (still processing / caching).
+2. **Undo and redo the page swap** — this **re-kicks all the relevant sessions**,
+   which may not have completed correctly the first time.
+3. Re-run **page stitching** and **republish**.
+4. *(Rarely relevant for a swap)* A missing **track ID** is an **upload-step**
+   issue, not a page-revision one — don't lead with it for a swap (see
+   `missing-flyers-and-indexing.md` Cause 4).
+
+**Escalate by scope:** if it's broken on the front end **everywhere**, ask the
+Enablement team in Slack, then **CLSD**. If it's **Hosted-only**, go to the
+**Hosted team (HS)**. **Confirm whether it's Hosted-only or everywhere before
+routing.**
+
 ### Issue: Future flyers not showing in workflow
 
 **Symptom:** Workflow execution isn't showing future flyers. *(OTS-1964,
@@ -1283,8 +1321,14 @@ through empty, escalate with the item reference.
 | Situation | Escalate to |
 |---|---|
 | Stuck pipeline / clone errors / FQC won't generate | **CLSD** (urgent if going live soon) |
-| New items/links won't reflect on front-end (after ruling out processing) | **Hosted team (HS)** |
+| Item/link/page change won't reflect **everywhere** on the front-end (after ruling out processing) | Ask the **Enablement team in Slack**, then **CLSD** |
+| Item/link/page change won't reflect **Hosted-only** | **Hosted team (HS)** |
 | Root cause is the flyer isn't live | Fix go-live first (Part A) |
+
+> **Confirm scope before routing.** "Front end" is not the same as "Hosted." The
+> **Hosted team (HS) handles Hosted-only issues**; something broken **everywhere**
+> on the front end goes to Slack (Enablement) → **CLSD**. If you're unsure, ask
+> the user whether it's Hosted-only or everywhere.
 
 Always include: flyer run link, current status/state, due date, and what you tried
 (clone, re-save, toggle).
@@ -1292,7 +1336,7 @@ Always include: flyer run link, current status/state, due date, and what you tri
 ---
 
 *Sources: OTS Jira board 315, incl. OTS-1938/1964/1971/1974/1978/1982/1992/1998/
-2006/2027/2030/2047/2048/2060/2064; team SME review (answer-feedback-log FB-008).
+2006/2027/2030/2047/2048/2060/2064; team SME review (answer-feedback-log FB-008, FB-009).
 See `sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-22.*
 
 

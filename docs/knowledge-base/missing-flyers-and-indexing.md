@@ -123,14 +123,25 @@ wrong flyer run to those postal codes.
 
 ---
 
-## Cause 4 — Pages missing a track ID / processing blocked
+## Cause 4 — Pages missing a track ID at upload / processing blocked
 
 **Symptom:** Specific pages don't appear; processing is blocked because a page is
 **missing a track ID**, so it's excluded from tile-generation sessions.
 *(OTS-1954: re-running tile gen didn't help because untracked pages are excluded.)*
 
-**Fix:** This needs the pages correctly tracked before tile gen will include them;
-escalate if you can't assign the track ID yourself.
+**Scope — this is an *upload-step* problem, not a page-revision one.** Track IDs
+are **assigned automatically at upload**. OTS-1954 was a case of the **upload step
+going awry**; it does **not** involve page revisions/swaps.
+
+**Fix:** Go back to the **Upload page and hit "Save and Complete"** to
+(re)assign the track ID, then let tile gen include the page; escalate if that
+doesn't resolve it.
+
+> **Not for a page swap.** If a *swapped/revised* page isn't appearing, a missing
+> track ID is **very unlikely** the cause — the page couldn't have been added to
+> pricing zones for the revision without one — so **don't lead with this cause**
+> and don't cite OTS-1954 for it. See the page-swap guidance in
+> `publishing-and-go-live.md`.
 
 ---
 
@@ -150,4 +161,5 @@ whether a new flyer is still processing.
 
 *Sources: OTS (Ops Troubleshooting) Jira board 315, ~120 tickets Jan 2024–Jul
 2026, incl. OTS-1927/1928/1929/1930/1931/1939/1944/1954/1959/1960/1963/1969/1975/
-1985/1986/1997. See `sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-14.*
+1985/1986/1997; team SME review (answer-feedback-log FB-009). See
+`sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-22.*

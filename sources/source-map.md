@@ -121,6 +121,7 @@ omitted.
 | FB-005 | Auto-cat can't be re-run & doesn't block tagging; Vendor/Tag QC error = page/item deleted before Vendor tasks | common-live-flyer-issues |
 | FB-006 / FB-007 | Item-import file format — `item_id`/`sku` column order, accepted headers, `english_`/`french_` prefixes, `YYYY-MM-DD` dates, `*blank*`, 3-column minimum | item-import-format (new) |
 | FB-008 | Link/URL not reflecting on front-end — re-run Item Cutout Generation (downstream re-kick), Vendor-tasks-as-sessions, republish, `Touch Storefront Objects` custom action | publishing-and-go-live, common-live-flyer-issues, glossary |
+| FB-009 | Page swap not on front end — track-ID is an upload-step issue (mis-cited OTS-1954), undo/redo page swap re-kicks sessions, escalate by scope (everywhere → Slack→CLSD; Hosted-only → HS) | missing-flyers-and-indexing, publishing-and-go-live, hosted-and-previews |
 
 ## Not yet ingested (candidate sources for future sessions)
 

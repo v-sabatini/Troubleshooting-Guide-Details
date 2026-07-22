@@ -104,6 +104,25 @@ in vertical preview. *(OTS-1971, OTS-1974.)*
 - If new items/links **still** won't reflect, escalate to the **Hosted team (HS)**
   *(OTS-1971 → HS-3281)*.
 
+### Issue: A page swap isn't appearing on the front end
+
+**Symptom:** A page was **swapped/revised** but the change isn't showing on the
+front end.
+
+**Fix (try in order):**
+1. Rule out a **false alarm** (still processing / caching).
+2. **Undo and redo the page swap** — this **re-kicks all the relevant sessions**,
+   which may not have completed correctly the first time.
+3. Re-run **page stitching** and **republish**.
+4. *(Rarely relevant for a swap)* A missing **track ID** is an **upload-step**
+   issue, not a page-revision one — don't lead with it for a swap (see
+   `missing-flyers-and-indexing.md` Cause 4).
+
+**Escalate by scope:** if it's broken on the front end **everywhere**, ask the
+Enablement team in Slack, then **CLSD**. If it's **Hosted-only**, go to the
+**Hosted team (HS)**. **Confirm whether it's Hosted-only or everywhere before
+routing.**
+
 ### Issue: Future flyers not showing in workflow
 
 **Symptom:** Workflow execution isn't showing future flyers. *(OTS-1964,
@@ -127,8 +146,14 @@ through empty, escalate with the item reference.
 | Situation | Escalate to |
 |---|---|
 | Stuck pipeline / clone errors / FQC won't generate | **CLSD** (urgent if going live soon) |
-| New items/links won't reflect on front-end (after ruling out processing) | **Hosted team (HS)** |
+| Item/link/page change won't reflect **everywhere** on the front-end (after ruling out processing) | Ask the **Enablement team in Slack**, then **CLSD** |
+| Item/link/page change won't reflect **Hosted-only** | **Hosted team (HS)** |
 | Root cause is the flyer isn't live | Fix go-live first (Part A) |
+
+> **Confirm scope before routing.** "Front end" is not the same as "Hosted." The
+> **Hosted team (HS) handles Hosted-only issues**; something broken **everywhere**
+> on the front end goes to Slack (Enablement) → **CLSD**. If you're unsure, ask
+> the user whether it's Hosted-only or everywhere.
 
 Always include: flyer run link, current status/state, due date, and what you tried
 (clone, re-save, toggle).
@@ -136,5 +161,5 @@ Always include: flyer run link, current status/state, due date, and what you tri
 ---
 
 *Sources: OTS Jira board 315, incl. OTS-1938/1964/1971/1974/1978/1982/1992/1998/
-2006/2027/2030/2047/2048/2060/2064; team SME review (answer-feedback-log FB-008).
+2006/2027/2030/2047/2048/2060/2064; team SME review (answer-feedback-log FB-008, FB-009).
 See `sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-22.*

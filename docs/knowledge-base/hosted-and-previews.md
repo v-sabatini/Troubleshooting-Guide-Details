@@ -77,9 +77,15 @@ specific links and where they should point.
 
 | Situation | Escalate to |
 |---|---|
-| Preview/iframe/Hosted rendering after confirming flyer is live | **Hosted team (HS)** |
-| Page stitching didn't fix cropped pages | **Hosted team (HS)** |
+| Preview/iframe/**Hosted-only** rendering after confirming flyer is live | **Hosted team (HS)** |
+| Page stitching didn't fix cropped pages (Hosted) | **Hosted team (HS)** |
+| Same issue shows up **everywhere** on the front end (not Hosted-only) | Ask the **Enablement team in Slack**, then **CLSD** — not HS |
 | Flyer isn't live yet (root cause is publishing) | See `publishing-and-go-live.md` |
+
+> **HS is for Hosted-ONLY issues.** If the problem also appears outside the
+> Hosted experience (i.e. everywhere on the front end), it routes to Slack
+> (Enablement) → **CLSD**, not the Hosted team. **Confirm the scope** (Hosted-only
+> vs everywhere) before routing — ask the user if it's unclear.
 
 Always confirm live/processed status **before** escalating — many preview issues
 are really "the flyer isn't live yet."
@@ -87,4 +93,5 @@ are really "the flyer isn't live yet."
 ---
 
 *Sources: OTS Jira board 315, incl. OTS-1961/1962/1966/1968/1971/1973/1980/1988/
-1992/1995/2012. See `sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-14.*
+1992/1995/2012; team SME review (answer-feedback-log FB-009). See
+`sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-22.*
