@@ -7,7 +7,7 @@ source articles and marks each entry resolved.
 **How to add an entry:** use the Reviewer/Vetting prompt (`prompts.md` #7) — Claude
 will append entries for you — or add one manually with the template below.
 
-**Status key:** 🔴 Open · 🟢 Applied to article
+**Status key:** 🔴 Open · 🟢 Applied to article · ⚠️ needs Vanessa (a point that can't be reconciled from the sources without her call)
 
 ---
 
@@ -41,7 +41,7 @@ will append entries for you — or add one manually with the template below.
 (The FB-001 example above is a real correction already applied; add new items below.)
 -->
 
-### FB-002 — `NilClass` fix over-ranks "missing dates" as the #1 cause 🔴 Open
+### FB-002 — `NilClass` fix over-ranks "missing dates" as the #1 cause 🟢 Applied
 - **Date / reviewer:** 2026-07-21 / Hannah S-K
 - **Question asked:** "A codesheet upload failed with `undefined method 'split' for nil:NilClass` — what do I check? What information do you need to diagnose?"
 - **What the bot said:** Led with "a pricing-zone row missing start/end dates" as the **#1 cause** of `NilClass` errors (citing TOSS-7033), then PDF base path / zones with no pages, then filename/FTP rename mismatch.
@@ -51,9 +51,9 @@ will append entries for you — or add one manually with the template below.
   3. The real cause was **page/file names in the codesheet not matching what was on the SFTP** (the filename-matching class of issue). This is the more common culprit and should be ranked first.
   4. **Process improvement:** the bot should **ask the user which codesheet processor / config is being used** before diagnosing, since the likely causes differ by processor (e.g. whether dates are required at all).
 - **Article(s) affected:** `codesheet-errors.md` (section "1. `NilClass` errors" — the likely-causes ordering and the "#1 cause of NilClass errors" claim in the universal self-serve checklist, item 2).
-- **Owner action:** Re-order likely causes so **filename/SFTP mismatch leads** and **missing-dates is demoted** (noting it mainly applies to codesheets that require dates); soften/remove the "#1 cause" wording in the checklist; add guidance to **confirm which codesheet processor is in use** as a first diagnostic step. 🔴 Not yet applied.
+- **Owner action:** ✅ Applied 2026-07-22 (commit `6e5da2b`) — reordered NilClass causes so filename/SFTP mismatch leads, demoted missing-dates to date-requiring configs, softened the "#1 cause" checklist wording, and added a "confirm which codesheet processor is in use" first step.
 
-### FB-003 — `NilClass` on a `generic_stores` codesheet: PZ-name typo/space is the real #1, + missing troubleshooting technique 🔴 Open
+### FB-003 — `NilClass` on a `generic_stores` codesheet: PZ-name typo/space is the real #1, + missing troubleshooting technique 🟢 Applied
 - **Date / reviewer:** 2026-07-21 / Hannah S-K
 - **Question asked:** "I got the same [`NilClass`] error but with a `generic_stores` codesheet. Why?"
 - **What the bot said:** Explained a `generic_stores` sheet only assigns stores to pricing zones, so the nil narrows to the store/PZ fields; listed causes: (1) wrong/missing `stores`/`pricing zone` headers, (2) blank cells / stray blank row, (3) PZ name not matching Fadmin, (4) store code the system can't find (add store at merchant level with SAP# as merchant code, re-run), (5) re-save CSV cleanly. Called #1/#3 the most likely.
@@ -66,9 +66,9 @@ will append entries for you — or add one manually with the template below.
      - If the codesheet added stores to zones **in the same order** as the Pricing Zone Page ordering, focus on the **first zone showing `0/0`** — the typo is there.
      - If the codesheet is **out of order**, pull the store list from **Overview > Manage Stores** and provide it (e.g. to the chat bot) to determine **where the codesheet stopped adding zones**, then check that zone for the typo.
 - **Article(s) affected:** `codesheet-errors.md` (NilClass section — needs `generic_stores`/store-assignment guidance: PZ-name typo & leading/trailing space as top cause, the "missing store code names itself, so it's not NilClass" clarification, and the Pricing Zone Page / Manage Stores locating technique). Possibly cross-link from `stores-and-harmonization.md`.
-- **Owner action:** Add a store-assignment (`generic_stores`) subsection to the NilClass guidance capturing points 1–5 above. 🔴 Not yet applied.
+- **Owner action:** ✅ Applied 2026-07-22 (commit `6e5da2b`) — added a `generic_stores` store-assignment subsection to the NilClass guidance capturing points 1–5 (PZ-name typo/space as top cause, the "missing store code names itself, so not NilClass" clarification, hidden-space gotcha via Pricing Zone Page export, and the first-`0/0`-zone / Manage Stores locating technique).
 
-### FB-004 — Page Tile Generation error: add "delete the whole track" workaround + Slack-first escalation 🔴 Open
+### FB-004 — Page Tile Generation error: add "delete the whole track" workaround + Slack-first escalation 🟢 Applied · ⚠️ needs Vanessa (channel name)
 - **Date / reviewer:** 2026-07-21 / Hannah S-K
 - **Question asked:** "Page Tile Generation errored on one of my flyer's tracks. It's blocking the Final QC checklist task from generating. Will this keep my flyer from going live? How do I fix it?"
 - **What the bot said:** Treat as go-live-blocking (FQC is a required gate); try first = re-run the tile/thumbnail generation session, wait for the queue, confirm upstream steps completed; if still broken file an **urgent CLSD** with the run link, the specific track, and that the errored task is blocking FQC. Inferred the blocker is the stuck task, not the whole flyer being dark.
@@ -81,9 +81,10 @@ will append entries for you — or add one manually with the template below.
   2. **Slack-first escalation.** Before filing a CLSD, they can **ask in `#helpme-cxe` on Slack** for department advice — specifically from the **Enablement team**. CLSD is for errors whose **system cause the CXE team cannot identify**; the Slack check comes first.
 - **Article(s) affected:** `common-live-flyer-issues.md` ("Flyer tile generation error" — add the whole-track delete workaround + backup + check-error-for-specific-page, and the ask-in-Slack-before-CLSD step). Also `publishing-and-go-live.md` and `escalation-and-tickets.md` for the Slack-before-CLSD step.
 - **⚠️ Discrepancy to reconcile:** Reviewer names the Slack channel **`#helpme-cxe`** (Enablement team). `common-live-flyer-issues.md` (intro) currently references **`#helpme-ops`** ("to the Enablement pod / `@enable-cxe`"). Confirm the correct channel name and make it consistent across articles.
-- **Owner action:** Add the whole-track-delete workaround (with the WHOLE-track-only + backup constraints) and the Slack-first escalation step; reconcile the `#helpme-ops` vs `#helpme-cxe` channel name. 🔴 Not yet applied.
+- **Owner action:** ✅ Applied 2026-07-22 (commit `6e5da2b`) — added the whole-track-delete workaround (WHOLE-track-only + make-a-backup constraints, plus "check the Page Tile Generation task error for a specific page") and the Slack-first-before-CLSD step to `common-live-flyer-issues.md`; added a Slack-before-CLSD note to `escalation-and-tickets.md`.
+  - ⚠️ **Needs Vanessa — channel name not reconciled.** The reviewer names **`#helpme-cxe`** (Enablement team); the existing articles reference **`#helpme-ops`** / `@enable-cxe`. To avoid introducing an inconsistency, the applied text says "ask the Enablement team in Slack" **without** committing to a channel. **Please confirm which channel is correct** so I can make it consistent across `common-live-flyer-issues.md`, `escalation-and-tickets.md`, and the tile-gen step.
 
-### FB-005 — Vendor Tag QC errors between items: it's deleted pages/items, not auto-categorization (+ auto-cat can't be re-run) 🔴 Open
+### FB-005 — Vendor Tag QC errors between items: it's deleted pages/items, not auto-categorization (+ auto-cat can't be re-run) 🟢 Applied
 - **Date / reviewer:** 2026-07-21 / Hannah S-K
 - **Question asked:** "Vendors flagged the Vendor Tag QC task isn't working — moving to the next item errors, and the processor gets the same effect starting the task from the flyer run pipeline. Why might this be?"
 - **What the bot said:** Led with the documented **auto-categorization gap** cause (missing Google Categories → tag QC gets stuck), advised **re-running sessions** to populate categories and listing affected items, then reasoned it's a data problem on a specific item and told the user to **isolate which item** it dies on; CLSD as backstop.
@@ -94,9 +95,9 @@ will append entries for you — or add one manually with the template below.
   4. **Correction on my "isolate which item" advice:** the **user is unlikely to be able to identify the culprit item themselves.** If an error message points to it, use that; otherwise it's **fine to leave that identification to the CLSD team.** Don't send the processor hunting for it.
 - **Article(s) affected:**
   - `common-live-flyer-issues.md` — **"Auto-categorization gaps (missing Google categories)"** entry: correct the claim that re-running sessions repopulates categories (auto-cat can't be manually re-run) and clarify that a missing category doesn't block tagging. **Add a new entry** for **Vendor/Tag QC task erroring when moving between items → likely a page/item deleted before Vendor tasks completed**, with "provide the task error log" as the diagnostic and CLSD as the unblock.
-- **Owner action:** Fix the auto-categorization entry; add the deleted-page/item Tag-QC entry; note that CLSD (not the processor) typically identifies the culprit item. 🔴 Not yet applied.
+- **Owner action:** ✅ Applied 2026-07-22 (commit `6e5da2b`) — corrected the auto-categorization entry (auto-cat can't be manually re-run; a missing category doesn't block tagging; removed the "re-run sessions to repopulate" step) and added a new "Vendor / Tag QC task errors when moving between items" entry (likely a page/item deleted before Vendor tasks completed → pull the task error log → CLSD identifies the culprit, not the processor).
 
-### FB-006 — Item import failed because of COLUMN ORDER; Help Center has no item-import file-format spec 🔴 Open
+### FB-006 — Item import failed because of COLUMN ORDER; Help Center has no item-import file-format spec 🟢 Applied
 - **Date / reviewer:** 2026-07-21 / Hannah S-K
 - **Question asked:** "I tried to do an item import but it failed. Look at the .csv and tell me why." (File `Test_Flyer_Item_Import__Sheet1.csv`, header row `item_id,name,sku,google_category_id`.)
 - **What the bot said:** Called the CSV structurally clean; guessed the problem was the `google_category_id` column (claimed no documented import uses it, and that Google Category must be a name/path not a numeric ID like `319`); suggested dropping that column. Also flagged that the Help Center has no item-import format reference.
@@ -110,17 +111,17 @@ will append entries for you — or add one manually with the template below.
   5. **Date columns** (e.g. `valid_from`, `valid_to`) **must be in `YYYY-MM-DD` format.**
   6. **To save a value as a blank string**, put **`*blank*`** as the cell contents.
 - **Article(s) affected:** **New article needed** — there is no item-import file-format reference in the Help Center. Create one (e.g. `docs/knowledge-base/item-import-format.md`) capturing points 1–6: required `item_id`/`sku` column order, the full accepted-header list, `english_`/`french_` prefixes, `YYYY-MM-DD` date format, and the `*blank*` convention. Also add "wrong column order (item_id/sku not in positions 1/2)" as a documented item-import failure cause.
-- **Owner action:** Author the item-import format article and cross-link it from `codesheet-errors.md` / `common-live-flyer-issues.md`. 🔴 Not yet applied.
+- **Owner action:** ✅ Applied 2026-07-22 (commit `6e5da2b`) — created `docs/knowledge-base/item-import-format.md` capturing points 1–6 (required `item_id`/`sku` column order, full accepted-header list, `google_category_id` is valid/numeric, `english_`/`french_` prefixes, `YYYY-MM-DD` dates, `*blank*` convention) plus "wrong column order" as a documented failure cause; cross-linked from `codesheet-errors.md` and `common-live-flyer-issues.md`; added to the index and the NotebookLM KB bundle.
 
-### FB-007 — Item import requires a minimum of 3 columns 🔴 Open
+### FB-007 — Item import requires a minimum of 3 columns 🟢 Applied
 - **Date / reviewer:** 2026-07-21 / Hannah S-K
 - **Question asked:** "I'm trying to do a SKU update. I have a column with item_ids and a column with SKUs, in the correct order. Why isn't it working?"
 - **What the bot said:** Suggested (1) SKU values mangled by the spreadsheet into scientific notation / commas (documented gotcha), (2) header names not exactly `item_id`/`sku`, (3) blank cells needing `*blank*` to clear. Asked whether it errors vs. runs but doesn't change SKUs.
 - **What's actually correct / the issue:** SKU formatting (cause 1) was correctly formatted in this case, though it's a valid thing to keep in mind, and causes 2–3 are worth pointing out. **The real cause the knowledge base is missing: an item import requires a MINIMUM of 3 columns.** A two-column file of just `item_id` + `sku` will not run. You need `item_id`, `sku`, **and any third column — even if it is entirely blank.** Example: adding a blank column with just the header `url` (no values) would likely have let it run.
 - **Article(s) affected:** The planned item-import format article (see FB-006). Add the **minimum-3-columns** requirement: `item_id` (col 1), `sku` (col 2), plus at least one more valid header column (may be empty). Note this applies to SKU-update imports specifically (two-column item_id + sku files fail).
-- **Owner action:** Document the 3-column minimum in the item-import format article. 🔴 Not yet applied.
+- **Owner action:** ✅ Applied 2026-07-22 (commit `6e5da2b`) — documented the 3-column minimum in `item-import-format.md` (rule 2: `item_id` + `sku` alone won't run; add at least one more valid header column, which may be empty), with a matching row in the common-failures table.
 
-### FB-008 — Link/URL not reflecting on front-end: name the specific sessions/actions to re-run 🔴 Open
+### FB-008 — Link/URL not reflecting on front-end: name the specific sessions/actions to re-run 🟢 Applied
 - **Date / reviewer:** 2026-07-21 / Hannah S-K
 - **Question asked:** "I updated an item's link but it isn't reflecting on the front end (Hosted) — what can I try?" → follow-up: "What are the 'relevant Sessions' to rerun?"
 - **What the bot said:** Rule out a false alarm (processing/caching), run the standard loop (re-run relevant sessions → republish), try the re-save nudge, escalate to Hosted (HS) if it won't reflect. On the follow-up, flagged that the Help Center **defines "session" generically but never names which session maps to a link/URL update**, and reasoned that image/tile/categorization sessions wouldn't carry a link so republish was the operative step.
@@ -130,7 +131,7 @@ will append entries for you — or add one manually with the template below.
   3. **Republish** — a correct option to try (already covered).
   4. **`Touch Storefront Objects` custom action** — a custom action that can be tried to push the change to the storefront. (New — not currently in the KB.)
 - **Article(s) affected:** `publishing-and-go-live.md` ("New boxes / items / links not reflecting on front-end" — add these concrete re-run/actions before the HS escalation) and `common-live-flyer-issues.md`. Also worth noting in `glossary.md` that **Vendor tasks can behave as sessions that kick off item-level sessions**, and adding the **`Touch Storefront Objects`** custom action.
-- **Owner action:** Add the Item Cutout Generation downstream re-run, the Vendor-tasks-as-sessions point, and the `Touch Storefront Objects` custom action to the "links not reflecting" guidance. 🔴 Not yet applied.
+- **Owner action:** ✅ Applied 2026-07-22 (commit `09a805a`) — expanded the "New boxes / items / links not reflecting on front-end" fix in `publishing-and-go-live.md` with the ordered steps (re-run Item Cutout Generation via a downstream task, re-run Vendor tasks as sessions, republish, `Touch Storefront Objects` custom action); added a matching "Link / URL not reflecting on the front-end" entry in `common-live-flyer-issues.md`; and added the Vendor-tasks-as-sessions note plus a `Touch Storefront Objects` term to `glossary.md`.
 
 ### FB-009 — Page swap not on front end: Track-ID cause mis-cited; wrong escalation routing; add undo/redo workaround 🔴 Open
 - **Date / reviewer:** 2026-07-21 / Hannah S-K
