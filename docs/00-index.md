@@ -25,7 +25,7 @@ NotebookLM (or read by Claude) as an individual source.
 | 8 | [Flyer Dates](knowledge-base/flyer-dates.md) | Wrong/expired/invalid valid dates, or a live flyer reading as expired. |
 | 9 | [Hosted Sites & Preview Links](knowledge-base/hosted-and-previews.md) | Preview links or the hosted/iframe experience aren't working or render cropped. |
 | 10 | [Publishing, Go-Live & Front-End Display](knowledge-base/publishing-and-go-live.md) | A flyer is stuck before go-live, pipelines/clones stuck, or prices/items not showing on the front-end. |
-| 11 | [Common Live-Flyer & Processing Issues](knowledge-base/common-live-flyer-issues.md) | Quick reference (from `#helpme-ops`): tile-gen, image import, categorization, Tag QC, masthead. |
+| 11 | [Common Live-Flyer & Processing Issues](knowledge-base/common-live-flyer-issues.md) | Quick reference (from `#helpme-cxe`): tile-gen, image import, categorization, Tag QC, masthead. |
 | 12 | [Storefront & Publishing Errors](knowledge-base/storefront-publishing-errors.md) | Storefronts failing to load, missing thumbnails, or republish decisions. |
 | 13 | [Escalation & Ticketing](knowledge-base/escalation-and-tickets.md) | You've tried self-serve and need to know where to ask, which team, or how to file a ticket. |
 | 14 | [After You Escalate: FD, CLSD & MSC](knowledge-base/post-escalation-what-happens-next.md) | You've escalated and want to know which team has it and how long it'll take. |
@@ -102,7 +102,7 @@ ALDI / Ace Hardware?"). Contacts/credentials are omitted from every guide.
 | Publishing / go-live / front-end | ✅ From OTS tickets |
 | Post-escalation (FD / CLSD / MSC) | ✅ Boards + turnaround (session 3) |
 | Storefront / publishing | ✅ First version |
-| Common live-flyer issues | ✅ First version (from `#helpme-ops`) |
+| Common live-flyer issues | ✅ First version (from `#helpme-cxe`) |
 | Data piping | ⬜ Deferred (not in first scope) |
 | ClickUp process material | 🚫 Known gap — PS space not in connected ClickUp (see session-04 log) |
 

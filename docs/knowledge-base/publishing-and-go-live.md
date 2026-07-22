@@ -119,7 +119,7 @@ front end.
    `missing-flyers-and-indexing.md` Cause 4).
 
 **Escalate by scope:** if it's broken on the front end **everywhere**, ask the
-Enablement team in Slack, then **CLSD**. If it's **Hosted-only**, go to the
+Enablement team in **`#helpme-cxe`**, then **CLSD**. If it's **Hosted-only**, go to the
 **Hosted team (HS)**. **Confirm whether it's Hosted-only or everywhere before
 routing.**
 
@@ -146,13 +146,13 @@ through empty, escalate with the item reference.
 | Situation | Escalate to |
 |---|---|
 | Stuck pipeline / clone errors / FQC won't generate | **CLSD** (urgent if going live soon) |
-| Item/link/page change won't reflect **everywhere** on the front-end (after ruling out processing) | Ask the **Enablement team in Slack**, then **CLSD** |
+| Item/link/page change won't reflect **everywhere** on the front-end (after ruling out processing) | Ask the **Enablement team in `#helpme-cxe`**, then **CLSD** |
 | Item/link/page change won't reflect **Hosted-only** | **Hosted team (HS)** |
 | Root cause is the flyer isn't live | Fix go-live first (Part A) |
 
 > **Confirm scope before routing.** "Front end" is not the same as "Hosted." The
 > **Hosted team (HS) handles Hosted-only issues**; something broken **everywhere**
-> on the front end goes to Slack (Enablement) → **CLSD**. If you're unsure, ask
+> on the front end goes to **`#helpme-cxe`** (Enablement) → **CLSD**. If you're unsure, ask
 > the user whether it's Hosted-only or everywhere.
 
 Always include: flyer run link, current status/state, due date, and what you tried

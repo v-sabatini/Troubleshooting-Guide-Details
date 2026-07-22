@@ -24,7 +24,7 @@
 | **DSP hourly** | Overnight hourly processors (uploads and FQCs only; no Slack access). |
 | **COC** | "Completed by Ops Content" / center-of-competence style ownership tag used in PS task-combination charts. |
 | **VAST** | A retailer program/segment recently migrated into Processing Support. |
-| **Enablement pod (CXE)** | The **Client Experience & Enablement** team that absorbed the former **Skeleton Team**'s troubleshooting/support function. Reachable at `@enable-cxe` in `#helpme-ops`. |
+| **Enablement pod (CXE)** | The **Client Experience & Enablement** team that absorbed the former **Skeleton Team**'s troubleshooting/support function. Reachable at `@enable-cxe` in `#helpme-cxe`. |
 | **Skeleton Team** | Former ops support team (now disbanded); its function moved to the Enablement pod. |
 | **Data piping** | The pipeline that feeds retailer data into the system; errors are usually caused by retailer-side changes. Filed via CLSD; generally not urgent since it doesn't block go-live. |
 | **Harmonization / 4Square** | Matching a store to the canonical store/location dataset (4Square). Failures block store-level targeting. |

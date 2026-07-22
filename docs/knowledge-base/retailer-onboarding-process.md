@@ -239,7 +239,7 @@ list ("Indexed Flipp Lite + Top 50" sheet) is maintained by the Skeleton Team vi
 | Channel | Purpose |
 |---|---|
 | #onboardings | OBQB team; onboarding questions (tag @QB) |
-| #helpme-ops | Skeleton Team; confirm correct escalation for indexing issues (tag @SkeletonTeam) |
+| #helpme-cxe | Skeleton Team; confirm correct escalation for indexing issues (tag @SkeletonTeam) |
 | #ops-stack-support | Support adjusting flyer-type stacks |
 
 > The escalation path for indexing was noted as changing soon (indexing revamp in
@@ -313,4 +313,4 @@ is in the source doc — contacts/addresses omitted here).
 `hosted-and-previews.md`, `publishing-and-go-live.md`, `escalation-and-tickets.md`.*
 
 *Source: Confluence "Retailer Onboardings" (XPTCXE, 3129144452). Contacts/credentials
-omitted. Last reviewed: 2026-07-15.*
+omitted. Channel #helpme-ops renamed to #helpme-cxe (2026-07). Last reviewed: 2026-07-22.*

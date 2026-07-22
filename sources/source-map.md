@@ -97,7 +97,7 @@ are architecture/strategy docs — they explain the model, not ops runbooks.
 
 | Channel | Used for |
 |---|---|
-| `#helpme-ops` | Real recurring live-flyer issues & remediation patterns (common-live-flyer-issues) |
+| `#helpme-cxe` | Real recurring live-flyer issues & remediation patterns (common-live-flyer-issues) |
 | `#flex-processingsupport`, `#helpme-flex`, `#sf-auditor-alerts`, `#content-public` | Referenced in escalation routing |
 
 ## Google Drive

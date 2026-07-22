@@ -1153,12 +1153,13 @@ specific links and where they should point.
 |---|---|
 | Preview/iframe/**Hosted-only** rendering after confirming flyer is live | **Hosted team (HS)** |
 | Page stitching didn't fix cropped pages (Hosted) | **Hosted team (HS)** |
-| Same issue shows up **everywhere** on the front end (not Hosted-only) | Ask the **Enablement team in Slack**, then **CLSD** — not HS |
+| Same issue shows up **everywhere** on the front end (not Hosted-only) | Ask the **Enablement team in `#helpme-cxe`**, then **CLSD** — not HS |
 | Flyer isn't live yet (root cause is publishing) | See `publishing-and-go-live.md` |
 
 > **HS is for Hosted-ONLY issues.** If the problem also appears outside the
-> Hosted experience (i.e. everywhere on the front end), it routes to Slack
-> (Enablement) → **CLSD**, not the Hosted team. **Confirm the scope** (Hosted-only
+> Hosted experience (i.e. everywhere on the front end), it routes to
+> **`#helpme-cxe`** (Enablement) → **CLSD**, not the Hosted team. **Confirm the
+> scope** (Hosted-only
 > vs everywhere) before routing — ask the user if it's unclear.
 
 Always confirm live/processed status **before** escalating — many preview issues
@@ -1294,7 +1295,7 @@ front end.
    `missing-flyers-and-indexing.md` Cause 4).
 
 **Escalate by scope:** if it's broken on the front end **everywhere**, ask the
-Enablement team in Slack, then **CLSD**. If it's **Hosted-only**, go to the
+Enablement team in **`#helpme-cxe`**, then **CLSD**. If it's **Hosted-only**, go to the
 **Hosted team (HS)**. **Confirm whether it's Hosted-only or everywhere before
 routing.**
 
@@ -1321,13 +1322,13 @@ through empty, escalate with the item reference.
 | Situation | Escalate to |
 |---|---|
 | Stuck pipeline / clone errors / FQC won't generate | **CLSD** (urgent if going live soon) |
-| Item/link/page change won't reflect **everywhere** on the front-end (after ruling out processing) | Ask the **Enablement team in Slack**, then **CLSD** |
+| Item/link/page change won't reflect **everywhere** on the front-end (after ruling out processing) | Ask the **Enablement team in `#helpme-cxe`**, then **CLSD** |
 | Item/link/page change won't reflect **Hosted-only** | **Hosted team (HS)** |
 | Root cause is the flyer isn't live | Fix go-live first (Part A) |
 
 > **Confirm scope before routing.** "Front end" is not the same as "Hosted." The
 > **Hosted team (HS) handles Hosted-only issues**; something broken **everywhere**
-> on the front end goes to Slack (Enablement) → **CLSD**. If you're unsure, ask
+> on the front end goes to **`#helpme-cxe`** (Enablement) → **CLSD**. If you're unsure, ask
 > the user whether it's Hosted-only or everywhere.
 
 Always include: flyer run link, current status/state, due date, and what you tried
@@ -1345,7 +1346,7 @@ See `sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-22.*
 # Common Live-Flyer & Processing Issues — Quick Reference
 
 > **What this covers:** The recurring issues flyer processors actually raise in
-> `#helpme-ops` (to the Enablement pod / `@enable-cxe`), the standard things to
+> `#helpme-cxe` (to the Enablement pod / `@enable-cxe`), the standard things to
 > try first, and when to file a CLSD ticket. This is grounded in real Slack
 > help-desk threads and is meant to capture the "what do I try first?" instinct
 > that experienced processors have.
@@ -1391,7 +1392,7 @@ Always include the **flyer run ID and link** (e.g.
      - ⚠️ **Only if the WHOLE track can be deleted. Do NOT partially delete a
        track** — partial deletion causes downstream impacts.
      - **Make a backup first.**
-- **If still broken:** **Ask in Slack (the Enablement team) before filing a
+- **If still broken:** **Ask in `#helpme-cxe` (the Enablement team) before filing a
   ticket** — CLSD is for errors whose **system cause the CXE team can't
   identify**, so the Slack check comes first. If it's still unresolved, file an
   **urgent CLSD** to unblock (especially if it's stopping Final QC before
@@ -1488,7 +1489,7 @@ Always include the **flyer run ID and link** (e.g.
 
 ## Who to contact
 
-- Post in **`#helpme-ops`** and tag **`@enable-cxe`** (the Enablement pod, which
+- Post in **`#helpme-cxe`** and tag **`@enable-cxe`** (the Enablement pod, which
   absorbed the former Skeleton Team's support function).
 - For **Processing Support** retailer/run questions, use
   **`#flex-processingsupport`** and tag **`@psflex`**.
@@ -1497,7 +1498,7 @@ Always include the **flyer run ID and link** (e.g.
 
 ---
 
-*Sources: `#helpme-ops` Slack help-desk threads (2025–2026); team SME review
+*Sources: `#helpme-cxe` Slack help-desk threads (2025–2026); team SME review
 (answer-feedback-log FB-004, FB-005, FB-008); cross-referenced with the Processing
 Support KB and Storefront runbook. See `sources/source-map.md`. Last reviewed:
 2026-07-22. Some remediation steps are distilled from how issues were actually
@@ -2051,7 +2052,7 @@ list ("Indexed Flipp Lite + Top 50" sheet) is maintained by the Skeleton Team vi
 | Channel | Purpose |
 |---|---|
 | #onboardings | OBQB team; onboarding questions (tag @QB) |
-| #helpme-ops | Skeleton Team; confirm correct escalation for indexing issues (tag @SkeletonTeam) |
+| #helpme-cxe | Skeleton Team; confirm correct escalation for indexing issues (tag @SkeletonTeam) |
 | #ops-stack-support | Support adjusting flyer-type stacks |
 
 > The escalation path for indexing was noted as changing soon (indexing revamp in
@@ -2125,7 +2126,7 @@ is in the source doc — contacts/addresses omitted here).
 `hosted-and-previews.md`, `publishing-and-go-live.md`, `escalation-and-tickets.md`.*
 
 *Source: Confluence "Retailer Onboardings" (XPTCXE, 3129144452). Contacts/credentials
-omitted. Last reviewed: 2026-07-15.*
+omitted. Channel #helpme-ops renamed to #helpme-cxe (2026-07). Last reviewed: 2026-07-22.*
 
 
 ---
@@ -3263,7 +3264,7 @@ Contacts/credentials omitted. Last reviewed: 2026-07-15.*
 > **What this covers:** When and how to escalate a flyer-processing problem, what
 > to include so it gets resolved fast, and who owns what. Grounded in the
 > codesheet & data-piping troubleshooting guides, the Processing Support KB, and
-> `#helpme-ops` practice.
+> `#helpme-cxe` practice.
 
 ---
 
@@ -3285,7 +3286,7 @@ Contacts/credentials omitted. Last reviewed: 2026-07-15.*
 
 ## Where to ask first (Slack)
 
-- **`#helpme-ops`** — general flyer-ops troubleshooting. Tag **`@enable-cxe`**
+- **`#helpme-cxe`** — general flyer-ops troubleshooting. Tag **`@enable-cxe`**
   (the **Enablement pod** — the team that absorbed the former Skeleton Team's
   support function; includes Vanessa, Kayla, Han…).
 - **`#flex-processingsupport`** — Processing Support retailer/run questions; tag
@@ -3299,7 +3300,7 @@ Contacts/credentials omitted. Last reviewed: 2026-07-15.*
 > Keep troubleshooting **in channels, not DMs**, so others have visibility and
 > can help.
 
-> **Ask in Slack before filing a CLSD.** CLSD is for errors whose **system cause
+> **Ask in `#helpme-cxe` before filing a CLSD.** CLSD is for errors whose **system cause
 > the CXE / Enablement team can't identify** — a quick Slack check with the
 > Enablement team often resolves the issue or confirms that escalation is the
 > right call.
@@ -3356,11 +3357,11 @@ and need the Content Collection / CI / dev team to investigate.
 
 | Problem area | First responder | Likely fixer if code/config change needed |
 |---|---|---|
-| Codesheet won't process | `#helpme-ops` / `@enable-cxe` | CI/dev team via `wishabi/fadmin` (config, word bank, filename matching) |
+| Codesheet won't process | `#helpme-cxe` / `@enable-cxe` | CI/dev team via `wishabi/fadmin` (config, word bank, filename matching) |
 | Flyer missing / broken indexer | OTS help desk | **FD** (indexing/feed team) |
 | Store / harmonization data | OTS help desk | **CLSD** (fix) / **MSC** (measurement) |
 | Hosted / preview / front-end rendering | OTS help desk | **HS** (Hosted team) |
-| Live-flyer issue (tiles, images, pricing, categorization) | `#helpme-ops` / `@enable-cxe` | CLSD → Content Collection / CI team |
+| Live-flyer issue (tiles, images, pricing, categorization) | `#helpme-cxe` / `@enable-cxe` | CLSD → Content Collection / CI team |
 | Stuck pipeline / cloning / FQC won't generate | OTS help desk | **CLSD** |
 | Storefront load errors | `#sf-auditor-alerts` / on-call | Content / platform on-call (republish on FADMIN) |
 | Processing Support run/task | `#flex-processingsupport` / `@psflex` | PS Scrum Master |
@@ -3370,8 +3371,8 @@ and need the Content Collection / CI / dev team to investigate.
 
 *Sources: Confluence "Code sheet Troubleshooting Guide" (XPTCXE); "Data Piping
 Troubleshooting Guide" (XPTCXE); "Processing Support - Knowledge Base" (FLX);
-"How to troubleshoot Storefront errors" (QKB); `#helpme-ops` Slack practice. See
-`sources/source-map.md`. Last reviewed: 2026-07-14.*
+"How to troubleshoot Storefront errors" (QKB); `#helpme-cxe` Slack practice. See
+`sources/source-map.md`. Last reviewed: 2026-07-22.*
 
 
 ---
@@ -3533,7 +3534,7 @@ figures are sample-based estimates. See `sources/source-map.md`. Last reviewed:
 | **DSP hourly** | Overnight hourly processors (uploads and FQCs only; no Slack access). |
 | **COC** | "Completed by Ops Content" / center-of-competence style ownership tag used in PS task-combination charts. |
 | **VAST** | A retailer program/segment recently migrated into Processing Support. |
-| **Enablement pod (CXE)** | The **Client Experience & Enablement** team that absorbed the former **Skeleton Team**'s troubleshooting/support function. Reachable at `@enable-cxe` in `#helpme-ops`. |
+| **Enablement pod (CXE)** | The **Client Experience & Enablement** team that absorbed the former **Skeleton Team**'s troubleshooting/support function. Reachable at `@enable-cxe` in `#helpme-cxe`. |
 | **Skeleton Team** | Former ops support team (now disbanded); its function moved to the Enablement pod. |
 | **Data piping** | The pipeline that feeds retailer data into the system; errors are usually caused by retailer-side changes. Filed via CLSD; generally not urgent since it doesn't block go-live. |
 | **Harmonization / 4Square** | Matching a store to the canonical store/location dataset (4Square). Failures block store-level targeting. |

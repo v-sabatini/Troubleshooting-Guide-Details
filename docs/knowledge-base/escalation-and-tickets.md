@@ -3,7 +3,7 @@
 > **What this covers:** When and how to escalate a flyer-processing problem, what
 > to include so it gets resolved fast, and who owns what. Grounded in the
 > codesheet & data-piping troubleshooting guides, the Processing Support KB, and
-> `#helpme-ops` practice.
+> `#helpme-cxe` practice.
 
 ---
 
@@ -25,7 +25,7 @@
 
 ## Where to ask first (Slack)
 
-- **`#helpme-ops`** — general flyer-ops troubleshooting. Tag **`@enable-cxe`**
+- **`#helpme-cxe`** — general flyer-ops troubleshooting. Tag **`@enable-cxe`**
   (the **Enablement pod** — the team that absorbed the former Skeleton Team's
   support function; includes Vanessa, Kayla, Han…).
 - **`#flex-processingsupport`** — Processing Support retailer/run questions; tag
@@ -39,7 +39,7 @@
 > Keep troubleshooting **in channels, not DMs**, so others have visibility and
 > can help.
 
-> **Ask in Slack before filing a CLSD.** CLSD is for errors whose **system cause
+> **Ask in `#helpme-cxe` before filing a CLSD.** CLSD is for errors whose **system cause
 > the CXE / Enablement team can't identify** — a quick Slack check with the
 > Enablement team often resolves the issue or confirms that escalation is the
 > right call.
@@ -96,11 +96,11 @@ and need the Content Collection / CI / dev team to investigate.
 
 | Problem area | First responder | Likely fixer if code/config change needed |
 |---|---|---|
-| Codesheet won't process | `#helpme-ops` / `@enable-cxe` | CI/dev team via `wishabi/fadmin` (config, word bank, filename matching) |
+| Codesheet won't process | `#helpme-cxe` / `@enable-cxe` | CI/dev team via `wishabi/fadmin` (config, word bank, filename matching) |
 | Flyer missing / broken indexer | OTS help desk | **FD** (indexing/feed team) |
 | Store / harmonization data | OTS help desk | **CLSD** (fix) / **MSC** (measurement) |
 | Hosted / preview / front-end rendering | OTS help desk | **HS** (Hosted team) |
-| Live-flyer issue (tiles, images, pricing, categorization) | `#helpme-ops` / `@enable-cxe` | CLSD → Content Collection / CI team |
+| Live-flyer issue (tiles, images, pricing, categorization) | `#helpme-cxe` / `@enable-cxe` | CLSD → Content Collection / CI team |
 | Stuck pipeline / cloning / FQC won't generate | OTS help desk | **CLSD** |
 | Storefront load errors | `#sf-auditor-alerts` / on-call | Content / platform on-call (republish on FADMIN) |
 | Processing Support run/task | `#flex-processingsupport` / `@psflex` | PS Scrum Master |
@@ -110,5 +110,5 @@ and need the Content Collection / CI / dev team to investigate.
 
 *Sources: Confluence "Code sheet Troubleshooting Guide" (XPTCXE); "Data Piping
 Troubleshooting Guide" (XPTCXE); "Processing Support - Knowledge Base" (FLX);
-"How to troubleshoot Storefront errors" (QKB); `#helpme-ops` Slack practice. See
-`sources/source-map.md`. Last reviewed: 2026-07-14.*
+"How to troubleshoot Storefront errors" (QKB); `#helpme-cxe` Slack practice. See
+`sources/source-map.md`. Last reviewed: 2026-07-22.*

@@ -1,7 +1,7 @@
 # Common Live-Flyer & Processing Issues — Quick Reference
 
 > **What this covers:** The recurring issues flyer processors actually raise in
-> `#helpme-ops` (to the Enablement pod / `@enable-cxe`), the standard things to
+> `#helpme-cxe` (to the Enablement pod / `@enable-cxe`), the standard things to
 > try first, and when to file a CLSD ticket. This is grounded in real Slack
 > help-desk threads and is meant to capture the "what do I try first?" instinct
 > that experienced processors have.
@@ -47,7 +47,7 @@ Always include the **flyer run ID and link** (e.g.
      - ⚠️ **Only if the WHOLE track can be deleted. Do NOT partially delete a
        track** — partial deletion causes downstream impacts.
      - **Make a backup first.**
-- **If still broken:** **Ask in Slack (the Enablement team) before filing a
+- **If still broken:** **Ask in `#helpme-cxe` (the Enablement team) before filing a
   ticket** — CLSD is for errors whose **system cause the CXE team can't
   identify**, so the Slack check comes first. If it's still unresolved, file an
   **urgent CLSD** to unblock (especially if it's stopping Final QC before
@@ -144,7 +144,7 @@ Always include the **flyer run ID and link** (e.g.
 
 ## Who to contact
 
-- Post in **`#helpme-ops`** and tag **`@enable-cxe`** (the Enablement pod, which
+- Post in **`#helpme-cxe`** and tag **`@enable-cxe`** (the Enablement pod, which
   absorbed the former Skeleton Team's support function).
 - For **Processing Support** retailer/run questions, use
   **`#flex-processingsupport`** and tag **`@psflex`**.
@@ -153,7 +153,7 @@ Always include the **flyer run ID and link** (e.g.
 
 ---
 
-*Sources: `#helpme-ops` Slack help-desk threads (2025–2026); team SME review
+*Sources: `#helpme-cxe` Slack help-desk threads (2025–2026); team SME review
 (answer-feedback-log FB-004, FB-005, FB-008); cross-referenced with the Processing
 Support KB and Storefront runbook. See `sources/source-map.md`. Last reviewed:
 2026-07-22. Some remediation steps are distilled from how issues were actually
