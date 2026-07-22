@@ -119,3 +119,15 @@ will append entries for you — or add one manually with the template below.
 - **What's actually correct / the issue:** SKU formatting (cause 1) was correctly formatted in this case, though it's a valid thing to keep in mind, and causes 2–3 are worth pointing out. **The real cause the knowledge base is missing: an item import requires a MINIMUM of 3 columns.** A two-column file of just `item_id` + `sku` will not run. You need `item_id`, `sku`, **and any third column — even if it is entirely blank.** Example: adding a blank column with just the header `url` (no values) would likely have let it run.
 - **Article(s) affected:** The planned item-import format article (see FB-006). Add the **minimum-3-columns** requirement: `item_id` (col 1), `sku` (col 2), plus at least one more valid header column (may be empty). Note this applies to SKU-update imports specifically (two-column item_id + sku files fail).
 - **Owner action:** Document the 3-column minimum in the item-import format article. 🔴 Not yet applied.
+
+### FB-008 — Link/URL not reflecting on front-end: name the specific sessions/actions to re-run 🔴 Open
+- **Date / reviewer:** 2026-07-21 / Hannah S-K
+- **Question asked:** "I updated an item's link but it isn't reflecting on the front end (Hosted) — what can I try?" → follow-up: "What are the 'relevant Sessions' to rerun?"
+- **What the bot said:** Rule out a false alarm (processing/caching), run the standard loop (re-run relevant sessions → republish), try the re-save nudge, escalate to Hosted (HS) if it won't reflect. On the follow-up, flagged that the Help Center **defines "session" generically but never names which session maps to a link/URL update**, and reasoned that image/tile/categorization sessions wouldn't carry a link so republish was the operative step.
+- **What's actually correct / the issue (fills the gap — new content):** For a link/URL not reflecting on the front end, the specific things to re-run/try are:
+  1. **Item Cutout Generation session** — tasks **downstream of** the item cutout generation session can be re-run to make it **re-kick off**.
+  2. **Vendor tasks act as sessions** — they can be re-run, and doing so **kicks off item-level sessions**. So suggesting a Vendor-task re-run is valid.
+  3. **Republish** — a correct option to try (already covered).
+  4. **`Touch Storefront Objects` custom action** — a custom action that can be tried to push the change to the storefront. (New — not currently in the KB.)
+- **Article(s) affected:** `publishing-and-go-live.md` ("New boxes / items / links not reflecting on front-end" — add these concrete re-run/actions before the HS escalation) and `common-live-flyer-issues.md`. Also worth noting in `glossary.md` that **Vendor tasks can behave as sessions that kick off item-level sessions**, and adding the **`Touch Storefront Objects`** custom action.
+- **Owner action:** Add the Item Cutout Generation downstream re-run, the Vendor-tasks-as-sessions point, and the `Touch Storefront Objects` custom action to the "links not reflecting" guidance. 🔴 Not yet applied.
