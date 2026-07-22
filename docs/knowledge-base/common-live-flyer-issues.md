@@ -82,6 +82,18 @@ Always include the **flyer run ID and link** (e.g.
 - **If still broken:** Escalate with the flyer run ID(s) and the specific item
   IDs.
 
+## Link / URL not reflecting on the front-end
+
+- **Symptom:** An item's **link/URL** was updated in FADMIN but isn't reflecting
+  on the front-end (often **Hosted**).
+- **Try first (in order):** rule out caching / still-processing; **re-run the
+  Item Cutout Generation session** (re-run a task downstream of it to re-kick
+  it); **re-run the Vendor tasks** (they act as sessions and kick off item-level
+  sessions); **republish**; run the **`Touch Storefront Objects`** custom action.
+- **If still broken:** escalate to the **Hosted team (HS)**. See
+  `publishing-and-go-live.md` ("New boxes / items / links not reflecting") for
+  detail.
+
 ## Auto-categorization gaps (missing Google categories)
 
 - **Symptom:** Some **Google Categories are missing** after auto-categorization.
@@ -142,7 +154,7 @@ Always include the **flyer run ID and link** (e.g.
 ---
 
 *Sources: `#helpme-ops` Slack help-desk threads (2025–2026); team SME review
-(answer-feedback-log FB-004, FB-005); cross-referenced with the Processing
+(answer-feedback-log FB-004, FB-005, FB-008); cross-referenced with the Processing
 Support KB and Storefront runbook. See `sources/source-map.md`. Last reviewed:
 2026-07-22. Some remediation steps are distilled from how issues were actually
 resolved in-thread — verify against current SOPs.*

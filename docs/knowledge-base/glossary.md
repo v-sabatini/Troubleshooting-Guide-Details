@@ -13,7 +13,7 @@
 | **FADMIN** | Internal admin tool for building, processing, and republishing flyer runs (`fadmin.flippback.com`; legacy `flyers.merchants.wishabi.ca`). |
 | **FTP / SFTP** | File servers where retailers deliver source PDFs/images. Filename and folder conventions matter for codesheet processing. |
 | **PDF Base Directory** | The FADMIN field pointing the codesheet at the correct FTP folder. A wrong/extra `/` breaks file lookup. |
-| **Session** | An automated processing step on a run (image/tile generation, categorization, tagging, etc.). "Re-run sessions" is a common first fix. |
+| **Session** | An automated processing step on a run (image/tile generation, categorization, tagging, etc.). "Re-run sessions" is a common first fix. **Vendor tasks can also act as sessions** — re-running them kicks off item-level sessions. |
 | **FQC** | **F**inal **Q**uality **C**heck — verification that a run is correct before go-live. |
 | **QC** | Quality Check / Quality Control (e.g. tag QC, thumbnail QC). |
 | **CLSD** | The escalation ticket type filed for issues needing Content Collection / CI / dev investigation. |
@@ -31,6 +31,7 @@
 | **Masthead** | The branded header/banner on a storefront; can be tied to promo budget and Storefront Premium placements. |
 | **Storefront** | The consumer-facing publication surface; "storefront errors" mean it's failing to load for some merchants. |
 | **Republish** | Re-pushing a processed flyer run to storefronts (done in FADMIN); a common fix for missing thumbnails / incomplete processing. |
+| **Touch Storefront Objects** | A FADMIN **custom action** that pushes changes to the storefront; worth trying when an item link/URL change isn't reflecting on the front-end. |
 | **SFML** | Storefront markup/format referenced in storefront beacon errors (e.g. `Unable to retrieve SFML error 1`). |
 | **Beacon** | A telemetry event (queried in Lenses), e.g. `Beacon.FlippApp.StorefrontZeroCaseError`. |
 | **Generic codesheet** | A fallback codesheet used to create zones, assign stores, and upload pages manually when a retailer's normal codesheet won't process. |
@@ -79,4 +80,4 @@
 | **Flyers-NG** | The V1 **compatibility layer** during the V1→V2 transition; converts V2→V1 on read so legacy App/Web/Hosted keep working. |
 | **DVM** | The active V2 distribution path today (NativeX, retailer apps); built on the V2 model. |
 
-*Last reviewed: 2026-07-15. Add terms as new articles are written.*
+*Last reviewed: 2026-07-22. Add terms as new articles are written.*

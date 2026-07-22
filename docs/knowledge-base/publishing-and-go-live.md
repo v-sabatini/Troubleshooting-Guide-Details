@@ -93,7 +93,15 @@ in vertical preview. *(OTS-1971, OTS-1974.)*
 **Fix:**
 - First rule out a **false alarm** (still processing / caching) — some of these
   self-resolve *(OTS-1974 turned out to be a false issue)*.
-- If new items/links genuinely won't reflect, escalate to the **Hosted team (HS)**
+- **For a link/URL specifically, try these before escalating (in order):**
+  1. **Re-run the Item Cutout Generation session** — re-running a task
+     **downstream of** item cutout generation makes it **re-kick off**.
+  2. **Re-run the Vendor tasks** — Vendor tasks **act as sessions**, so re-running
+     them **kicks off the item-level sessions**.
+  3. **Republish** the flyer.
+  4. Run the **`Touch Storefront Objects`** custom action to push the change to
+     the storefront.
+- If new items/links **still** won't reflect, escalate to the **Hosted team (HS)**
   *(OTS-1971 → HS-3281)*.
 
 ### Issue: Future flyers not showing in workflow
@@ -128,5 +136,5 @@ Always include: flyer run link, current status/state, due date, and what you tri
 ---
 
 *Sources: OTS Jira board 315, incl. OTS-1938/1964/1971/1974/1978/1982/1992/1998/
-2006/2027/2030/2047/2048/2060/2064. See `sources/ots-ticket-inventory.md`. Last
-reviewed: 2026-07-14.*
+2006/2027/2030/2047/2048/2060/2064; team SME review (answer-feedback-log FB-008).
+See `sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-22.*

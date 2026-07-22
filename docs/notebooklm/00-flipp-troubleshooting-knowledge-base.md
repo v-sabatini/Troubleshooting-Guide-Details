@@ -1249,7 +1249,15 @@ in vertical preview. *(OTS-1971, OTS-1974.)*
 **Fix:**
 - First rule out a **false alarm** (still processing / caching) — some of these
   self-resolve *(OTS-1974 turned out to be a false issue)*.
-- If new items/links genuinely won't reflect, escalate to the **Hosted team (HS)**
+- **For a link/URL specifically, try these before escalating (in order):**
+  1. **Re-run the Item Cutout Generation session** — re-running a task
+     **downstream of** item cutout generation makes it **re-kick off**.
+  2. **Re-run the Vendor tasks** — Vendor tasks **act as sessions**, so re-running
+     them **kicks off the item-level sessions**.
+  3. **Republish** the flyer.
+  4. Run the **`Touch Storefront Objects`** custom action to push the change to
+     the storefront.
+- If new items/links **still** won't reflect, escalate to the **Hosted team (HS)**
   *(OTS-1971 → HS-3281)*.
 
 ### Issue: Future flyers not showing in workflow
@@ -1284,8 +1292,8 @@ Always include: flyer run link, current status/state, due date, and what you tri
 ---
 
 *Sources: OTS Jira board 315, incl. OTS-1938/1964/1971/1974/1978/1982/1992/1998/
-2006/2027/2030/2047/2048/2060/2064. See `sources/ots-ticket-inventory.md`. Last
-reviewed: 2026-07-14.*
+2006/2027/2030/2047/2048/2060/2064; team SME review (answer-feedback-log FB-008).
+See `sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-22.*
 
 
 ---
@@ -1374,6 +1382,18 @@ Always include the **flyer run ID and link** (e.g.
 - **If still broken:** Escalate with the flyer run ID(s) and the specific item
   IDs.
 
+## Link / URL not reflecting on the front-end
+
+- **Symptom:** An item's **link/URL** was updated in FADMIN but isn't reflecting
+  on the front-end (often **Hosted**).
+- **Try first (in order):** rule out caching / still-processing; **re-run the
+  Item Cutout Generation session** (re-run a task downstream of it to re-kick
+  it); **re-run the Vendor tasks** (they act as sessions and kick off item-level
+  sessions); **republish**; run the **`Touch Storefront Objects`** custom action.
+- **If still broken:** escalate to the **Hosted team (HS)**. See
+  `publishing-and-go-live.md` ("New boxes / items / links not reflecting") for
+  detail.
+
 ## Auto-categorization gaps (missing Google categories)
 
 - **Symptom:** Some **Google Categories are missing** after auto-categorization.
@@ -1434,7 +1454,7 @@ Always include the **flyer run ID and link** (e.g.
 ---
 
 *Sources: `#helpme-ops` Slack help-desk threads (2025–2026); team SME review
-(answer-feedback-log FB-004, FB-005); cross-referenced with the Processing
+(answer-feedback-log FB-004, FB-005, FB-008); cross-referenced with the Processing
 Support KB and Storefront runbook. See `sources/source-map.md`. Last reviewed:
 2026-07-22. Some remediation steps are distilled from how issues were actually
 resolved in-thread — verify against current SOPs.*
@@ -3458,7 +3478,7 @@ figures are sample-based estimates. See `sources/source-map.md`. Last reviewed:
 | **FADMIN** | Internal admin tool for building, processing, and republishing flyer runs (`fadmin.flippback.com`; legacy `flyers.merchants.wishabi.ca`). |
 | **FTP / SFTP** | File servers where retailers deliver source PDFs/images. Filename and folder conventions matter for codesheet processing. |
 | **PDF Base Directory** | The FADMIN field pointing the codesheet at the correct FTP folder. A wrong/extra `/` breaks file lookup. |
-| **Session** | An automated processing step on a run (image/tile generation, categorization, tagging, etc.). "Re-run sessions" is a common first fix. |
+| **Session** | An automated processing step on a run (image/tile generation, categorization, tagging, etc.). "Re-run sessions" is a common first fix. **Vendor tasks can also act as sessions** — re-running them kicks off item-level sessions. |
 | **FQC** | **F**inal **Q**uality **C**heck — verification that a run is correct before go-live. |
 | **QC** | Quality Check / Quality Control (e.g. tag QC, thumbnail QC). |
 | **CLSD** | The escalation ticket type filed for issues needing Content Collection / CI / dev investigation. |
@@ -3476,6 +3496,7 @@ figures are sample-based estimates. See `sources/source-map.md`. Last reviewed:
 | **Masthead** | The branded header/banner on a storefront; can be tied to promo budget and Storefront Premium placements. |
 | **Storefront** | The consumer-facing publication surface; "storefront errors" mean it's failing to load for some merchants. |
 | **Republish** | Re-pushing a processed flyer run to storefronts (done in FADMIN); a common fix for missing thumbnails / incomplete processing. |
+| **Touch Storefront Objects** | A FADMIN **custom action** that pushes changes to the storefront; worth trying when an item link/URL change isn't reflecting on the front-end. |
 | **SFML** | Storefront markup/format referenced in storefront beacon errors (e.g. `Unable to retrieve SFML error 1`). |
 | **Beacon** | A telemetry event (queried in Lenses), e.g. `Beacon.FlippApp.StorefrontZeroCaseError`. |
 | **Generic codesheet** | A fallback codesheet used to create zones, assign stores, and upload pages manually when a retailer's normal codesheet won't process. |
@@ -3524,5 +3545,5 @@ figures are sample-based estimates. See `sources/source-map.md`. Last reviewed:
 | **Flyers-NG** | The V1 **compatibility layer** during the V1→V2 transition; converts V2→V1 on read so legacy App/Web/Hosted keep working. |
 | **DVM** | The active V2 distribution path today (NativeX, retailer apps); built on the V2 model. |
 
-*Last reviewed: 2026-07-15. Add terms as new articles are written.*
+*Last reviewed: 2026-07-22. Add terms as new articles are written.*
 
