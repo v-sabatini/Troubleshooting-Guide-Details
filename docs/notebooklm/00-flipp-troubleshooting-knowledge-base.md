@@ -856,6 +856,16 @@ formatting), or the flyer was **still processing**.
 struggling with that flyer's format and needs a closer look / next steps
 *(OTS-1984, OTS-1979).*
 
+> **When AutoBox *can't* box a retailer at all — check the source format.** If a
+> retailer has **no PDF flyer** and their "flyer" is really just **text/images
+> on their website** (the app image is a screenshot of that site), the layout is
+> often **very long, skinny pages** that AutoBox can't get enough detail from to
+> box items properly. That's a **source-format limitation, not a processing
+> bug** — re-running AutoBox won't fix it; expect to **box manually**, and if
+> it's chronic it's a conversation about the retailer's asset format, not a
+> ticket. *(OTS-2332: Mitsuwa Marketplace — website-screenshot pages too long/
+> skinny for AutoBox to box.)*
+
 ---
 
 ## Issue: Box draw off-center
@@ -893,7 +903,8 @@ Escalate via **CLSD** with the flyer run link and example item(s).
 ---
 
 *Sources: OTS Jira board 315, incl. OTS-1934/1935/1936/1941/1943/1979/1981/1984/
-2005/2020/2037. See `sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-14.*
+2005/2020/2037; OTS-2332 (weekly scan 2026-07-22). See
+`sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-22.*
 
 
 ---
@@ -3305,6 +3316,37 @@ Contacts/credentials omitted. Last reviewed: 2026-07-15.*
 > Enablement team often resolves the issue or confirms that escalation is the
 > right call.
 
+### Raising a good `#helpme-cxe` request
+
+`#helpme-cxe` (Enablement-owned) is the channel for flyer-processing
+troubleshooting. To keep answers searchable and requests tracked:
+
+**1. Self-serve first.** Before flagging, try to resolve it yourself — **search**
+(Confluence search spans Jira + Confluence; Slack search surfaces prior threads),
+**ask your Pod**, and use the AI tools available to you (the CXE Help Center /
+NotebookLM troubleshooting bot).
+
+**2. Still stuck? Post in the channel — don't DM.**
+- Post in **`#helpme-cxe`** (use the channel form) rather than DMing anyone.
+- **Tag `@enable-cxe`, not individuals** — the whole team sees it, so no single
+  person is a bottleneck.
+- **Troubleshoot in the thread** so it's searchable for the next person.
+- **Escalate to CLSD** (a Jira ticket) only if Enablement can't resolve it.
+
+**3. Make the first message complete** (fewer round-trips = a same-day fix):
+- **Link the flyer run** directly.
+- **Full context:** retailer, the steps you followed, and anything different from
+  previous weeks.
+- **Flag urgency** — say if it's going live tomorrow.
+- **List every step you already tried** (e.g. re-ran Page Tile Generation,
+  republished, checked Jira).
+- **Stay available** for follow-ups. Mind business hours / Summer Hours — near
+  end of day, raise the urgency so Engineering still has runway.
+
+> **Process-improvement / investigation requests** (not live troubleshooting) now
+> go through the **Enablement Project Space intake form in ClickUp**, not DMs or
+> TMI — so they land on the board and get triaged.
+
 ---
 
 ## The Ops Troubleshooting (OTS) board — the front line
@@ -3371,7 +3413,8 @@ and need the Content Collection / CI / dev team to investigate.
 
 *Sources: Confluence "Code sheet Troubleshooting Guide" (XPTCXE); "Data Piping
 Troubleshooting Guide" (XPTCXE); "Processing Support - Knowledge Base" (FLX);
-"How to troubleshoot Storefront errors" (QKB); `#helpme-cxe` Slack practice. See
+"How to troubleshoot Storefront errors" (QKB); `#helpme-cxe` Slack practice;
+Enablement `#helpme-cxe` process deck (2026-07, weekly scan). See
 `sources/source-map.md`. Last reviewed: 2026-07-22.*
 
 

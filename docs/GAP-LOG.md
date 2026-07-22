@@ -120,6 +120,40 @@ a proper article (or add to an existing one) and mark the gap **Resolved**.
 
 ---
 
+## Weekly-scan watchlist
+
+Developments surfaced by the automated weekly source scan that need a **human
+decision** before they change the Help Center (not auto-applied). Clear these as
+you triage them.
+
+### 2026-07-22 scan
+- **⚠️ Indexing migration (Tesseract/flyer-indexing → bots-crawlee).** Confluence
+  "Flipp Indexed Content Migration Delivery Plan" (space CTLR): ~130 Premium /
+  select Top-50 merchants are being migrated off the legacy **Tesseract**
+  indexer to **bots-crawlee**. Our `missing-flyers-and-indexing.md` and glossary
+  still describe Tesseract as the indexer. **Decision:** treat like the V2 shift
+  — worth a short "how indexing is changing" note / new article once the
+  migration behavior is confirmed. Not yet applied (in-progress plan).
+- **⚠️ OneGuides refreshed on Drive.** ALDI "OneGuide 2.0" (2026-07-15),
+  PetSmart Canada (2026-07-22), Dierbergs (2026-07-22) were updated. Our
+  `docs/retailers/` guides were converted from earlier versions. **Decision:**
+  schedule a re-conversion pass for changed OneGuides (contacts still omitted).
+  Not auto-applied — full-guide rewrites aren't low-risk.
+- **⚠️ TE Hosted/integration troubleshooting SOP.** A "TE Troubleshooting SOP for
+  Common Hosted and Integration Issues" (draft, personal space) covers Hosted,
+  integration, store-selection, print, feed, and shoppability triage. **Decision:**
+  candidate source to ingest into `hosted-and-previews.md` once it's finalized /
+  moved to a team space.
+- **⚠️ Categorization Productionization epic** (Data Science): categorization
+  model/stack rework. **Decision:** watch for impact on the auto-categorization
+  guidance in `common-live-flyer-issues.md`.
+- **ℹ️ OTS-2283 "Flyer Tile Generation Failure: Error: Killed"** closed **with no
+  documented resolution/comments** — no fix to capture. Watch for recurrence; if
+  it repeats with a resolution, add the "Error: Killed" variant to the tile-gen
+  guidance.
+
+---
+
 ## Entry template (copy for new gaps)
 
 ```

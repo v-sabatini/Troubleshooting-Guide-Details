@@ -123,6 +123,17 @@ omitted.
 | FB-008 | Link/URL not reflecting on front-end — re-run Item Cutout Generation (downstream re-kick), Vendor-tasks-as-sessions, republish, `Touch Storefront Objects` custom action | publishing-and-go-live, common-live-flyer-issues, glossary |
 | FB-009 | Page swap not on front end — track-ID is an upload-step issue (mis-cited OTS-1954), undo/redo page swap re-kicks sessions, escalate by scope (everywhere → Slack→CLSD; Hosted-only → HS) | missing-flyers-and-indexing, publishing-and-go-live, hosted-and-previews |
 
+## Weekly source scan (automated)
+
+Additions from the scheduled weekly scan (Jira OTS / Confluence / Slack / Drive,
+read-only). Flagged-but-not-applied items live in `docs/GAP-LOG.md` (weekly-scan
+watchlist).
+
+| Date | Applied | Source |
+|---|---|---|
+| 2026-07-22 | AutoBox can't box a website-screenshot retailer (long/skinny pages) → clipping-and-autobox | Jira OTS-2332 |
+| 2026-07-22 | `#helpme-cxe` request/escalation flow (self-serve first, post-don't-DM, tag `@enable-cxe`, complete-request checklist, ClickUp intake for improvements) → escalation-and-tickets | Enablement `#helpme-cxe` process deck (Drive, 2026-07-21) |
+
 ## Not yet ingested (candidate sources for future sessions)
 
 - **Processing Support ClickUp space** — current source of truth for PS process
