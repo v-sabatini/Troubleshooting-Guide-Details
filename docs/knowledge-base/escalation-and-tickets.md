@@ -39,6 +39,11 @@
 > Keep troubleshooting **in channels, not DMs**, so others have visibility and
 > can help.
 
+> **Ask in Slack before filing a CLSD.** CLSD is for errors whose **system cause
+> the CXE / Enablement team can't identify** — a quick Slack check with the
+> Enablement team often resolves the issue or confirms that escalation is the
+> right call.
+
 ---
 
 ## The Ops Troubleshooting (OTS) board — the front line

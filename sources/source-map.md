@@ -107,6 +107,20 @@ are architecture/strategy docs — they explain the model, not ops runbooks.
   troubleshooting docs. Not ingested into the CXE Help Center. Revisit if they contain
   error-handling SOPs.
 
+## Team SME review (answer-feedback-log)
+
+Corrections logged by reviewers testing the assistant (see
+`sessions/answer-feedback-log.md`). Applied directly to the articles; contacts
+omitted.
+
+| Entry | Correction | Article(s) |
+|---|---|---|
+| FB-002 | `NilClass` cause ordering — filename/SFTP mismatch leads; missing-dates only on date-requiring configs; confirm processor first | codesheet-errors |
+| FB-003 | `generic_stores` `NilClass` — PZ-name typo/space top cause; missing store code names itself (not NilClass); Pricing Zone Page / Manage Stores locating technique | codesheet-errors |
+| FB-004 | Tile-gen — whole-track-delete workaround (whole track only + backup); Slack-first before CLSD | common-live-flyer-issues, escalation |
+| FB-005 | Auto-cat can't be re-run & doesn't block tagging; Vendor/Tag QC error = page/item deleted before Vendor tasks | common-live-flyer-issues |
+| FB-006 / FB-007 | Item-import file format — `item_id`/`sku` column order, accepted headers, `english_`/`french_` prefixes, `YYYY-MM-DD` dates, `*blank*`, 3-column minimum | item-import-format (new) |
+
 ## Not yet ingested (candidate sources for future sessions)
 
 - **Processing Support ClickUp space** — current source of truth for PS process
@@ -116,4 +130,4 @@ are architecture/strategy docs — they explain the model, not ops runbooks.
 - The legacy **Rob's Troubleshooting Code Sheets** guide on the old
   `confluence.wishabi.com` (referenced by the codesheet guide; may be archived).
 
-*Last updated: 2026-07-14.*
+*Last updated: 2026-07-22.*

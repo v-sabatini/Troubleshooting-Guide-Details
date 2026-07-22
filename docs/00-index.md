@@ -18,17 +18,18 @@ NotebookLM (or read by Claude) as an individual source.
 | 1 | [Flyer Processing Overview](knowledge-base/flyer-processing-overview.md) | You need the big picture of how flyers get processed and where things break. |
 | 2 | [Content V2 & V2 Publishing](knowledge-base/content-v2-and-publishing.md) | You hit "V2", "publication", "offer", "Nexus/Curator/Flyers-NG", per-channel/zone distribution, or need to know what the V1→V2 shift changes. |
 | 3 | [Codesheet Errors](knowledge-base/codesheet-errors.md) | A codesheet won't process, errors with `NilClass`, or files aren't picked up from the FTP. |
-| 4 | [Missing Flyers, Indexing & Coverage](knowledge-base/missing-flyers-and-indexing.md) | A flyer/pages are missing, a broken indexer, missing FSA/postal coverage, or a region sees the wrong flyer. |
-| 5 | [Clipping, AutoBox & Cutouts](knowledge-base/clipping-and-autobox.md) | Items aren't clippable, boxes are off-center, or cutout generation is failing. |
-| 6 | [Stores & Harmonization](knowledge-base/stores-and-harmonization.md) | Store harmonization failures/audits, duplicate/missing stores, or add-store errors. |
-| 7 | [Flyer Dates](knowledge-base/flyer-dates.md) | Wrong/expired/invalid valid dates, or a live flyer reading as expired. |
-| 8 | [Hosted Sites & Preview Links](knowledge-base/hosted-and-previews.md) | Preview links or the hosted/iframe experience aren't working or render cropped. |
-| 9 | [Publishing, Go-Live & Front-End Display](knowledge-base/publishing-and-go-live.md) | A flyer is stuck before go-live, pipelines/clones stuck, or prices/items not showing on the front-end. |
-| 10 | [Common Live-Flyer & Processing Issues](knowledge-base/common-live-flyer-issues.md) | Quick reference (from `#helpme-ops`): tile-gen, image import, categorization, masthead. |
-| 11 | [Storefront & Publishing Errors](knowledge-base/storefront-publishing-errors.md) | Storefronts failing to load, missing thumbnails, or republish decisions. |
-| 12 | [Escalation & Ticketing](knowledge-base/escalation-and-tickets.md) | You've tried self-serve and need to know where to ask, which team, or how to file a ticket. |
-| 13 | [After You Escalate: FD, CLSD & MSC](knowledge-base/post-escalation-what-happens-next.md) | You've escalated and want to know which team has it and how long it'll take. |
-| 14 | [Glossary](knowledge-base/glossary.md) | You hit an unfamiliar term or acronym (PZ, FADMIN, OTS, V2, Publication, Offer, Nexus, Curator, etc.). |
+| 4 | [Item Import — File Format & Common Failures](knowledge-base/item-import-format.md) | An item import / SKU update won't run: column order (`item_id`/`sku`), accepted headers, 3-column minimum, blanks, date format. |
+| 5 | [Missing Flyers, Indexing & Coverage](knowledge-base/missing-flyers-and-indexing.md) | A flyer/pages are missing, a broken indexer, missing FSA/postal coverage, or a region sees the wrong flyer. |
+| 6 | [Clipping, AutoBox & Cutouts](knowledge-base/clipping-and-autobox.md) | Items aren't clippable, boxes are off-center, or cutout generation is failing. |
+| 7 | [Stores & Harmonization](knowledge-base/stores-and-harmonization.md) | Store harmonization failures/audits, duplicate/missing stores, or add-store errors. |
+| 8 | [Flyer Dates](knowledge-base/flyer-dates.md) | Wrong/expired/invalid valid dates, or a live flyer reading as expired. |
+| 9 | [Hosted Sites & Preview Links](knowledge-base/hosted-and-previews.md) | Preview links or the hosted/iframe experience aren't working or render cropped. |
+| 10 | [Publishing, Go-Live & Front-End Display](knowledge-base/publishing-and-go-live.md) | A flyer is stuck before go-live, pipelines/clones stuck, or prices/items not showing on the front-end. |
+| 11 | [Common Live-Flyer & Processing Issues](knowledge-base/common-live-flyer-issues.md) | Quick reference (from `#helpme-ops`): tile-gen, image import, categorization, Tag QC, masthead. |
+| 12 | [Storefront & Publishing Errors](knowledge-base/storefront-publishing-errors.md) | Storefronts failing to load, missing thumbnails, or republish decisions. |
+| 13 | [Escalation & Ticketing](knowledge-base/escalation-and-tickets.md) | You've tried self-serve and need to know where to ask, which team, or how to file a ticket. |
+| 14 | [After You Escalate: FD, CLSD & MSC](knowledge-base/post-escalation-what-happens-next.md) | You've escalated and want to know which team has it and how long it'll take. |
+| 15 | [Glossary](knowledge-base/glossary.md) | You hit an unfamiliar term or acronym (PZ, FADMIN, OTS, V2, Publication, Offer, Nexus, Curator, etc.). |
 
 > **New in session 2:** Articles 3–8 are grounded in **381 real Ops
 > Troubleshooting (OTS) tickets** (Jan 2024–Jul 2026). See
@@ -105,4 +106,4 @@ ALDI / Ace Hardware?"). Contacts/credentials are omitted from every guide.
 | Data piping | ⬜ Deferred (not in first scope) |
 | ClickUp process material | 🚫 Known gap — PS space not in connected ClickUp (see session-04 log) |
 
-*Last updated: 2026-07-14.*
+*Last updated: 2026-07-22.*

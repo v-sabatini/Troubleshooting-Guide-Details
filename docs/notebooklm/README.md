@@ -12,7 +12,7 @@ bundles (~30 files) hold the same content.
 
 | File | What's in it |
 |---|---|
-| `00-flipp-troubleshooting-knowledge-base.md` | All general troubleshooting/process/QC/runbook content: codesheet errors, Content V2, missing flyers/indexing, clipping/AutoBox, stores/harmonization, dates, hosted/previews, publishing/go-live, storefront, Turbo/CP-Legacy & Home Depot US error guides, onboarding, indexing CI tasks, coupon & live-date QC, alert runbooks, escalation routing (FD/CLSD/MSC), glossary. |
+| `00-flipp-troubleshooting-knowledge-base.md` | All general troubleshooting/process/QC/runbook content: codesheet errors, item-import format, Content V2, missing flyers/indexing, clipping/AutoBox, stores/harmonization, dates, hosted/previews, publishing/go-live, storefront, Turbo/CP-Legacy & Home Depot US error guides, onboarding, indexing CI tasks, coupon & live-date QC, alert runbooks, escalation routing (FD/CLSD/MSC), glossary. |
 | `retailers-A.md` … `retailers-Z.md`, `retailers-0-9.md` | The 489 Vendor OneGuide retailer processing guides, grouped by first letter (contacts/credentials omitted). |
 | `retailers-cp-processing-sops.md` | The Content Production (CP) per-retailer processing SOPs (distinct from the OneGuides). |
 

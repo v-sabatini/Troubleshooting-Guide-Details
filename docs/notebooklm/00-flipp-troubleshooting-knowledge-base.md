@@ -271,6 +271,10 @@ in progress as of Oct 2025 – Jul 2026. Last reviewed: 2026-07-15.*
 > **Audience:** Flyer processors and Processing Support staff.
 > **Escalation path:** If self-serve steps fail, file an Ops Troubleshooting /
 > CLSD ticket (see `escalation-and-tickets.md`).
+>
+> **Related:** Doing an **item import or SKU update**? The file-format rules
+> (column order, accepted headers, blanks, dates) are in
+> [`item-import-format.md`](item-import-format.md).
 
 ---
 
@@ -305,9 +309,11 @@ Run through this before filing a ticket. It resolves the majority of cases.
 1. **Compare to a known-good codesheet.** Pull last week's codesheet that ran
    cleanly for the same retailer and diff it against this week's. Most failures
    are a small change week-over-week.
-2. **Check every pricing zone has the required fields:** pages assigned, a
-   **valid-from and valid-to date**, and the correct language. A single row
-   missing dates or pages is the #1 cause of `NilClass` errors.
+2. **Check every pricing zone has the required fields:** pages assigned, the
+   correct language, and — **for codesheets that require dates** — a valid-from
+   and valid-to date. (Many processors set pricing-zone dates **automatically to
+   match the run**, so missing dates only cause errors on configs that actually
+   require them — don't assume it's the cause.)
 3. **Check filenames match the FTP *exactly*.** Watch for:
    - trailing spaces in FTP filenames,
    - underscore vs. hyphen (`RACC701-0201_A` vs `RACC701-0201-A`),
@@ -336,21 +342,59 @@ Each entry lists the **symptom** (what you see), the **likely cause(s)**, the
 - `no implicit conversion of nil into String`
 
 **What it means:** The processor tried to use a value that turned out to be
-empty (`nil`) — almost always because a field the codesheet expected is blank,
-or a file it expected to find wasn't there.
+empty (`nil`) — almost always because a file it expected to find wasn't there,
+or a field the codesheet expected is blank.
+
+**First, confirm which codesheet processor / config is in use.** The likely
+causes differ by processor — for example, some configs set pricing-zone dates
+**automatically to match the run**, while others (e.g. a generic codesheet with
+no dates) **require** them. Knowing the processor tells you which of the causes
+below are even possible, so establish this before diagnosing.
 
 **Likely causes & fixes (check in this order):**
 
 | Cause | How to confirm | Fix |
 |---|---|---|
-| A pricing-zone row is **missing start/end dates** | Scan the codesheet row-by-row for blank valid-from/valid-to cells | Fill in the missing dates and re-run *(TOSS-7033: the culprit was line 131 with no start or end dates)* |
+| A **page/file name in the codesheet doesn't match the SFTP** (so lookup returns nil) — **the most common cause** | Compare page/file names in the codesheet to what's actually on the SFTP; watch for renames, delimiter (`_` vs `-`), trailing spaces, and page-number-suffix differences | Make them identical — rename/resync on the SFTP **or** update the codesheet to match *(TOSS-7020: a file changed from `FLAP` to `FD`)*. See error #2 below for the full filename-matching detail. |
 | **PDF base path mistake** + a pricing zone has **no pages** in the CSV | Verify the PDF Base Directory; confirm every PZ has at least one page | Correct the base path and add the missing pages *(TOSS-7012)* |
-| A referenced **file was renamed on the FTP** (so lookup returns nil) | Compare filenames in the codesheet to what's actually on the FTP | Ask Ops to rename/resync the file to match, **or** update the codesheet to the new name *(TOSS-7020: a file changed from `FLAP` to `FD`)* |
+| A pricing-zone row is **missing start/end dates** — **only on codesheets that require dates** | Scan the codesheet row-by-row for blank valid-from/valid-to cells | Fill in the missing dates and re-run *(TOSS-7033: the culprit was line 131 with no start or end dates)* |
+
+> **Don't rank "missing dates" first.** Because most processors set dates
+> automatically to match the run, a missing-dates row is usually the *least*
+> likely cause — unless the specific processor requires dates. Lead with the
+> filename/SFTP match.
 
 **Best practice when filing:** attach the failing codesheet **and** a
 previously-working one, plus a screenshot of the **full error backtrace** (not
 just the top line) and both the FADMIN and pipeline backups. Support asks for
 these every time.
+
+#### `NilClass` on a `generic_stores` (store-assignment) codesheet
+
+A **`generic_stores`** codesheet only **assigns stores to pricing zones**, so a
+`NilClass` here narrows to the store / pricing-zone fields.
+
+- **Most common cause: a pricing-zone name that doesn't match Fadmin — usually a
+  typo or a trailing/leading space.** The mismatch can be in **either** the
+  codesheet **or** the Fadmin pricing-zone name, so pull **both** lists and
+  cross-reference them.
+- **A missing/unfindable store code is NOT a `NilClass` error.** When the system
+  can't find a store code it **names that specific store code in the error
+  message** — so if the error is a `NilClass`, a missing store code is probably
+  *not* the cause; don't chase it here. *(To add a genuinely missing store, add
+  it at merchant level with the SAP# as the merchant code and re-run — but that's
+  a different error.)*
+- **Watch for hidden spaces.** Fadmin's **Pricing Zone tab doesn't always display
+  a trailing/leading space**, so two names can *look* identical. To confirm,
+  either **click into the zone**, or run the **`Pricing Zone Page` custom action**
+  and **export the resulting `.csv`** to cross-reference against the codesheet.
+- **Locating the bad zone:**
+  - If the codesheet added stores to zones **in the same order** as the Pricing
+    Zone Page ordering, look at the **first zone showing `0/0`** — the typo is
+    there.
+  - If the codesheet is **out of order**, pull the store list from
+    **Overview → Manage Stores** and use it to find **where the codesheet stopped
+    adding zones**, then check that zone for the typo/space.
 
 ---
 
@@ -423,7 +467,111 @@ See `escalation-and-tickets.md` for the full ticketing guide.
 
 *Sources: Confluence "Code sheet Troubleshooting Guide" (XPTCXE, 3129146347);
 TOSS Jira tickets 494, 6360, 7012, 7020, 7027, 7029, 7030, 7033, 7042, 7043,
-7059. See `sources/source-map.md`. Last reviewed: 2026-07-14.*
+7059; team SME review (answer-feedback-log FB-002, FB-003). See
+`sources/source-map.md`. Last reviewed: 2026-07-22.*
+
+
+---
+
+# Item Import — File Format & Common Failures
+
+> **What this covers:** The accepted file format for an **item import** (and
+> **SKU update**) in FADMIN — required column order, the full set of accepted
+> column headers, language prefixes, date formatting, and how to leave a value
+> blank — plus the most common reasons an item import fails to run. Grounded in
+> team SME review.
+>
+> **Audience:** Flyer processors doing item imports / SKU updates.
+> **Escalation path:** If the file follows every rule below and still won't
+> import, file a CLSD ticket with the `.csv` attached (see
+> `escalation-and-tickets.md`).
+
+---
+
+## The rules that make an import run
+
+An item import is a `.csv` of item data. Most "it won't run" failures come from
+the file's **shape**, not its values. Check these first:
+
+1. **Column order matters for the first two columns.**
+   - **`item_id` must be column 1.**
+   - **`sku` must be column 2.**
+   - Everything after that can be in any order. A file whose columns are, say,
+     `item_id, name, sku, …` **will fail** because `sku` is in position 3, not 2.
+2. **A minimum of 3 columns is required.** `item_id` + `sku` alone will **not
+   run** — even for a SKU-only update. Add at least one more valid header
+   column; **it may be completely empty** (e.g. add a `url` column with just the
+   header and no values, and the import will run).
+3. **Dates must be `YYYY-MM-DD`.** Any date column (e.g. `valid_from`,
+   `valid_to`) has to be in that format.
+4. **To store a blank value, put `*blank*` in the cell.** `*blank*` explicitly
+   saves the field as an empty string — use it to **clear** a field.
+5. **Watch SKU formatting.** Spreadsheets can mangle long SKUs into scientific
+   notation or insert commas. Confirm the SKU column is stored as text and the
+   values are intact.
+
+---
+
+## Accepted column headers
+
+The retailer OneGuides do **not** list the full set of accepted headers. These
+are the accepted column headers for an item import:
+
+```
+analytics_categories, auto_play_video, bonus_offer_description, brand, brand_id,
+data_piping_url, deferred, description, disclaimer_text, display_type,
+display_url, external_override_image_source_url, feature_html,
+google_category_id, id_1, id_2, id_3, id_4, id_5, id_6, iframe_display_height,
+iframe_display_width, in_store_only, item_corrections, item_side_list_url_text,
+keywords, name, overlay_url, page_destination, play_video_inline, pre_price_text,
+price_text, qualifying_quantity, raw_current_price, raw_dollars_off,
+raw_original_price, raw_percent_off, reward_quantity, sale_story, sku, url,
+valid_from, valid_to, video_sound_on, youtube_embedded_url
+```
+
+…plus **`item_id`**. Remember the ordering rule: **`item_id` = column 1, `sku` =
+column 2**; the rest may be in any order.
+
+### `google_category_id`
+
+`google_category_id` **is a valid header** — don't drop it just because its
+value is a number. In FADMIN the Google Category is **displayed in words**, but
+the **backend value is numeric**, so a value like `319` is legitimate.
+
+### Language prefixes (`english_` / `french_`)
+
+You can prepend **`english_`** or **`french_`** to any field so it applies only
+to English or French items. Example header row:
+
+```
+"item_id","sku","english_url","french_url","keywords"
+```
+
+---
+
+## Common item-import failures
+
+| Symptom | Likely cause | Fix |
+|---|---|---|
+| Import fails to run | **Wrong column order** — `item_id` not in column 1, or `sku` not in column 2 | Reorder so `item_id` is column 1 and `sku` is column 2 |
+| SKU-update file won't run | **Fewer than 3 columns** (just `item_id` + `sku`) | Add any third valid header column — it may be empty (e.g. a blank `url` column) |
+| Dates rejected / rows import wrong | Dates not in `YYYY-MM-DD` | Reformat all date columns to `YYYY-MM-DD` |
+| A field won't clear / saves oddly | Empty cell where an explicit blank was intended | Put `*blank*` in the cell to save an empty string |
+| Long SKUs corrupted | Spreadsheet converted them to scientific notation / added commas | Store the column as text; re-enter clean values |
+
+---
+
+## When to escalate
+
+If the file follows all the rules above and still won't import, file a **CLSD**
+ticket with the `.csv` attached and the exact error text. See
+`escalation-and-tickets.md`.
+
+---
+
+*Sources: team SME review (answer-feedback-log FB-006, FB-007). Cross-reference:
+`codesheet-errors.md`, `common-live-flyer-issues.md`. See
+`sources/source-map.md`. Last reviewed: 2026-07-22.*
 
 
 ---
@@ -1166,17 +1314,36 @@ Each issue below follows the same shape:
 Always include the **flyer run ID and link** (e.g.
 `fadmin.flippback.com/flyer_runs/<id>`) when asking for help or filing a ticket.
 
+> **Item import / SKU update won't run?** That's a file-format issue — see
+> [`item-import-format.md`](item-import-format.md) (column order, accepted
+> headers, 3-column minimum, blanks, date format).
+
 ---
 
 ## Flyer tile generation error
 
 - **Symptom:** A flyer run consistently gets a *flyer tile generation error*;
   it blocks completing the Final QC checklist.
-- **Try first:** Re-run the tile/thumbnail generation session; wait to give
-  processing time to work through the queue; confirm required upstream steps
-  completed.
-- **If still broken:** File an **urgent CLSD** to unblock (especially if it's
-  stopping Final QC before go-live).
+- **Does it block go-live?** **Yes.** If the **Final QC checklist isn't
+  completed, the flyer does not publish** — treat this as go-live-blocking.
+- **Try first:**
+  1. Re-run the tile/thumbnail generation session; wait to give processing time
+     to work through the queue; confirm required upstream steps completed.
+  2. **Check the error on the Page Tile Generation task** — it may point to a
+     **specific page** that's the problem.
+  3. **If only ONE track is erroring, consider deleting that whole track** — e.g.
+     if it's a **revised page** or **category pages added after the initial
+     upload**. Deleting the erroring track can temporarily get the run into a
+     state where **FQC can proceed**; you can then **retry the upload of that
+     track**.
+     - ⚠️ **Only if the WHOLE track can be deleted. Do NOT partially delete a
+       track** — partial deletion causes downstream impacts.
+     - **Make a backup first.**
+- **If still broken:** **Ask in Slack (the Enablement team) before filing a
+  ticket** — CLSD is for errors whose **system cause the CXE team can't
+  identify**, so the Slack check comes first. If it's still unresolved, file an
+  **urgent CLSD** to unblock (especially if it's stopping Final QC before
+  go-live).
 
 ## Image import problems (inverted / missing images)
 
@@ -1209,13 +1376,31 @@ Always include the **flyer run ID and link** (e.g.
 
 ## Auto-categorization gaps (missing Google categories)
 
-- **Symptom:** Some **Google Categories are missing** after auto-categorization;
-  tag QC gets stuck.
-- **Try first:** Re-run sessions to see if categories populate. Share a list of
-  affected items.
-- **If still broken:** File a **CLSD** ticket for auto-categorization failure
-  (this is a known escalation path); note if pages are going live soon so it can
-  be prioritized/bumped.
+- **Symptom:** Some **Google Categories are missing** after auto-categorization.
+- **Know this first:** **Auto-categorization can't be manually re-run**, and a
+  **missing category does NOT block tagging** — an item with no assigned category
+  can still generally be tagged. So a missing category is usually **not** what's
+  blocking Tag QC; see the Vendor/Tag QC entry below for the likelier cause.
+- **Try first:** Confirm whether the missing category is actually blocking
+  anything downstream. Share a list of affected items.
+- **If it needs fixing:** File a **CLSD** ticket for the auto-categorization gap;
+  note if pages are going live soon so it can be prioritized/bumped.
+
+## Vendor / Tag QC task errors when moving between items
+
+- **Symptom:** Advancing to the next item in **Vendor Tag QC** errors — and the
+  processor gets the **same failure** when starting the task from the flyer-run
+  pipeline. (Vendors report the task "isn't working.")
+- **Likely cause:** One or more **pages/items were deleted before the Vendor
+  tasks were completed**, so Tag QC is looking for items/pages that **no longer
+  exist** — which errors when advancing. (This fits the same failure showing up
+  for both the vendor and the processor.)
+- **Try first / diagnose:** Pull the **task's error log** — it can reveal the
+  deleted item/page. Don't send the processor hunting for the culprit item by
+  hand; if the log doesn't name it, that identification is fine to **leave to
+  CLSD**.
+- **If still broken:** File a **CLSD** ticket with the task error log; CLSD
+  typically identifies the specific culprit item and unblocks it.
 
 ## Store harmonization failure (4Square)
 
@@ -1248,11 +1433,11 @@ Always include the **flyer run ID and link** (e.g.
 
 ---
 
-*Sources: `#helpme-ops` Slack help-desk threads (2025–2026); cross-referenced
-with the Processing Support KB and Storefront runbook. See
-`sources/source-map.md`. Last reviewed: 2026-07-14. Some remediation steps are
-distilled from how issues were actually resolved in-thread — verify against
-current SOPs.*
+*Sources: `#helpme-ops` Slack help-desk threads (2025–2026); team SME review
+(answer-feedback-log FB-004, FB-005); cross-referenced with the Processing
+Support KB and Storefront runbook. See `sources/source-map.md`. Last reviewed:
+2026-07-22. Some remediation steps are distilled from how issues were actually
+resolved in-thread — verify against current SOPs.*
 
 
 ---
@@ -3049,6 +3234,11 @@ Contacts/credentials omitted. Last reviewed: 2026-07-15.*
 
 > Keep troubleshooting **in channels, not DMs**, so others have visibility and
 > can help.
+
+> **Ask in Slack before filing a CLSD.** CLSD is for errors whose **system cause
+> the CXE / Enablement team can't identify** — a quick Slack check with the
+> Enablement team often resolves the issue or confirms that escalation is the
+> right call.
 
 ---
 
