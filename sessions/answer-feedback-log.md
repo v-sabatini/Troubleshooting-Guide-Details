@@ -131,3 +131,17 @@ will append entries for you — or add one manually with the template below.
   4. **`Touch Storefront Objects` custom action** — a custom action that can be tried to push the change to the storefront. (New — not currently in the KB.)
 - **Article(s) affected:** `publishing-and-go-live.md` ("New boxes / items / links not reflecting on front-end" — add these concrete re-run/actions before the HS escalation) and `common-live-flyer-issues.md`. Also worth noting in `glossary.md` that **Vendor tasks can behave as sessions that kick off item-level sessions**, and adding the **`Touch Storefront Objects`** custom action.
 - **Owner action:** Add the Item Cutout Generation downstream re-run, the Vendor-tasks-as-sessions point, and the `Touch Storefront Objects` custom action to the "links not reflecting" guidance. 🔴 Not yet applied.
+
+### FB-009 — Page swap not on front end: Track-ID cause mis-cited; wrong escalation routing; add undo/redo workaround 🔴 Open
+- **Date / reviewer:** 2026-07-21 / Hannah S-K
+- **Question asked:** "I made a page swap but it's not appearing on the front end. What can I try?"
+- **What the bot said:** Rule out false alarm; re-run **page stitching** + republish; **check the swapped page has a Track ID** (citing missing-flyers-and-indexing.md Cause 4 / OTS-1954, claiming a page missing a track ID is excluded from tile gen); re-run tile gen after confirming the track ID; escalate to the **Hosted team (HS)** if page stitching doesn't fix it or if it's Hosted-only.
+- **What's actually correct / the issue:**
+  1. **Track ID correction + mis-citation.** Track IDs are **automatically assigned at upload.** If one is genuinely missing, the fix is to **go back to the Upload page and hit "Save and Complete."** This is **very rare for a page swap**, because the person doing the upload couldn't have added the page into any pricing zones to make the revision without it. **The cited ticket (OTS-1954 / Cause 4) does NOT involve page revisions at all** — it's about the **upload step going awry**, so citing it for a page-swap-not-appearing is a misapplication. Don't lead a page-swap answer with the track-ID cause.
+  2. **Escalation routing correction (recurring).** For an issue affecting the front end **everywhere** (not Hosted-specific): escalate to **`#helpme-cxe` first, then CLSD** if it's broken everywhere on the front end. **The Hosted team (HS) is only for Hosted-ONLY issues.** This question said "front end" (not Hosted-only), so HS was the wrong default — it should be `#helpme-cxe` → CLSD. **You can always ask the user to confirm** whether it's Hosted-only or everywhere.
+  3. **New workaround to add:** **undo and redo the page swap** — this re-kicks all the relevant sessions, which may not have completed correctly the first time.
+- **Article(s) affected:**
+  - `missing-flyers-and-indexing.md` — clarify Cause 4 / OTS-1954 is about the **upload step**, not page revisions; note track IDs auto-assign at upload and the "Save and Complete on the Upload page" fix; note it's rare for a page swap.
+  - `hosted-and-previews.md` / `publishing-and-go-live.md` escalation tables — correct routing: **front-end-everywhere → `#helpme-cxe` → CLSD; Hosted-only → HS**; and to confirm scope before routing.
+  - Page-swap / post-live-revision guidance — add the **undo/redo the page swap** workaround (re-kicks relevant sessions).
+- **Owner action:** Fix the mis-cited track-ID guidance, correct the everywhere-vs-Hosted-only escalation routing, and add the undo/redo-page-swap workaround. 🔴 Not yet applied.
