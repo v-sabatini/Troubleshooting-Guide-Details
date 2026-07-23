@@ -863,8 +863,8 @@ struggling with that flyer's format and needs a closer look / next steps
 > box items properly. That's a **source-format limitation, not a processing
 > bug** — re-running AutoBox won't fix it; expect to **box manually**, and if
 > it's chronic it's a conversation about the retailer's asset format, not a
-> ticket. *(OTS-2332: Mitsuwa Marketplace — website-screenshot pages too long/
-> skinny for AutoBox to box.)*
+> ticket. *([OTS-2332](https://flippit.atlassian.net/browse/OTS-2332): Mitsuwa
+> Marketplace — website-screenshot pages too long/skinny for AutoBox to box.)*
 
 ---
 
@@ -903,7 +903,8 @@ Escalate via **CLSD** with the flyer run link and example item(s).
 ---
 
 *Sources: OTS Jira board 315, incl. OTS-1934/1935/1936/1941/1943/1979/1981/1984/
-2005/2020/2037; OTS-2332 (weekly scan 2026-07-22). See
+2005/2020/2037; [OTS-2332](https://flippit.atlassian.net/browse/OTS-2332)
+(weekly scan 2026-07-22). See
 `sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-22.*
 
 

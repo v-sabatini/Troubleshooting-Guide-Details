@@ -32,7 +32,10 @@ verbatim — users paste it, and the chatbot matches on it.
 - **Likely cause(s):** The underlying reason(s).
 - **Fix:** Concrete resolution steps.
 - **If that doesn't work / escalate:** Next step + what to include.
-- **Source:** Ticket / page reference (e.g. `TOSS-1234`, Confluence page ID).
+- **Source:** Ticket / page reference. **Link live Jira tickets** so the reader
+  can open them: `[OTS-2332](https://flippit.atlassian.net/browse/OTS-2332)`
+  (same for FD/CLSD/HS/MSC/DOC keys). Leave **retired `TOSS-####`** keys as plain
+  text — that project is archived and the link won't resolve.
 
 ---
 
@@ -51,4 +54,7 @@ AUTHORING NOTES (delete or keep — not shown to end users if you strip HTML com
 - Always keep exact error strings verbatim.
 - One self-contained topic per file works best for NotebookLM retrieval.
 - Cite the source ticket/page so answers are trustworthy and verifiable.
+- Render live Jira ticket references as markdown links to
+  `https://flippit.atlassian.net/browse/<KEY>` (OTS/FD/CLSD/HS/MSC/DOC). Keep
+  retired TOSS keys as plain text.
 -->
