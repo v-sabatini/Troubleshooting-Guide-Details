@@ -1098,8 +1098,19 @@ dates after processing (possible caching/pipeline issue).
 
 **Hosted** is the retailer-embedded flyer experience (e.g. a flyer shown in an
 iframe on the retailer's own website). **Preview links** let internal/external
-folks view a flyer before or around go-live. Both depend on the flyer being fully
-processed and correctly published.
+folks view a flyer before or around go-live.
+
+> **How preview dates work (important):** setting a **preview date** is exactly
+> what lets a flyer's **preview generate even when the run is OUTSIDE its
+> availability / valid dates**. So a preview is **not** gated by the availability
+> window — if a preview reads **"flyer is not available,"** that is **not** a
+> dates problem, and updating valid-from / availability **won't fix it**. (Hosted
+> *live* display does depend on the flyer being live; **a preview with a preview
+> date set does not**.)
+
+> **Two kinds of preview — they escalate differently:**
+> - **Vertical Preview** → owned by the **Hosted team (HS)**.
+> - **Horizontal Preview** → escalate to **CLSD** (not Hosted).
 
 ---
 
@@ -1110,14 +1121,20 @@ reached," or a full-screen preview isn't interactive. *(OTS-1961, OTS-1973,
 OTS-1980, OTS-1995, OTS-2012.)*
 
 **Try first:**
-- Confirm the flyer is **actually live / fully processed** — previews for a flyer
-  that isn't live yet (or is stuck pre-live) won't work. See
-  `publishing-and-go-live.md`.
-- Regenerate/copy the preview link fresh and confirm you're using the correct
-  flyer run.
+- **Don't chase the availability dates.** If a **preview date is set**, the
+  preview is meant to generate *outside* the run's availability window — a
+  "flyer is not available" preview is **not** caused by a closed availability
+  window, so updating valid-from / availability won't fix it.
+- Confirm the **preview date is set**, the flyer is **unhidden** on the relevant
+  distribution, and you've **republished**; then regenerate/copy the preview
+  link fresh and confirm you're on the correct flyer run.
 
-**If still broken:** escalate to the **Hosted team (HS)** with the flyer run and
-the exact preview URL.
+**If still broken — escalate by preview type:**
+- **Horizontal Preview** → **CLSD** (include the flyer run, the preview URL, and
+  that postal codes are assigned to the pricing zones but the preview still reads
+  "not available").
+- **Vertical Preview** → **Hosted team (HS)** (with the flyer run and the exact
+  preview URL).
 
 > **Note:** Providing a direct link to a **not-yet-live** flyer as a workaround is
 > generally **not** advised — previews aren't meant for that use and it carries
@@ -1163,7 +1180,9 @@ specific links and where they should point.
 
 | Situation | Escalate to |
 |---|---|
-| Preview/iframe/**Hosted-only** rendering after confirming flyer is live | **Hosted team (HS)** |
+| **Horizontal Preview** not generating / reads "not available" | **CLSD** |
+| **Vertical Preview** not viewable | **Hosted team (HS)** |
+| Iframe / **Hosted-only** rendering after confirming flyer is live | **Hosted team (HS)** |
 | Page stitching didn't fix cropped pages (Hosted) | **Hosted team (HS)** |
 | Same issue shows up **everywhere** on the front end (not Hosted-only) | Ask the **Enablement team in `#helpme-cxe`**, then **CLSD** — not HS |
 | Flyer isn't live yet (root cause is publishing) | See `publishing-and-go-live.md` |
@@ -1174,14 +1193,16 @@ specific links and where they should point.
 > scope** (Hosted-only
 > vs everywhere) before routing — ask the user if it's unclear.
 
-Always confirm live/processed status **before** escalating — many preview issues
-are really "the flyer isn't live yet."
+For **Hosted live display**, confirm live/processed status before escalating. But
+for a **preview with a preview date set**, don't assume "not live / not
+available" is the cause — the preview date exists precisely so the preview
+generates outside the availability window (see Background).
 
 ---
 
 *Sources: OTS Jira board 315, incl. OTS-1961/1962/1966/1968/1971/1973/1980/1988/
-1992/1995/2012; team SME review (answer-feedback-log FB-009). See
-`sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-22.*
+1992/1995/2012; team SME review (answer-feedback-log FB-009, FB-010). See
+`sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-23.*
 
 
 ---
