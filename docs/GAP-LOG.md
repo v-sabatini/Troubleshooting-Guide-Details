@@ -126,6 +126,23 @@ Developments surfaced by the automated weekly source scan that need a **human
 decision** before they change the Help Center (not auto-applied). Clear these as
 you triage them.
 
+### 2026-07-27 scan
+- **✅ Applied:** Item Cutout Generation erroring on items with a **blank Name**
+  (auto-tag had no text to pull) → added a fix to `clipping-and-autobox.md`
+  (source: `#helpme-cxe` 2026-07-27).
+- **⚠️ New development — Turbo flyer-curation automation.** Confluence
+  "Automating Flyer Curation in Turbo" (requirements draft): curating a flyer
+  automatically from an uploaded curation sheet, per-section rules. Forward-
+  looking; watch for when it lands and changes the curation workflow.
+- **Still-open watchlist items (carried from 2026-07-22), now with movement:**
+  categorization epic now has a solution-design doc (**CDIS-4314**); the **TE
+  Hosted/integration troubleshooting SOP** is still a personal-space draft (has
+  grown — candidate to ingest into `hosted-and-previews.md` once finalized);
+  **OneGuides/production SOPs refreshed** (ALDI 2.0, FreshCo, others) — still a
+  re-conversion candidate.
+- **ℹ️ No new OTS tickets** in the window; the CTLR "Content Sieve unpublished
+  items" alert runbook was touched but we already cover it in `alert-runbooks.md`.
+
 ### 2026-07-22 scan
 - **⚠️ Indexing migration (Tesseract/flyer-indexing → bots-crawlee).** Confluence
   "Flipp Indexed Content Migration Delivery Plan" (space CTLR): ~130 Premium /

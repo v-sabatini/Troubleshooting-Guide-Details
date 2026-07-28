@@ -74,6 +74,31 @@ escalating.
 (often a processing/pipeline issue) via **CLSD** — include the flyer run and the
 specific items.
 
+### Item Cutout Generation errors when items have no Name (auto-tag found no text)
+
+**Symptom:** **Item Cutout Generation** errors, and re-running upstream pipeline
+tasks (Page Tile Generation, Flyer Creation, Box QC) doesn't clear it — which
+also blocks the **Vendor tasks** from generating.
+
+**Likely cause:** A few items have a **blank Name field**. This usually traces
+back to **Auto-Tag**: the boxes were drawn **without text** (text boxes weren't
+used), so auto-tag had nothing to pull from — those items never got a Name, and
+Item Cutout Generation fails on them.
+
+**Fix (processor-level):**
+1. **Make a backup first.**
+2. Find the un-named items: in **Item Search**, filter **Name → IS → (leave
+   blank)**. That lists the items missing a Name.
+3. **Add text to the Name field** for each of those items and **save**.
+4. **Unblock the run** and **re-run the errored Item Cutout Generation task.** If
+   it succeeds, the **Vendor tasks will generate.**
+
+**If that doesn't work:** file an **urgent CLSD** (Content Platform / CPLAT) with
+your **backup** and the **flyer run link** — mark it urgent so Vendors still have
+overnight QC time. Worth flagging to CPLAT even if you resolve it: "some items
+succeeded and others didn't" points at a data issue they may want to see.
+*(Source: `#helpme-cxe`, 2026-07-27.)*
+
 ---
 
 ## When to escalate
@@ -88,5 +113,5 @@ Escalate via **CLSD** with the flyer run link and example item(s).
 
 *Sources: OTS Jira board 315, incl. OTS-1934/1935/1936/1941/1943/1979/1981/1984/
 2005/2020/2037; [OTS-2332](https://flippit.atlassian.net/browse/OTS-2332)
-(weekly scan 2026-07-22). See
-`sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-22.*
+(weekly scan 2026-07-22); `#helpme-cxe` thread (2026-07-27). See
+`sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-27.*

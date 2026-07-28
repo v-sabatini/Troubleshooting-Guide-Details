@@ -133,6 +133,7 @@ watchlist).
 |---|---|---|
 | 2026-07-22 | AutoBox can't box a website-screenshot retailer (long/skinny pages) → clipping-and-autobox | Jira OTS-2332 |
 | 2026-07-22 | `#helpme-cxe` request/escalation flow (self-serve first, post-don't-DM, tag `@enable-cxe`, complete-request checklist, ClickUp intake for improvements) → escalation-and-tickets | Enablement `#helpme-cxe` process deck (Drive, 2026-07-21) |
+| 2026-07-27 | Item Cutout Generation errors on items with a blank Name (auto-tag had no text) — find via Item Search Name IS blank, add a Name, unblock/re-run; else urgent CLSD/CPLAT → clipping-and-autobox | `#helpme-cxe` thread (2026-07-27) |
 
 ## Not yet ingested (candidate sources for future sessions)
 
