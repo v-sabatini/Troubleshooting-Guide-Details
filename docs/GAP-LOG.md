@@ -120,6 +120,45 @@ a proper article (or add to an existing one) and mark the gap **Resolved**.
 
 ---
 
+## GAP-003 — Why Fadmin doesn't always pull clean images when they're "available" 🔴 Open
+
+- **Logged:** 2026-08-11 (test session)
+- **Scenario:** "Why doesn't Fadmin always pull clean images if they are
+  available?" — i.e. a clean product image is visibly present on the flyer page,
+  but the item ends up with a non-clean cutout (or no clean image auto-selected).
+- **What the Help Center currently says:** No dedicated image-extraction /
+  Image-QC article. The answer has to be stitched together from:
+  - `clipping-and-autobox.md` — covers **Item Cutout Generation failing/blocked**
+    (a re-run / CLSD matter), i.e. whether a cutout generates *at all*, not the
+    *quality* of what's pulled.
+  - Per-retailer Image QC notes — e.g. `retailers/aldi.md` ("product images
+    sometimes not clean/isolated (cutouts) because the **PDF formatting isn't
+    compatible with PDF Image Extraction**"; "aim for ~100% PDF image selection");
+    `retailers/dierbergs.md` (use clean PDFs; white-background cutouts OK; avoid
+    dark/lifestyle backgrounds).
+  - `glossary.md` — one-line "Cutout generation" definition only.
+  So the KB can say *that* clean pulls depend on PDF/extraction compatibility and
+  *what to do at Image QC*, but **not the mechanism**: which specific PDF
+  characteristics (vector vs. rasterized/flattened, layered art, overlapping
+  elements, embedded color profiles, etc.) defeat extraction, whether
+  "PDF image auto-selection" has a confidence threshold, or why auto-selection
+  skips a clean image that's present.
+- **Source scan (2026-08-11):** No processing-side troubleshooting/mechanism doc
+  found in the weekly scan window. The recurring pattern is documented only as a
+  retailer-level "known recurring issue" (ALDI), framed as a **source-format
+  limitation, not a processing bug**.
+- **Recommended follow-up:** Get SME confirmation (processing/Image-QC or CLSD) of
+  the real mechanism, then create a small **Image QC / PDF Image Extraction**
+  knowledge-base article capturing: (a) why a visibly-present image may not be
+  extractable cleanly (PDF-format compatibility), (b) how "PDF image
+  auto-selection" decides, (c) the processor playbook (aim for ~100% PDF image
+  selection, clean product image over flat-lay, same image across versions,
+  white-bg cutout as fallback, no dark/lifestyle), and (d) the cutout-generation
+  fail/block vs. quality distinction. Then mark 🟢 and add it to the index + KB
+  bundle.
+
+---
+
 ## Weekly-scan watchlist
 
 Developments surfaced by the automated weekly source scan that need a **human
