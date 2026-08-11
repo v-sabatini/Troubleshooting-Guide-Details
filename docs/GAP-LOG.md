@@ -126,6 +126,39 @@ Developments surfaced by the automated weekly source scan that need a **human
 decision** before they change the Help Center (not auto-applied). Clear these as
 you triage them.
 
+### 2026-08-11 scan
+- **ℹ️ Nothing auto-applied this scan.** No closed OTS tickets with documented
+  resolutions, and no new Slack/Confluence processing fixes. The Slack scan only
+  re-surfaced the Item Cutout Generation / blank-Name thread already captured in
+  the 2026-07-27 scan. (The 08-10 pass just below already re-verified the ALDI /
+  PetSmart Canada / Dierbergs OneGuides and applied the JYSK / OTS-2334 note.)
+  Everything below is watch/flag only.
+- **⚠️ More OneGuides refreshed on Drive (08-11) — re-conversion candidates (NOT
+  auto-applied; full-guide rewrites aren't low-risk).** Changed *after* the 08-10
+  re-conversion pass: **Kroger** (2026-08-11), **Pharmachoice & RxHealthMed**
+  (2026-08-11), **Familiprix 2.0** (2026-08-11), **Timber Mart 2.0** (2026-08-11).
+  (ALDI 2.0's 2026-08-04 touch was already covered by the 08-10 pass — no material
+  change.) **Decision:** schedule a re-conversion check for these four; prior
+  passes show Drive "modified" bumps are frequently metadata-only, so verify each
+  doc's own "Last Updated" before rewriting. Contacts still omitted.
+- **ℹ️ New OTS tickets — unresolved, no fix to capture yet (watch for resolution):**
+  - [OTS-2335](https://flippit.atlassian.net/browse/OTS-2335) — "expired flyer
+    still live (Foody Mart)" (created 08-09, untriaged). Distribution/expiry
+    visibility; watch for the root cause.
+  - [OTS-2327](https://flippit.atlassian.net/browse/OTS-2327) — Enablement
+    auto-tag issue **tracking** ticket; new examples in-window (Stop & Shop
+    phantom original price 07-28; Dollar General "inappropriate word" 08-10).
+    Ongoing evidence log for the known auto-tag hallucination problems — no fix yet.
+  - [OTS-2334](https://flippit.atlassian.net/browse/OTS-2334) (Jysk tagging-blocked)
+    was addressed in the 08-10 pass via the JYSK FR-URL risk-item note in `jysk.md`.
+- **⚠️ V2 tagging / V1 deprecation movement (Content Layer).** "V2 Tagging Tool —
+  Manual Test Plan" and "CDIS-4467 Parity Scope: Phase 2 Decisions" (V1
+  `flipp-search` → V2 Curator interface parity, staged rollout starting with ecom
+  items), plus a "V1 Deprecation" caller-inventory page and a "Legacy Crawler-php
+  Consolidated Discovery Report." Extends the V2 / indexing-migration themes
+  already tracked (GAP-001; 2026-07-22 Tesseract→bots-crawlee). Watch for when
+  these actually change tagging or indexing behavior.
+
 ### 2026-08-10 scan
 - **✅ OneGuide re-conversion pass (ALDI, PetSmart Canada, Dierbergs).** Re-read all three
   live OneGuides against our guides. **No material content changes** since the last conversion —
