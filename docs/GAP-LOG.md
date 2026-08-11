@@ -187,8 +187,10 @@ you triage them.
   categorization epic now has a solution-design doc (**CDIS-4314**); the **TE
   Hosted/integration troubleshooting SOP** is still a personal-space draft (has
   grown — candidate to ingest into `hosted-and-previews.md` once finalized);
-  **OneGuides/production SOPs refreshed** (ALDI 2.0, FreshCo, others) — still a
-  re-conversion candidate.
+  **OneGuides/production SOPs refreshed** (ALDI 2.0, FreshCo, others) — 🟢
+  **Resolved** by the 2026-08-10 re-conversion pass (ALDI / PetSmart Canada /
+  Dierbergs re-verified — no material changes; see the 2026-08-10 scan). FreshCo
+  is a CS-side production SOP (not a OneGuide Google Doc) → out of scope.
 - **ℹ️ No new OTS tickets** in the window; the CTLR "Content Sieve unpublished
   items" alert runbook was touched but we already cover it in `alert-runbooks.md`.
 
@@ -200,11 +202,14 @@ you triage them.
   still describe Tesseract as the indexer. **Decision:** treat like the V2 shift
   — worth a short "how indexing is changing" note / new article once the
   migration behavior is confirmed. Not yet applied (in-progress plan).
-- **⚠️ OneGuides refreshed on Drive.** ALDI "OneGuide 2.0" (2026-07-15),
-  PetSmart Canada (2026-07-22), Dierbergs (2026-07-22) were updated. Our
-  `docs/retailers/` guides were converted from earlier versions. **Decision:**
-  schedule a re-conversion pass for changed OneGuides (contacts still omitted).
-  Not auto-applied — full-guide rewrites aren't low-risk.
+- **🟢 OneGuides refreshed on Drive — RESOLVED (2026-08-10).** ALDI "OneGuide 2.0"
+  (2026-07-15), PetSmart Canada (2026-07-22), Dierbergs (2026-07-22) were updated.
+  Our `docs/retailers/` guides were converted from earlier versions. **Resolution:**
+  the 2026-08-10 re-conversion pass re-read all three live OneGuides against our
+  guides — **no material content changes** (Drive "modified" bumps were metadata/
+  re-share touches; the docs' own "Last Updated" dates were unchanged). Re-verified
+  and stamped `Last reviewed: 2026-08-10`; added the missing **Flyer Review type:
+  Simple** to `aldi.md`. Bundles `retailers-A/-D/-P` regenerated. Contacts omitted.
 - **⚠️ TE Hosted/integration troubleshooting SOP.** A "TE Troubleshooting SOP for
   Common Hosted and Integration Issues" (draft, personal space) covers Hosted,
   integration, store-selection, print, feed, and shoppability triage. **Decision:**
