@@ -197,6 +197,19 @@ you triage them.
   Consolidated Discovery Report." Extends the V2 / indexing-migration themes
   already tracked (GAP-001; 2026-07-22 Tesseract→bots-crawlee). Watch for when
   these actually change tagging or indexing behavior.
+- **⚠️ New CXE source — "Content Classification SOP (Primary vs Secondary)"** (space
+  XPTCXE / Client Experience and Enablement — a **team space**, updated ~2026-08-10):
+  classification rules + escalation path for primary vs secondary content.
+  **Decision:** candidate to ingest — overlaps our existing secondary-publication
+  toggle guidance (e.g. `dierbergs.md` ad-hoc runs), so review before it changes
+  existing content.
+- **⚠️ Additional OneGuide refreshed on Drive (08-11):** **M&M Food Market 2.0**
+  (in addition to the Kroger / Pharmachoice & RxHealthMed / Familiprix / Timber Mart
+  list above). Same re-conversion-candidate handling — verify the doc's own "Last
+  Updated" before rewriting.
+- **ℹ️ Whole Foods Market US onboarding on DVM** (space CustomerSuccess, ~2026-08-10):
+  net-new retailer Production SOP / Technical Setup / DVM Implementation. **Decision:**
+  watch; may warrant a retailer guide once it goes live.
 
 ### 2026-08-10 scan
 - **✅ OneGuide re-conversion pass (ALDI, PetSmart Canada, Dierbergs).** Re-read all three
