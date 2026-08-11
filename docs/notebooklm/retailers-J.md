@@ -350,6 +350,7 @@
 ## ⚠️ Risk items
 - **Linking errors:** many items share the same name — ensure links are added properly. **Check links during FQC.**
 - **"Flyer not available on Hosted" is always a FALSE error** — Flipp doesn't power JYSK's Hosted; do not check their Hosted webpage.
+- **Missing the French `&___store=fr` URL manipulation is a known cause of upload/save failures** (ref [OTS-2334](https://flippit.atlassian.net/browse/OTS-2334)). Before upload, confirm the FR URLs actually carry `&___store=fr` — QC against the **manipulated** links doc, not the raw file from the SFTP (comparing against a previous week's *raw* doc is a common trap). See "URL document manipulation" below.
 
 ## Upload & setup (owned by Vendor)
 
@@ -393,4 +394,4 @@
 - **Day of go-live:** the external ops contact sends any link changes — make the adjustments and confirm. See the JYSK Clipping Instructions doc.
 
 ---
-*Source: JYSK OneGuide (Google Doc `1uw47tJzpdnJWYUPBNPOpSug3xv06RaTpoMg7a06r2bs`). Contacts/credentials omitted. Last reviewed: 2026-07-15.*
+*Source: JYSK OneGuide (Google Doc `1uw47tJzpdnJWYUPBNPOpSug3xv06RaTpoMg7a06r2bs`). Contacts/credentials omitted. Last reviewed: 2026-08-10.*

@@ -676,6 +676,7 @@ Codes.
 
 ## Flyer review risk items
 
+- **Flyer Review type: Simple** (owned by the Lead).
 - **Flyer sorting:** Weekly Ad (Insert) in **Position 1**, followed by Handbill
   (In Store Ad).
 - Only **one** Handbill live at a time (the Sneak Peek version).
@@ -693,7 +694,7 @@ Codes.
 
 ---
 *Source: ALDI OneGuide (Confluence VEN, Google Doc `1YUO2oxv0MbeQe7BAEAFwe_7TlA0bdR_DPDhgqzbFTtk`),
-last updated Oct 6, 2025. Credentials/personal emails omitted. Last reviewed: 2026-07-15.*
+last updated Oct 6, 2025. Credentials/personal emails omitted. Last reviewed: 2026-08-10.*
 
 ---
 

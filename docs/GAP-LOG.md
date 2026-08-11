@@ -126,6 +126,22 @@ Developments surfaced by the automated weekly source scan that need a **human
 decision** before they change the Help Center (not auto-applied). Clear these as
 you triage them.
 
+### 2026-08-10 scan
+- **✅ OneGuide re-conversion pass (ALDI, PetSmart Canada, Dierbergs).** Re-read all three
+  live OneGuides against our guides. **No material content changes** since the last conversion —
+  the Drive "modified" timestamps (Aug 4–7) were metadata/re-share touches; the docs' own
+  "Last Updated" dates are unchanged (ALDI Oct 6 2025; Dierbergs Jun 1 2026; PetSmart Canada
+  matches). Re-verified and stamped `Last reviewed: 2026-08-10`. One genuine gap fixed: added
+  **Flyer Review type: Simple** to `aldi.md` (was missing). Contacts/credentials still omitted.
+  This clears the carried re-conversion watchlist item.
+- **✅ Applied — JYSK FR-URL manipulation lesson** (source: `#helpme-cxe`,
+  [OTS-2334](https://flippit.atlassian.net/browse/OTS-2334)). Skipping the French
+  `&___store=fr` URL manipulation — or QC'ing against the *raw* links doc instead of the
+  manipulated version — causes upload/save failures. The manipulation itself was already
+  documented in `jysk.md`; added it as an explicit **risk item** with the ticket reference.
+- **TE Hosted/integration troubleshooting SOP** — re-checked: still a **personal-space draft**
+  (not moved to a team space), so still **held** per the publish-first rule. Not ingested.
+
 ### 2026-07-27 scan
 - **✅ Applied:** Item Cutout Generation erroring on items with a **blank Name**
   (auto-tag had no text to pull) → added a fix to `clipping-and-autobox.md`

@@ -74,4 +74,4 @@
 - Page swaps standard (baseline page-swap video). Black Friday comms doc provided.
 
 ---
-*Source: Dierbergs OneGuide (Google Doc `1b6ibSPSGy0-_X3RUIjdv6lqqVvXVRHozGy6XcSwZISc`). Contacts/credentials omitted. Last reviewed: 2026-07-15.*
+*Source: Dierbergs OneGuide (Google Doc `1b6ibSPSGy0-_X3RUIjdv6lqqVvXVRHozGy6XcSwZISc`), updated Jun 1, 2026. Contacts/credentials omitted. Last reviewed: 2026-08-10.*

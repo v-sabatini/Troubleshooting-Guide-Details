@@ -67,4 +67,4 @@
 - **Type: Lite** (owned by Flex).
 
 ---
-*Source: PetSmart Canada OneGuide (Google Doc `1L6F2uSm19mIlJnoqA6oRca72oMCnxSzwxn4TRgdl5uM`). Contacts/credentials omitted. Last reviewed: 2026-07-15.*
+*Source: PetSmart Canada OneGuide (Google Doc `1L6F2uSm19mIlJnoqA6oRca72oMCnxSzwxn4TRgdl5uM`). Contacts/credentials omitted. Last reviewed: 2026-08-10.*
