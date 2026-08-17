@@ -165,6 +165,46 @@ Developments surfaced by the automated weekly source scan that need a **human
 decision** before they change the Help Center (not auto-applied). Clear these as
 you triage them.
 
+### 2026-08-17 scan
+- **✅ Applied — 3 additive, low-risk KB updates:**
+  - **Intentional de-indexing** as a "flyer not up" cause → added **Cause 5** to
+    `missing-flyers-and-indexing.md` (rule out a deliberate NBD de-indexing before
+    filing an FD broken-indexer ticket). Source:
+    [OTS-2336](https://flippit.atlassian.net/browse/OTS-2336) (Freson Bros,
+    closed — no longer indexed as an NBD strategic move: organic → promoted).
+  - **`No fields to update!` item-import error** → named it in
+    `item-import-format.md` as the symptom of a sub-3-column file (rule 2 + the
+    common-failures table). Source: Slack `#helpme-cxe` 2026-08-12 (SKU-update
+    with only `item_id` + `sku`). Confirms/extends the existing FB-007 rule.
+  - **FSA count drops after a store-code/store change** → added an entry to
+    `stores-and-harmonization.md`: bulk-recreated stores with **inaccurate
+    lat/longs** shrink the FSA-generation area; fix the lat/longs and re-run FSA
+    generation. Source: Slack `#helpme-cxe` 2026-08-11 (Princess Auto, resolved).
+- **ℹ️ Closed OTS with no documented resolution (nothing to capture):**
+  [OTS-2335](https://flippit.atlassian.net/browse/OTS-2335) "expired flyer still
+  live (Foody Mart)" moved to Done with **no resolution comment**. Watch for
+  recurrence; if it repeats with a fix, add an expired-still-live entry to
+  `flyer-dates.md` / `publishing-and-go-live.md`.
+- **ℹ️ [OTS-2327](https://flippit.atlassian.net/browse/OTS-2327) auto-tag tracking
+  ticket — still open, no fix.** New in-window examples (Dollar General
+  "inappropriate word" 08-10; M&M Food Markets wrong prices/prefix 08-12). **SME
+  note (08-12):** some of these are auto-tag transcribing text *correctly* but
+  **picking the wrong option** — that's a **Vendor QC miss (file vendor feedback),
+  not an auto-tag bug.** Keep as an evidence log; no KB change yet.
+- **⚠️ Confluence "Unify Flyer Ingestion (🕷️Crawler-API) — Delivery Plan" (space
+  CTLR).** New microservice unifying crawled-flyer ingestion across Flipp /
+  Shopfully / Offerista (validates crawled content, adds flyers to Fadmin via the
+  Flyer API). Extends the indexing-migration theme already tracked (GAP-001;
+  Tesseract→bots-crawlee). **Decision:** watch for when it changes indexing/ingestion
+  behavior, then update `missing-flyers-and-indexing.md` / glossary.
+- **⚠️ OneGuide re-conversion candidates carried forward (still NOT auto-applied).**
+  From the 08-11 scan: **Kroger, Pharmachoice & RxHealthMed, Familiprix 2.0,
+  Timber Mart 2.0.** ALDI OneGuide 2.0 shows another Drive "modified" bump
+  (2026-08-11) — prior passes show these are frequently metadata-only, so verify
+  each doc's own "Last Updated" before any rewrite. Contacts still omitted.
+- **ℹ️ Sources reached this run:** Jira OTS ✓ · Confluence ✓ · Slack `#helpme-cxe`
+  ✓ (`#flex-processingsupport` returned no messages in-window) · Google Drive ✓.
+
 ### 2026-08-11 scan
 - **ℹ️ Nothing auto-applied this scan.** No closed OTS tickets with documented
   resolutions, and no new Slack/Confluence processing fixes. The Slack scan only

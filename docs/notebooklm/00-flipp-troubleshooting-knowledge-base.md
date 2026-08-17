@@ -499,9 +499,10 @@ the file's **shape**, not its values. Check these first:
    - Everything after that can be in any order. A file whose columns are, say,
      `item_id, name, sku, …` **will fail** because `sku` is in position 3, not 2.
 2. **A minimum of 3 columns is required.** `item_id` + `sku` alone will **not
-   run** — even for a SKU-only update. Add at least one more valid header
-   column; **it may be completely empty** (e.g. add a `url` column with just the
-   header and no values, and the import will run).
+   run** — even for a SKU-only update, where a two-column file fails with the
+   error **`No fields to update!`**. Add at least one more valid header column;
+   **it may be completely empty** (e.g. add a `url` column with just the header
+   and no values, and the import will run).
 3. **Dates must be `YYYY-MM-DD`.** Any date column (e.g. `valid_from`,
    `valid_to`) has to be in that format.
 4. **To store a blank value, put `*blank*` in the cell.** `*blank*` explicitly
@@ -554,7 +555,7 @@ to English or French items. Example header row:
 | Symptom | Likely cause | Fix |
 |---|---|---|
 | Import fails to run | **Wrong column order** — `item_id` not in column 1, or `sku` not in column 2 | Reorder so `item_id` is column 1 and `sku` is column 2 |
-| SKU-update file won't run | **Fewer than 3 columns** (just `item_id` + `sku`) | Add any third valid header column — it may be empty (e.g. a blank `url` column) |
+| SKU-update file won't run, error `No fields to update!` | **Fewer than 3 columns** (just `item_id` + `sku`) | Add any third valid header column — it may be empty (e.g. a blank `url` column) |
 | Dates rejected / rows import wrong | Dates not in `YYYY-MM-DD` | Reformat all date columns to `YYYY-MM-DD` |
 | A field won't clear / saves oddly | Empty cell where an explicit blank was intended | Put `*blank*` in the cell to save an empty string |
 | Long SKUs corrupted | Spreadsheet converted them to scientific notation / added commas | Store the column as text; re-enter clean values |
@@ -569,9 +570,10 @@ ticket with the `.csv` attached and the exact error text. See
 
 ---
 
-*Sources: team SME review (answer-feedback-log FB-006, FB-007). Cross-reference:
+*Sources: team SME review (answer-feedback-log FB-006, FB-007); Slack Help Desk
+2026-08-12 (the `No fields to update!` error = a sub-3-column file). Cross-reference:
 `codesheet-errors.md`, `common-live-flyer-issues.md`. See
-`sources/source-map.md`. Last reviewed: 2026-07-22.*
+`sources/source-map.md`. Last reviewed: 2026-08-17.*
 
 
 ---
@@ -792,6 +794,27 @@ doesn't resolve it.
 
 ---
 
+## Cause 5 — Intentionally de-indexed (a business/strategy decision)
+
+> Applies to **indexed** retailers only.
+
+**Symptom:** An indexed retailer's flyer stops appearing, but nothing is
+technically broken — the indexer isn't erroring and the retailer still publishes
+the flyer on their own site.
+
+**What's happening:** The flyer may have been **deliberately de-indexed** as a
+business/strategy decision (e.g. NBD moving an organic indexed retailer toward a
+promoted relationship). This is expected behavior, not a defect.
+
+**Fix:** Before filing an FD broken-indexer ticket, **rule out an intentional
+de-indexing** — check with the account / NBD owner whether indexing was stopped
+on purpose. If so, there's no fix to make; explain the strategic change to the
+requester. *([OTS-2336](https://flippit.atlassian.net/browse/OTS-2336): a
+"flyer not up" report resolved as no longer indexed — an NBD strategic move to
+shift organic indexers to promoted.)*
+
+---
+
 ## When to escalate & where
 
 | Situation | Escalate to |
@@ -806,10 +829,10 @@ whether a new flyer is still processing.
 
 ---
 
-*Sources: OTS (Ops Troubleshooting) Jira board 315, ~120 tickets Jan 2024–Jul
+*Sources: OTS (Ops Troubleshooting) Jira board 315, ~120 tickets Jan 2024–Aug
 2026, incl. OTS-1927/1928/1929/1930/1931/1939/1944/1954/1959/1960/1963/1969/1975/
-1985/1986/1997; team SME review (answer-feedback-log FB-009). See
-`sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-22.*
+1985/1986/1997/2336; team SME review (answer-feedback-log FB-009). See
+`sources/ots-ticket-inventory.md`. Last reviewed: 2026-08-17.*
 
 
 ---
@@ -1002,6 +1025,28 @@ of a retailer's store data.
 
 ---
 
+## Issue: FSA / coverage count drops after a store-code or store update
+
+**Symptom:** After store codes were changed or stores were re-created in bulk
+(e.g. codes edited to remove a character, or stores rebuilt by Eng), a flyer's
+**FSA count drops sharply** (e.g. from 1000+ down to a few hundred) and coverage
+shrinks — even though the number of *real* stores didn't change.
+
+**Cause:** The **lat/longs on the new/updated stores are inaccurate.** FSA
+generation builds coverage from each store's coordinates, so bad lat/longs pull a
+much smaller area and generate far fewer FSAs. Tells: the Geo/Map view shows a
+smaller pulled-in area than the prior week, or a store's pin doesn't appear on the
+map.
+
+**Fix:** Take backups/screenshots first, then **audit the lat/longs on the
+updated stores** against their real locations, correct them, and **re-run FSA
+generation**. If the coordinates look right but the count is still wrong, escalate
+to **CLSD**. *(Slack Help Desk 2026-08-11, Princess Auto: FSA count restored after
+correcting inaccurate lat/longs on bulk-recreated stores.)* See also
+`missing-flyers-and-indexing.md` → Cause 2 (missing FSA/postal coverage).
+
+---
+
 ## Issue: Items showing as "In-Store Only"
 
 **Symptom:** All items in a flyer show as "In-Store Only" incorrectly
@@ -1030,7 +1075,8 @@ Include the merchant, store code(s), lat/long, and flyer run link.
 ---
 
 *Sources: OTS Jira board 315, incl. OTS-1967/1982/1991/2002/2009/2024/2025/2035/
-2053/2056. See `sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-14.*
+2053/2056; Slack Help Desk 2026-08-11 (FSA drop after store-code change → bad
+lat/longs). See `sources/ots-ticket-inventory.md`. Last reviewed: 2026-08-17.*
 
 
 ---

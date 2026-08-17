@@ -65,6 +65,28 @@ of a retailer's store data.
 
 ---
 
+## Issue: FSA / coverage count drops after a store-code or store update
+
+**Symptom:** After store codes were changed or stores were re-created in bulk
+(e.g. codes edited to remove a character, or stores rebuilt by Eng), a flyer's
+**FSA count drops sharply** (e.g. from 1000+ down to a few hundred) and coverage
+shrinks — even though the number of *real* stores didn't change.
+
+**Cause:** The **lat/longs on the new/updated stores are inaccurate.** FSA
+generation builds coverage from each store's coordinates, so bad lat/longs pull a
+much smaller area and generate far fewer FSAs. Tells: the Geo/Map view shows a
+smaller pulled-in area than the prior week, or a store's pin doesn't appear on the
+map.
+
+**Fix:** Take backups/screenshots first, then **audit the lat/longs on the
+updated stores** against their real locations, correct them, and **re-run FSA
+generation**. If the coordinates look right but the count is still wrong, escalate
+to **CLSD**. *(Slack Help Desk 2026-08-11, Princess Auto: FSA count restored after
+correcting inaccurate lat/longs on bulk-recreated stores.)* See also
+`missing-flyers-and-indexing.md` → Cause 2 (missing FSA/postal coverage).
+
+---
+
 ## Issue: Items showing as "In-Store Only"
 
 **Symptom:** All items in a flyer show as "In-Store Only" incorrectly
@@ -93,4 +115,5 @@ Include the merchant, store code(s), lat/long, and flyer run link.
 ---
 
 *Sources: OTS Jira board 315, incl. OTS-1967/1982/1991/2002/2009/2024/2025/2035/
-2053/2056. See `sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-14.*
+2053/2056; Slack Help Desk 2026-08-11 (FSA drop after store-code change → bad
+lat/longs). See `sources/ots-ticket-inventory.md`. Last reviewed: 2026-08-17.*

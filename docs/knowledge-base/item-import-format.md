@@ -24,9 +24,10 @@ the file's **shape**, not its values. Check these first:
    - Everything after that can be in any order. A file whose columns are, say,
      `item_id, name, sku, …` **will fail** because `sku` is in position 3, not 2.
 2. **A minimum of 3 columns is required.** `item_id` + `sku` alone will **not
-   run** — even for a SKU-only update. Add at least one more valid header
-   column; **it may be completely empty** (e.g. add a `url` column with just the
-   header and no values, and the import will run).
+   run** — even for a SKU-only update, where a two-column file fails with the
+   error **`No fields to update!`**. Add at least one more valid header column;
+   **it may be completely empty** (e.g. add a `url` column with just the header
+   and no values, and the import will run).
 3. **Dates must be `YYYY-MM-DD`.** Any date column (e.g. `valid_from`,
    `valid_to`) has to be in that format.
 4. **To store a blank value, put `*blank*` in the cell.** `*blank*` explicitly
@@ -79,7 +80,7 @@ to English or French items. Example header row:
 | Symptom | Likely cause | Fix |
 |---|---|---|
 | Import fails to run | **Wrong column order** — `item_id` not in column 1, or `sku` not in column 2 | Reorder so `item_id` is column 1 and `sku` is column 2 |
-| SKU-update file won't run | **Fewer than 3 columns** (just `item_id` + `sku`) | Add any third valid header column — it may be empty (e.g. a blank `url` column) |
+| SKU-update file won't run, error `No fields to update!` | **Fewer than 3 columns** (just `item_id` + `sku`) | Add any third valid header column — it may be empty (e.g. a blank `url` column) |
 | Dates rejected / rows import wrong | Dates not in `YYYY-MM-DD` | Reformat all date columns to `YYYY-MM-DD` |
 | A field won't clear / saves oddly | Empty cell where an explicit blank was intended | Put `*blank*` in the cell to save an empty string |
 | Long SKUs corrupted | Spreadsheet converted them to scientific notation / added commas | Store the column as text; re-enter clean values |
@@ -94,6 +95,7 @@ ticket with the `.csv` attached and the exact error text. See
 
 ---
 
-*Sources: team SME review (answer-feedback-log FB-006, FB-007). Cross-reference:
+*Sources: team SME review (answer-feedback-log FB-006, FB-007); Slack Help Desk
+2026-08-12 (the `No fields to update!` error = a sub-3-column file). Cross-reference:
 `codesheet-errors.md`, `common-live-flyer-issues.md`. See
-`sources/source-map.md`. Last reviewed: 2026-07-22.*
+`sources/source-map.md`. Last reviewed: 2026-08-17.*

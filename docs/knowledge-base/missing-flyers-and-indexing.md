@@ -145,6 +145,27 @@ doesn't resolve it.
 
 ---
 
+## Cause 5 — Intentionally de-indexed (a business/strategy decision)
+
+> Applies to **indexed** retailers only.
+
+**Symptom:** An indexed retailer's flyer stops appearing, but nothing is
+technically broken — the indexer isn't erroring and the retailer still publishes
+the flyer on their own site.
+
+**What's happening:** The flyer may have been **deliberately de-indexed** as a
+business/strategy decision (e.g. NBD moving an organic indexed retailer toward a
+promoted relationship). This is expected behavior, not a defect.
+
+**Fix:** Before filing an FD broken-indexer ticket, **rule out an intentional
+de-indexing** — check with the account / NBD owner whether indexing was stopped
+on purpose. If so, there's no fix to make; explain the strategic change to the
+requester. *([OTS-2336](https://flippit.atlassian.net/browse/OTS-2336): a
+"flyer not up" report resolved as no longer indexed — an NBD strategic move to
+shift organic indexers to promoted.)*
+
+---
+
 ## When to escalate & where
 
 | Situation | Escalate to |
@@ -159,7 +180,7 @@ whether a new flyer is still processing.
 
 ---
 
-*Sources: OTS (Ops Troubleshooting) Jira board 315, ~120 tickets Jan 2024–Jul
+*Sources: OTS (Ops Troubleshooting) Jira board 315, ~120 tickets Jan 2024–Aug
 2026, incl. OTS-1927/1928/1929/1930/1931/1939/1944/1954/1959/1960/1963/1969/1975/
-1985/1986/1997; team SME review (answer-feedback-log FB-009). See
-`sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-22.*
+1985/1986/1997/2336; team SME review (answer-feedback-log FB-009). See
+`sources/ots-ticket-inventory.md`. Last reviewed: 2026-08-17.*
