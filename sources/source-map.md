@@ -98,6 +98,7 @@ are architecture/strategy docs — they explain the model, not ops runbooks.
 | Channel | Used for |
 |---|---|
 | `#helpme-cxe` | Real recurring live-flyer issues & remediation patterns (common-live-flyer-issues) |
+| `#helpme-vs` | Single-executor / FMQ (3FL) vendor-processing issues & resolutions — an FTE runs the flyer end-to-end (e.g. Ops Spotcheck redirect). Note: much of this channel is vendor-assignment/staffing coordination, not troubleshooting — ingest selectively |
 | `#flex-processingsupport`, `#helpme-flex`, `#sf-auditor-alerts`, `#content-public` | Referenced in escalation routing |
 
 ## Google Drive
@@ -122,6 +123,7 @@ omitted.
 | FB-006 / FB-007 | Item-import file format — `item_id`/`sku` column order, accepted headers, `english_`/`french_` prefixes, `YYYY-MM-DD` dates, `*blank*`, 3-column minimum | item-import-format (new) |
 | FB-008 | Link/URL not reflecting on front-end — re-run Item Cutout Generation (downstream re-kick), Vendor-tasks-as-sessions, republish, `Touch Storefront Objects` custom action | publishing-and-go-live, common-live-flyer-issues, glossary |
 | FB-009 | Page swap not on front end — track-ID is an upload-step issue (mis-cited OTS-1954), undo/redo page swap re-kicks sessions, escalate by scope (everywhere → Slack→CLSD; Hosted-only → HS) | missing-flyers-and-indexing, publishing-and-go-live, hosted-and-previews |
+| FB-011 | Ops Spotcheck redirecting FTEs to another flyer run — try unblocking the run (which skips the Spotcheck QC), else CLSD (novel issue); corrected an earlier clone-linkage guess | common-live-flyer-issues |
 
 ## Weekly source scan (automated)
 

@@ -1571,6 +1571,21 @@ Always include the **flyer run ID and link** (e.g.
 - **If still broken:** File a **CLSD** ticket with the task error log; CLSD
   typically identifies the specific culprit item and unblocks it.
 
+## Ops Spotcheck opens / redirects to another flyer run
+
+- **Symptom:** When an FTE opens the **Ops Spotcheck** task, it sends them to a
+  **different flyer run** than the one they're QC'ing. Seen on single-executor /
+  FMQ (3FL) vendor-processed retailers.
+- **Try first — unblock the run.** In the one confirmed case this cleared it, but
+  note *how*: unblocking the run **skipped the Spotcheck QC** step (the run moved
+  on without that Spotcheck). So if you unblock, make sure the rest of QC
+  (Box/Tag/FQC) is genuinely complete — you've bypassed the Spotcheck, not
+  repaired the redirect.
+- **If unblocking doesn't clear it:** file a **CLSD** ticket. This is a **new /
+  rarely-seen issue**, so include the flyer-run link and a screenshot of the
+  redirect; mark it urgent if go-live is close.
+- *(Source: `#helpme-vs` 2026-08-18 — Dunham's Sports, flyer run 1176115.)*
+
 ## Store harmonization failure (4Square)
 
 - **Symptom:** A store won't **harmonize with 4Square**.
@@ -1597,16 +1612,18 @@ Always include the **flyer run ID and link** (e.g.
   absorbed the former Skeleton Team's support function).
 - For **Processing Support** retailer/run questions, use
   **`#flex-processingsupport`** and tag **`@psflex`**.
+- For **single-executor / FMQ (3FL) vendor-processing** issues (retailers an FTE
+  runs end-to-end), use **`#helpme-vs`**.
 - Don't troubleshoot flyer-run issues in DMs — keep it in the help channels so
   others have visibility and can jump in.
 
 ---
 
-*Sources: `#helpme-cxe` Slack help-desk threads (2025–2026); team SME review
-(answer-feedback-log FB-004, FB-005, FB-008); cross-referenced with the Processing
-Support KB and Storefront runbook. See `sources/source-map.md`. Last reviewed:
-2026-07-22. Some remediation steps are distilled from how issues were actually
-resolved in-thread — verify against current SOPs.*
+*Sources: `#helpme-cxe` and `#helpme-vs` Slack help-desk threads (2025–2026); team
+SME review (answer-feedback-log FB-004, FB-005, FB-008, FB-011); cross-referenced
+with the Processing Support KB and Storefront runbook. See `sources/source-map.md`.
+Last reviewed: 2026-08-18. Some remediation steps are distilled from how issues
+were actually resolved in-thread — verify against current SOPs.*
 
 
 ---
