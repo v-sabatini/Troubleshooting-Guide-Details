@@ -165,6 +165,28 @@ Developments surfaced by the automated weekly source scan that need a **human
 decision** before they change the Help Center (not auto-applied). Clear these as
 you triage them.
 
+### 2026-08-24 scan
+- **⚠️ Partial run — only Slack was reachable this pass.** The **Jira OTS,
+  Confluence, and Google Drive** connectors were **approval-gated in this
+  scheduled run** (no interactive approver), so they were not scanned. Re-run
+  those three when the session can approve connector calls. Slack `#helpme-cxe`
+  and `#helpme-vs` were scanned (08-17 → 08-24).
+- **ℹ️ Nothing auto-applied.** The Slack window surfaced only **Sessions errors
+  escalated to CLSD** — no self-serve fix beyond the existing "stuck sessions →
+  CLSD" guidance:
+  - [OTS-2337](https://flippit.atlassian.net/browse/OTS-2337) — Grocery Outlet
+    (run 1223672): pipeline logs showed **"Diffing succeeded but the WES request
+    to connect upstream failed"** (a GO-system run) → escalated to CPLAT via a CLSD
+    ticket. Distinctive Sessions error signature; watch for recurrence / a
+    documented root cause before writing an article.
+  - [OTS-2338](https://flippit.atlassian.net/browse/OTS-2338) — United
+    Supermarkets (run 1049580): a Sessions issue that **couldn't be unblocked on
+    the CXE side** → CLSD. (A past similar case reportedly needed a backend unblock
+    for a page issue.)
+- **ℹ️ `#helpme-vs`:** only the Dunham's Ops Spotcheck thread (already captured as
+  FB-011) plus staffing/permissions coordination (FTE trigger/Jira-filing rights,
+  London Drugs task movement) — nothing new to ingest.
+
 ### 2026-08-17 scan
 - **✅ Applied — 3 additive, low-risk KB updates:**
   - **Intentional de-indexing** as a "flyer not up" cause → added **Cause 5** to
