@@ -165,6 +165,40 @@ Developments surfaced by the automated weekly source scan that need a **human
 decision** before they change the Help Center (not auto-applied). Clear these as
 you triage them.
 
+### 2026-09-02 scan (weekly; fired 2026-08-31)
+- **✅ All four sources reached** — the read-only-tool allowlist (`.claude/settings.json`,
+  commit `b2e709b`) worked: Jira / Confluence / Drive are no longer approval-gated
+  in the scheduled run.
+- **✅ Applied — 1 additive update.** Enriched the "Ops Spotcheck opens / redirects
+  to another flyer run" entry in `common-live-flyer-issues.md` with its **most common
+  root cause**: when a merchant has **no Spotcheck assignment**, the task defaults to
+  "Vendor 1" and misroutes FTEs → fix by adding the Spotcheck assignment at the
+  **merchant level** and re-routing the run's task to the correct vendor. Source:
+  `#helpme-vs` 2026-08-26 (Wholehealth Pharmacy, run 1194448) — a second instance of
+  the Dunham's issue, with the underlying cause.
+- **⚠️ Needs Vanessa — indexed vs. direct FSA removal.**
+  [OTS-2339](https://flippit.atlassian.net/browse/OTS-2339) (Summit Tools, "no French
+  version"): SME notes you **can't remove FSAs on *indexed* runs the way you can on
+  *direct* runs** — the fix is to **update the indexer** to exclude the unwanted FSAs
+  (e.g. Quebec) going forward. Good candidate to add to
+  `missing-flyers-and-indexing.md` (Cause 2 / FSA coverage) as an indexed-vs-direct
+  note routed to the indexer/FD team — held because it's a single, still-open ticket.
+- **ℹ️ New OTS tickets — unresolved, no fix to capture yet (watch):**
+  [OTS-2342](https://flippit.atlassian.net/browse/OTS-2342) (Pattison/Overwaitea SFTP
+  syncing), [OTS-2341](https://flippit.atlassian.net/browse/OTS-2341) (Tops Friendly
+  Markets), [OTS-2340](https://flippit.atlassian.net/browse/OTS-2340) (Marche C&T wrong
+  dates). [OTS-2327](https://flippit.atlassian.net/browse/OTS-2327) auto-tag evidence
+  log got new Giant Food / Loblaws examples — still no fix.
+- **⚠️ V2-tagging / indexing-migration / Turbo themes still moving (Confluence, watch).**
+  V2 Tagging Tool test plan + UI overview + "V2-only offers in search"; Crawler-API,
+  Flipp Indexed Content Migration, and "Manual Indexed Flyer Ingestion Validation";
+  "What is Turbo" / "DVM Flyer in Turbo". Continues the V2 (GAP-001) and
+  Tesseract→bots-crawlee watch — nothing changes processing guidance yet.
+- **⚠️ OneGuide re-conversion candidates (Drive, not auto-applied).** Changed in-window:
+  **ALDI** (again), **Sharpe's Food Market**, **Value Grocer**, **Rouses Supermarkets**,
+  **Red Apple / The Bargain Shop**. Verify each doc's own "Last Updated" before any
+  rewrite — prior passes show Drive bumps are frequently metadata-only.
+
 ### 2026-08-24 scan
 - **⚠️ Partial run — only Slack was reachable this pass.** The **Jira OTS,
   Confluence, and Google Drive** connectors were **approval-gated in this

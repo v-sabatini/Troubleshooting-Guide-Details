@@ -127,15 +127,23 @@ Always include the **flyer run ID and link** (e.g.
 - **Symptom:** When an FTE opens the **Ops Spotcheck** task, it sends them to a
   **different flyer run** than the one they're QC'ing. Seen on single-executor /
   FMQ (3FL) vendor-processed retailers.
-- **Try first — unblock the run.** In the one confirmed case this cleared it, but
-  note *how*: unblocking the run **skipped the Spotcheck QC** step (the run moved
-  on without that Spotcheck). So if you unblock, make sure the rest of QC
-  (Box/Tag/FQC) is genuinely complete — you've bypassed the Spotcheck, not
-  repaired the redirect.
-- **If unblocking doesn't clear it:** file a **CLSD** ticket. This is a **new /
-  rarely-seen issue**, so include the flyer-run link and a screenshot of the
-  redirect; mark it urgent if go-live is close.
-- *(Source: `#helpme-vs` 2026-08-18 — Dunham's Sports, flyer run 1176115.)*
+- **Check first — is a Spotcheck assigned at the merchant level?** The most common
+  cause: when a merchant has **no Spotcheck vendor assignment**, the Spotcheck task
+  **defaults to "Vendor 1"** and can send FTEs to the wrong place. **Fix:** add the
+  **Spotcheck assignment at the merchant level**, then update the flyer-run task to
+  the correct vendor (e.g. DSP). This is usually the real fix — check it before
+  unblocking or escalating.
+- **If there's no assignment gap — try unblocking the run.** In one case this
+  cleared it, but note *how*: unblocking **skipped the Spotcheck QC** step (the run
+  moved on without that Spotcheck). So if you unblock, make sure the rest of QC
+  (Box/Tag/FQC) is genuinely complete — you've bypassed the Spotcheck, not repaired
+  the redirect.
+- **If neither clears it:** file a **CLSD** ticket — include the flyer-run link and
+  a screenshot of the redirect; mark it urgent if go-live is close.
+- *(Sources: `#helpme-vs` 2026-08-18, Dunham's Sports run 1176115 (unblock →
+  skipped Spotcheck); `#helpme-vs` 2026-08-26, Wholehealth Pharmacy run 1194448
+  (no merchant-level Spotcheck assignment → defaulted to Vendor 1 → fixed at
+  merchant level).)*
 
 ## Store harmonization failure (4Square)
 
