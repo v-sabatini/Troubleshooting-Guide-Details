@@ -63,6 +63,16 @@ Edit the weekly-scan routine's prompt so the queries are narrower:
 
 ---
 
+## 4. Fold ClickUp into the weekly scan
+Read-only ClickUp tools are already pre-approved in `.claude/settings.json`, and the
+boards are registered in `sources/source-map.md`. The remaining step is to **add
+ClickUp to the weekly-scan trigger prompt** so it's swept automatically — scan the
+**VSM – Adhoc Relief Board → `ARBoard`** (single-executor/FMQ retailer relief) and
+**CXE – Enablement Project Space → `Projects`/`Collaboration`**, applying the same
+"resolved error→fix patterns only, contacts omitted, ingest selectively" bar as
+`#helpme-vs`. This edits the trigger prompt, so it needs an interactive session (see
+below).
+
 ## Why not now?
 Items 1–3 all change the scheduled **routines**, and the routine-management tools are
 **approval-gated** in the automatic (remote) session — the "yes" can't be given from

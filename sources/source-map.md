@@ -101,6 +101,25 @@ are architecture/strategy docs — they explain the model, not ops runbooks.
 | `#helpme-vs` | Single-executor / FMQ (3FL) vendor-processing issues & resolutions — an FTE runs the flyer end-to-end (e.g. Ops Spotcheck redirect). Note: much of this channel is vendor-assignment/staffing coordination, not troubleshooting — ingest selectively |
 | `#flex-processingsupport`, `#helpme-flex`, `#sf-auditor-alerts`, `#content-public` | Referenced in escalation routing |
 
+## ClickUp
+
+Workspace `9003147350`. Read-only; contacts/assignees omitted; ingest selectively
+(these boards are mostly ops/assignment coordination — capture only resolved
+retailer-processing error→fix patterns, same bar as `#helpme-vs`).
+
+| Space / list | ID | Used for |
+|---|---|---|
+| VSM – Adhoc Relief Board → `ARBoard` | space `90171177866` / list `901705387041` | Single-executor / FMQ (3FL) ad-hoc relief requests — the retailer-flow board where processing/assignment issues are filed and resolved (e.g. Spotcheck vendor-assignment fixes). Primary ClickUp scan target. |
+| CXE – Enablement Project Space → `Projects`, `Collaboration` | space `90176167905` / lists `901714746393`, `901714745856` | Enablement improvement intake / project + collaboration tracking (the "ClickUp intake for improvements" referenced in `escalation-and-tickets.md`). |
+
+Other spaces (CS Accounts, Brand Media Campaigns, Retech Onboarding Trackers,
+Opportunity Pipeline, CXE – Training Sandbox) are out of scope for the Help Center.
+
+> **Note:** the read-only ClickUp tools are pre-approved in `.claude/settings.json`,
+> but the **weekly-scan trigger prompt still lists only Jira/Confluence/Slack/Drive** —
+> add ClickUp (the two boards above) to that prompt from an interactive session for it
+> to be swept automatically. Until then it's scanned only when run by hand.
+
 ## Google Drive
 
 - Searched; the flyer-related results were **"DRAW Audit / Automation Scorecard"**
