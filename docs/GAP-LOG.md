@@ -165,6 +165,29 @@ Developments surfaced by the automated weekly source scan that need a **human
 decision** before they change the Help Center (not auto-applied). Clear these as
 you triage them.
 
+### 2026-10-05 scan (consolidates the 09-07 → 10-05 firings)
+- **⚠️ Degraded/partial runs.** Several weekly firings (09-07, 09-14, 09-21, 09-28)
+  did **not complete** — the long-lived scheduled session kept restarting mid-run
+  (the overloaded-perpetual-session problem; see `docs/scan-tuning-plan.md`). On the
+  10-05 run the **Atlassian connector failed to connect (404)**, so **Jira OTS and
+  Confluence were unreachable**. Slack and Drive were reachable. Nothing auto-applied.
+- **⚠️ Needs Vanessa — SFTP file-drop size limit (no clean KB home yet).** From
+  `#helpme-cxe` (~2026-09-03): SFTP **file drops must be < 5GB** (software limit); a
+  retailer dropping multiple large banner files at once (e.g. SOF + UF, each ~4.5GB+)
+  can exceed it and the sync fails → advise dropping files **separately, each < 5GB**.
+  Past occurrence: CLSD-4083. **Not applied** — this is file-*intake* (not codesheet
+  filename-matching), and there's no SFTP/feed-intake article; decide whether to add a
+  short one or fold it into `codesheet-errors.md`. Relates to the still-open
+  [OTS-2342](https://flippit.atlassian.net/browse/OTS-2342) (Pattison/Overwaitea SFTP syncing).
+- **ℹ️ `#helpme-vs`:** vendor-assignment coordination only (Supermarche PA linking-sheet
+  reassignment; ARB/UPR ticket routing) — nothing to ingest.
+- **⚠️ OneGuide re-conversion candidates (Drive, not auto-applied).** Seen across the
+  window: ALDI (recurring bumps), **M&M Food Market 2.0**, **Kroger**, **Home Hardware /
+  Home Furniture**, **Nature's Fare Market**, plus 09-02's Sharpe's / Value Grocer /
+  Rouses / Red Apple. Verify each doc's own "Last Updated" before any rewrite.
+- **ℹ️ Confluence themes unchanged** (V2 tagging rollout, Crawler-API / indexing
+  migration, Turbo) — still watch-only; nothing changes processing guidance yet.
+
 ### 2026-09-02 scan (weekly; fired 2026-08-31)
 - **✅ All four sources reached** — the read-only-tool allowlist (`.claude/settings.json`,
   commit `b2e709b`) worked: Jira / Confluence / Drive are no longer approval-gated
