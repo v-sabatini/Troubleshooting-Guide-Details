@@ -53,6 +53,29 @@ Always include the **flyer run ID and link** (e.g.
   **urgent CLSD** to unblock (especially if it's stopping Final QC before
   go-live).
 
+### Specifically: *Flyer* Tile Generation errors ("high memory worker" / `Killed`)
+
+- **Symptom:** **Flyer Tile Generation** errors out — often after a **page swap**,
+  and often reading **high memory worker** or **`Killed`**. Page Tile Generation and
+  Page Stitching run fine; it's the flyer-level task that dies. The published time
+  on v1/v2 may update and the task **still** errors.
+- **Fix — re-run Flyer Creation, not "unblock".** **Re-running Flyer Creation is
+  the standard troubleshooting step for a Flyer Tile Gen error**: it sits
+  **upstream** of Flyer Tile Gen and **forces a re-run** of it.
+  - ⚠️ **"Unblock" is not the same thing.** Unblocking the run works by a
+    **different mechanism** and will not re-kick Flyer Tile Generation. Repeatedly
+    unblocking is the common time-waster here.
+- **If it errors again after the Flyer Creation re-run:** escalate — file a
+  **CLSD** (urgent if it's holding up FQC before go-live).
+- **Known platform context:** jobs that error out are **not caught by the
+  high-memory server for auto-retry** and instead surface as **`Killed`**. Tracked
+  in **CPFM-3540 / CPFM-3765** (immediate issues and job retries resolved;
+  *"Improve Unblock Flyerrun behaviour"* still in the backlog — which is why the
+  unblock path feels like it should work but doesn't).
+- **Source:** `#helpme-cxe` thread 2026-10-19 (run 1171697, FQC blocked), Enablement
+  guidance in-thread; platform context from the CXE monthly issue report
+  (2026-10-01).
+
 ## Image import problems (inverted / missing images)
 
 - **Symptom:** Imported images are **inverted and unusable**, or images aren't
@@ -122,6 +145,24 @@ Always include the **flyer run ID and link** (e.g.
 - **If still broken:** File a **CLSD** ticket with the task error log; CLSD
   typically identifies the specific culprit item and unblocks it.
 
+## Vendor queue: tasks never become available / visible tasks can't be started
+
+- **Symptom:** In **PQC** (and vendor tasks generally), **most tasks never become
+  available** in the vendor queue, and tasks that *are* visible **can't be
+  started** — even though the queue shows them as available.
+- **Likely cause — this is usually the locking mechanism, not a bug.** Every WES
+  task is **split into sub-tasks** (for a vendor box-draw task, for example, the
+  sub-task is a **page**). **Vendors work one sub-task at a time**, so a task can
+  show as available in the queue while its sub-tasks are **locked** by whoever is
+  already working them. The task often turns out to have been **completed
+  normally** shortly afterwards.
+- **Try first:** Before escalating, **re-check the task a little later** and
+  confirm whether it completed. Check whether another vendor is already in it.
+- **If it genuinely never clears:** file a **CLSD** with the task and run links and
+  say that you've ruled out normal sub-task locking.
+- **Source:** [CLSD-5830](https://flippit.atlassian.net/browse/CLSD-5830)
+  (opened 2026-09-21, closed 2026-10-07 — resolved as expected locking behaviour).
+
 ## Ops Spotcheck opens / redirects to another flyer run
 
 - **Symptom:** When an FTE opens the **Ops Spotcheck** task, it sends them to a
@@ -180,6 +221,9 @@ Always include the **flyer run ID and link** (e.g.
 
 *Sources: `#helpme-cxe` and `#helpme-vs` Slack help-desk threads (2025–2026); team
 SME review (answer-feedback-log FB-004, FB-005, FB-008, FB-011); cross-referenced
-with the Processing Support KB and Storefront runbook. See `sources/source-map.md`.
-Last reviewed: 2026-08-18. Some remediation steps are distilled from how issues
+with the Processing Support KB and Storefront runbook;
+[CLSD-5830](https://flippit.atlassian.net/browse/CLSD-5830) (vendor-queue sub-task
+locking); `#helpme-cxe` 2026-10-19 + CXE monthly issue report 2026-10-01 (Flyer Tile
+Gen "high memory worker" → re-run Flyer Creation). See `sources/source-map.md`.
+Last reviewed: 2026-10-26. Some remediation steps are distilled from how issues
 were actually resolved in-thread — verify against current SOPs.*

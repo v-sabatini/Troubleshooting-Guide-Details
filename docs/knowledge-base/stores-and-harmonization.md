@@ -87,6 +87,23 @@ correcting inaccurate lat/longs on bulk-recreated stores.)* See also
 
 ---
 
+## Issue: Unable to deharmonize — "Venue has been deleted"
+
+**Symptom:** Trying to **deharmonize** a store fails with **`Venue has been
+deleted`**.
+
+**Cause:** The store's canonical **4Square venue record no longer exists**, so
+FAdmin has nothing to deharmonize against and the action can't complete.
+
+**Fix:** **Not self-serve** — this needs a backend fix. **File a CLSD** with the
+merchant, the store code(s), and the exact error. Once the records are corrected
+the change **reflects in the UI** without further action on your side.
+
+*(Resolved in [CLSD-5841](https://flippit.atlassian.net/browse/CLSD-5841), opened
+2026-09-30 and fixed 2026-10-02 — roughly a two-business-day turnaround.)*
+
+---
+
 ## Issue: Items showing as "In-Store Only"
 
 **Symptom:** All items in a flyer show as "In-Store Only" incorrectly
@@ -103,6 +120,7 @@ if item availability/flags are wrong system-wide rather than per-item.
 |---|---|
 | Store harmonization failure / can't be fixed locally | **CLSD** (fix); measurement tracked in **MSC**/"PIA" |
 | Store code conflicts / canonical data | **CLSD** |
+| Deharmonize fails with `Venue has been deleted` | **CLSD** (not self-serve) |
 | Item availability flags wrong (In-Store Only, etc.) | **Hosted team (HS)** |
 | Third-party app display (not Flipp-hosted) | Account team (via DOC) |
 
@@ -116,4 +134,6 @@ Include the merchant, store code(s), lat/long, and flyer run link.
 
 *Sources: OTS Jira board 315, incl. OTS-1967/1982/1991/2002/2009/2024/2025/2035/
 2053/2056; Slack Help Desk 2026-08-11 (FSA drop after store-code change → bad
-lat/longs). See `sources/ots-ticket-inventory.md`. Last reviewed: 2026-08-17.*
+lat/longs); [CLSD-5841](https://flippit.atlassian.net/browse/CLSD-5841)
+(deharmonize → `Venue has been deleted`). See `sources/ots-ticket-inventory.md`.
+Last reviewed: 2026-10-26.*

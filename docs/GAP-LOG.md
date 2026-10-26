@@ -165,6 +165,73 @@ Developments surfaced by the automated weekly source scan that need a **human
 decision** before they change the Help Center (not auto-applied). Clear these as
 you triage them.
 
+### 2026-10-26 — KB update digest (2026-09-26 → 2026-10-26)
+
+Source: bookmarklet digest over Confluence **XPTCXE** (page tree under home,
+OneGuides excluded) + Jira **OTS/CLSD** (flyer-processing topics only).
+**4 Confluence pages changed, 13 in-scope tickets, 44 tickets skipped as unrelated.**
+
+**✅ Applied this pass** (see `sources/source-map.md` for the full list): deharmonize
+`Venue has been deleted` → `stores-and-harmonization`; live flyer stuck in Page Tile
+Gen after a page deletion and cloned-run empty/banners-only publication →
+`publishing-and-go-live`; vendor-queue sub-task locking and the Flyer Tile Gen
+"high memory worker" correction → `common-live-flyer-issues`; two new articles
+(`deep-links.md`, `sponsored-product-ads-cxe-scope.md`).
+
+- **⚠️ Needs Vanessa — both new articles are PARTIAL and say so on their face.** The
+  digest truncated the source pages (**~22 uncaptured lines** on *Deep Links*,
+  **~132** on *Sponsored Product Ads*). Each article carries an explicit
+  "partial capture, confirm against the source page" banner, and *Sponsored Product
+  Ads* is missing its entire **out-of-scope list** — the half most likely to be
+  asked about ("is this even ours?"). **Decide:** re-ingest both pages in full from
+  Confluence, or accept the partial versions. Nothing was inferred to fill the gaps.
+- **⚠️ Needs Vanessa — `Deep Links` changed the merchant identifier.** The page now
+  says to use the **Merchant Name Identifier** where it previously said **Store
+  Name**. Worth confirming this is a genuine behaviour change and not just clearer
+  wording, because saved links and older docs follow the old instruction.
+- **⚠️ Needs Vanessa — stale-page review is the biggest finding here.** **100 XPTCXE
+  pages have not been edited in 12+ months**, the oldest dating to **2014**. Several
+  read as authoritative process docs the bot could plausibly lean on, including
+  **`Code sheet Troubleshooting Guide`** (last edited **2019-12-03**),
+  **`NEW - Final QC`** (2019-07-29), **`Radius Standards US/Canada`** (2019-01-17),
+  **`Page Swap`**, **`Sessions Tab and Tasks`** and **`Setup QC`** (all 2018-10-02).
+  Our `codesheet-errors.md` cites a codesheet guide in this set. **Decide** whether
+  these get a confirm-or-retire pass before any of them feed the KB further. Not
+  actioned — this needs an owner, not a scan.
+- **ℹ️ Open ticket, no fix to capture yet (watch):**
+  [CLSD-5867](https://flippit.atlassian.net/browse/CLSD-5867) — **`percent_off` field
+  is not handled correctly by VLM** (To Do, opened 2026-10-20). Touches tagging and
+  relates to `item-import-format.md`, but there's no documented behaviour or
+  workaround yet, so nothing was written.
+- **ℹ️ Vendor masking reversed — may age our screenshots/wording.**
+  [CLSD-5835](https://flippit.atlassian.net/browse/CLSD-5835) (deployed 2026-09-30)
+  **shows vendor company names in FAdmin** again, on the vendor-task reassignment
+  screen. Anywhere our guides describe masked vendors may now be wrong.
+- **ℹ️ `#helpme-osteam` page lost vendor-task routing rows** (updated 2026-10-16).
+  Removed entries covered **Box Draw (74)**, **Tag (76)**, **Tag Lite (79)** and
+  **Vendor 46 (Invensis Automation)**. Reads like a vendor/task routing change rather
+  than a cleanup — **confirm before any guide repeats those assignments.**
+- **ℹ️ LATAM expansion, watch-only.** New Confluence page **NativeX LATAM Fadmin
+  Expansion** (2026-10-20): LATAM NativeX campaigns moving from **Super Admin to
+  FAdmin**, starting with **Merco Mexico**, with double-processing during cut-over.
+  [CLSD-5840](https://flippit.atlassian.net/browse/CLSD-5840) (bulk-created indexed
+  flyer types for **Chilean** merchants, 2026-10-05) is the same programme. Nothing
+  changes processing guidance yet, but expect LATAM questions.
+- **ℹ️ WMCA thumbnails re-generated.**
+  [CLSD-5861](https://flippit.atlassian.net/browse/CLSD-5861) (resolved 2026-10-22)
+  re-thumbnailed **65,965** WMCA products whose **black backgrounds** predated the
+  AVIF fix; they now render white. Historical context for
+  `storefront-publishing-errors.md` (missing/incorrect thumbnails) — **not added**,
+  since it's a completed one-off backfill rather than a reproducible symptom.
+- **ℹ️ Skipped — no KB value.** [CLSD-5820](https://flippit.atlassian.net/browse/CLSD-5820)
+  (closed for inactivity, no resolution),
+  [CLSD-5842](https://flippit.atlassian.net/browse/CLSD-5842) (a GitHub PR review),
+  [CLSD-5848](https://flippit.atlassian.net/browse/CLSD-5848) (one-off WMCA 3P
+  republish for `hide_in_channels`) and
+  [CLSD-5834](https://flippit.atlassian.net/browse/CLSD-5834) (item-feeds work for
+  non-US/CA merchants). Internal engineering tasks with no symptom a processor
+  would hit.
+
 ### 2026-10-05 scan (consolidates the 09-07 → 10-05 firings)
 - **⚠️ Degraded/partial runs.** Several weekly firings (09-07, 09-14, 09-21, 09-28)
   did **not complete** — the long-lived scheduled session kept restarting mid-run

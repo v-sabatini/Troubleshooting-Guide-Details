@@ -62,6 +62,53 @@ clone doesn't show Vendor/System/Ops tasks. *(OTS-1938, OTS-2006, OTS-2030.)*
 **Fix:** Retry the clone; if it consistently errors, **escalate to CLSD** with the
 flyer run link and the error. Note the due date if time-sensitive.
 
+### Issue: Cloned run publishes empty — "banners only" publication / empty ads
+
+**Symptom:** A **cloned** run produces an **empty FAdmin publication containing
+only banners**, which in turn serves **empty ads**.
+
+**Cause:** A platform defect affecting cloned runs. **An emergency patch was
+deployed 2026-09-30** and **newly cloned runs are confirmed unaffected**. As
+remediation, **372 cloned runs** that were already live (or due to go live) were
+**republished** — that was a blanket safety measure, so not all 372 were
+necessarily broken.
+
+**Fix:**
+- **Clone created on or after 2026-10-01:** this shouldn't happen. If it does,
+  it's a **new occurrence of a patched bug** — file a **CLSD** and say the patch
+  appears to have regressed.
+- **Older clone still showing empty ads:** **republish the run**; it may have
+  been outside the remediation sweep.
+
+*(Fixed under [CLSD-5839](https://flippit.atlassian.net/browse/CLSD-5839), opened
+2026-09-29 and resolved 2026-10-01.)*
+
+### Issue: Live flyer stuck in Page Tile Generation / layout changes won't refresh
+
+**Symptom:** A **live** flyer is **stuck in Page Tile Generation** — often showing
+**one page still to go** — and **layout changes made during QC won't refresh** onto
+the flyer.
+
+**Likely cause:** A page was **deleted from the flyer run entirely** (not just
+removed from the PZs) and in some cases re-added later on a different track. Page
+Tile Generation then can't find that page at all, so it never completes.
+
+**Fix:** **There is no self-serve unblock for this** — unblocking the run does not
+clear it, because the task is waiting on a page that no longer exists. **File a
+CLSD to have the session unblocked**, and mark it **urgent** if the flyer is
+already live. Set the ticket's workflow to **FAdmin** so it lands on CPLAT's radar.
+Once unblocked, confirm the sessions completed and the layout changes are
+reflected.
+
+> **Prevention:** avoid deleting a page from a run outright during QC. If a page
+> has to come out, remove it from the PZs rather than deleting it, and see the
+> whole-track guidance in `common-live-flyer-issues.md` → *Flyer tile generation
+> error* before deleting anything.
+
+*(Sources: [OTS-2356](https://flippit.atlassian.net/browse/OTS-2356) /
+[CLSD-5838](https://flippit.atlassian.net/browse/CLSD-5838), IGA QC live flyer,
+2026-09-29 — same-day fix; root cause confirmed in the `#helpme-cxe` thread.)*
+
 ### Issue: Pipeline stuck / missing slices / FQC page not accessible
 
 **Symptom:** Flyer pipelines are stuck, slices are missing, or the FQC page/
@@ -146,6 +193,8 @@ through empty, escalate with the item reference.
 | Situation | Escalate to |
 |---|---|
 | Stuck pipeline / clone errors / FQC won't generate | **CLSD** (urgent if going live soon) |
+| Live flyer stuck in Page Tile Gen after a page was deleted | **CLSD** (urgent; set workflow to **FAdmin**) — no self-serve unblock |
+| Cloned run publishing empty / banners-only (clone from 2026-10-01 onward) | **CLSD** — patched bug has regressed |
 | Item/link/page change won't reflect **everywhere** on the front-end (after ruling out processing) | Ask the **Enablement team in `#helpme-cxe`**, then **CLSD** |
 | Item/link/page change won't reflect **Hosted-only** | **Hosted team (HS)** |
 | Root cause is the flyer isn't live | Fix go-live first (Part A) |
@@ -161,5 +210,8 @@ Always include: flyer run link, current status/state, due date, and what you tri
 ---
 
 *Sources: OTS Jira board 315, incl. OTS-1938/1964/1971/1974/1978/1982/1992/1998/
-2006/2027/2030/2047/2048/2060/2064; team SME review (answer-feedback-log FB-008, FB-009).
-See `sources/ots-ticket-inventory.md`. Last reviewed: 2026-07-22.*
+2006/2027/2030/2047/2048/2060/2064; team SME review (answer-feedback-log FB-008, FB-009);
+[OTS-2356](https://flippit.atlassian.net/browse/OTS-2356) /
+[CLSD-5838](https://flippit.atlassian.net/browse/CLSD-5838) (live flyer stuck in Page
+Tile Gen) and [CLSD-5839](https://flippit.atlassian.net/browse/CLSD-5839) (cloned run
+publishing empty). See `sources/ots-ticket-inventory.md`. Last reviewed: 2026-10-26.*

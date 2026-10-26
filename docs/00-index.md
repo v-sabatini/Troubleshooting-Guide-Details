@@ -30,6 +30,8 @@ NotebookLM (or read by Claude) as an individual source.
 | 13 | [Escalation & Ticketing](knowledge-base/escalation-and-tickets.md) | You've tried self-serve and need to know where to ask, which team, or how to file a ticket. |
 | 14 | [After You Escalate: FD, CLSD & MSC](knowledge-base/post-escalation-what-happens-next.md) | You've escalated and want to know which team has it and how long it'll take. |
 | 15 | [Glossary](knowledge-base/glossary.md) | You hit an unfamiliar term or acronym (PZ, FADMIN, OTS, V2, Publication, Offer, Nexus, Curator, etc.). |
+| 16 | [Deep Links — How to Build Them](knowledge-base/deep-links.md) | You need to build a flyer deep link: base domain, merchant identifier, and the `flyer_run_id` / `locale` / `page` / `store_code` / `postal_code` parameters. ⚠️ partial capture. |
+| 17 | [Sponsored Product Ads — CXE Scope](knowledge-base/sponsored-product-ads-cxe-scope.md) | A Sponsored Product Ads campaign isn't delivering, or items aren't returning in search, and you need to know whether it's CXE's to fix. ⚠️ partial capture. |
 
 > **New in session 2:** Articles 3–8 are grounded in **381 real Ops
 > Troubleshooting (OTS) tickets** (Jan 2024–Jul 2026). See
@@ -103,7 +105,9 @@ ALDI / Ace Hardware?"). Contacts/credentials are omitted from every guide.
 | Post-escalation (FD / CLSD / MSC) | ✅ Boards + turnaround (session 3) |
 | Storefront / publishing | ✅ First version |
 | Common live-flyer issues | ✅ First version (from `#helpme-cxe`) |
+| Deep links | ⚠️ Partial — confirmed parameters only; source page has ~22 uncaptured lines |
+| Sponsored Product Ads (CXE scope) | ⚠️ Partial — in-scope list complete; out-of-scope list + most scenarios uncaptured |
 | Data piping | ⬜ Deferred (not in first scope) |
 | ClickUp process material | 🚫 Known gap — PS space not in connected ClickUp (see session-04 log) |
 
-*Last updated: 2026-07-22.*
+*Last updated: 2026-10-26.*

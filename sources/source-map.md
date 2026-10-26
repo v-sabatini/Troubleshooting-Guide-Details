@@ -155,6 +155,13 @@ watchlist).
 | 2026-07-22 | AutoBox can't box a website-screenshot retailer (long/skinny pages) → clipping-and-autobox | Jira OTS-2332 |
 | 2026-07-22 | `#helpme-cxe` request/escalation flow (self-serve first, post-don't-DM, tag `@enable-cxe`, complete-request checklist, ClickUp intake for improvements) → escalation-and-tickets | Enablement `#helpme-cxe` process deck (Drive, 2026-07-21) |
 | 2026-07-27 | Item Cutout Generation errors on items with a blank Name (auto-tag had no text) — find via Item Search Name IS blank, add a Name, unblock/re-run; else urgent CLSD/CPLAT → clipping-and-autobox | `#helpme-cxe` thread (2026-07-27) |
+| 2026-10-26 | Deharmonize fails with `Venue has been deleted` (4Square venue record gone; CLSD, ~2 business days) → stores-and-harmonization | [CLSD-5841](https://flippit.atlassian.net/browse/CLSD-5841) |
+| 2026-10-26 | Live flyer stuck in Page Tile Gen after a page was **deleted** from the run (no self-serve unblock; CLSD with workflow = FAdmin) → publishing-and-go-live | [OTS-2356](https://flippit.atlassian.net/browse/OTS-2356) / [CLSD-5838](https://flippit.atlassian.net/browse/CLSD-5838) + `#helpme-cxe` 2026-09-29 |
+| 2026-10-26 | Cloned run publishes empty / banners-only → empty ads; patched 2026-09-30, 372 runs republished; recurrence on a newer clone = regression → publishing-and-go-live | [CLSD-5839](https://flippit.atlassian.net/browse/CLSD-5839) |
+| 2026-10-26 | Vendor queue: tasks never become available / can't be started = normal **sub-task locking**, not a bug → common-live-flyer-issues | [CLSD-5830](https://flippit.atlassian.net/browse/CLSD-5830) |
+| 2026-10-26 | Flyer Tile Gen "high memory worker" / `Killed` → **re-run Flyer Creation** (upstream, forces re-run); "unblock" is a different mechanism → common-live-flyer-issues | `#helpme-cxe` 2026-10-19 + CXE monthly issue report 2026-10-01 (CPFM-3540 / CPFM-3765) |
+| 2026-10-26 | **New article** — Deep Links (base domain, Merchant Name Identifier — *changed from Store Name*, parameter table). ⚠️ partial capture | Confluence "Deep Links" (XPTCXE 3129122303, updated 2026-10-20) |
+| 2026-10-26 | **New article** — Sponsored Product Ads, CXE scope (in-scope list, single- vs multi-retailer note, Walmart 10-pricing-zone SKU pitfall). ⚠️ partial capture | Confluence "Sponsored Product Ads - CXE" (XPTCXE 13880197171, new 2026-10-21) |
 
 ## Not yet ingested (candidate sources for future sessions)
 
@@ -165,4 +172,4 @@ watchlist).
 - The legacy **Rob's Troubleshooting Code Sheets** guide on the old
   `confluence.wishabi.com` (referenced by the codesheet guide; may be archived).
 
-*Last updated: 2026-07-22.*
+*Last updated: 2026-10-26.*
